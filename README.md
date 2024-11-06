@@ -36,6 +36,7 @@ coding!
 
 - Anita Boakye-Yiadom: [GitHub](https://github.com/AnitaBoakye) / [LinkedIn](https://linkedin.com/in/anitaboakyeyiadom/)
 - Predrag Jandric - Developer: [GitHub](https://github.com/Predrag-Jandric) / [LinkedIn](https://www.linkedin.com/in/predrag-jandric/)
+- Ayumi Sato - Developer: [GitHub](https://github.com/ayumi-ayumi) / [LinkedIn](https://www.linkedin.com/in/ayumi-sato/)
 
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
