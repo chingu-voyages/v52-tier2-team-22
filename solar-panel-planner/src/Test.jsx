@@ -1,8 +1,11 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Modal from "./Modal";
+import { TiTickOutline } from "react-icons/ti";
 
 function Test() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,7 +26,7 @@ function Test() {
   const handleSubmit = function (e) {
     e.preventDefault();
     console.log(formData);
-
+    setIsModalOpen(true);
     // commented out for testing purposes
 
     // setFormData({
@@ -33,6 +36,10 @@ function Test() {
     //   address: "",
     //   date: null,
     // });
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -163,6 +170,11 @@ function Test() {
           </button>
         </article>
       </form>
+
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <TiTickOutline className="mx-auto size-10 text-green-400" />
+        <p>Form submitted succesfully !</p>
+      </Modal>
     </>
   );
 }
