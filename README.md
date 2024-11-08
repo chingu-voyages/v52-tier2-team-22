@@ -1,42 +1,52 @@
-# voyage-tasks
+readme
+## Requirements & Specifications
+## 🔗 [LINK](https://github.com/chingu-voyages/voyage-project-tier2-solar-panel-planner)
 
-Your project's `readme` is as important to success as your code. For 
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
+## Clone & Run locally 🏃‍♂️
 
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point - 
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
+1. **Clone the Repository:**
 
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
+   - On the GitHub repo page, click the green "Code" button.
 
-> Own it & Make it your Own!
+   - Copy the HTTPS URL.
 
-## Team Documents
+2. **Open the Terminal:**
 
-You may find these helpful as you work together to organize your project.
+   - Open the terminal by typing "cmd" in your desktop's start menu, **OR**
 
-- [Team Project Ideas](./docs/team_project_ideas.md)
-- [Team Decision Log](./docs/team_decision_log.md)
+   - Right-click on the desktop and select "Git Bash Here" (if you have Git Bash installed), **OR**
 
-Meeting Agenda templates (located in the `/docs` directory in this repo):
+   - Open Visual Studio Code's terminal by clicking "Terminal" -> "New Terminal" inside the editor.
 
-- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
-- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
-- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
-- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
+3. **Navigate to Your Project Location:**
+
+   - In the terminal, navigate to your desired location (e.g., desktop) using the command: `cd desktop`. Adjust the path if your project is located elsewhere.
+
+   - Ensure that your terminal's address is inside the project folder.
+
+4. **Clone the Repository:**
+
+   - Run the command: `git clone /link/`. Replace `/link/` with the HTTPS URL from step 1.
+
+5. **Enter the Project Directory:**
+
+   - Navigate into the cloned repository by typing: `cd /folder-name/`. Replace `/folder-name/` with the name of the cloned folder.
+
+6. **Install Dependencies:**
+
+   - Run the command: `npm install` to install all the necessary dependencies.
+
+7. **Start the Project:**
+
+   - Run the command: `npm run dev` or `yarn dev` to start the project, if the project is created using Vite. You will need to manually open the browser address at [localhost:5173/](http://localhost:5173/)
+
+---
 
 ## Our Team
-
-Everyone on your team should add their name along with a link to their GitHub
-& optionally their LinkedIn profiles below. Do this in Sprint #1 to validate
-your repo access and to practice PR'ing with your team *before* you start
-coding!
 
 - Anita Boakye-Yiadom - Scrum Master: [GitHub](https://github.com/AnitaBoakye) / [LinkedIn](https://linkedin.com/in/anitaboakyeyiadom/)
 - Predrag Jandric - Developer: [GitHub](https://github.com/Predrag-Jandric) / [LinkedIn](https://www.linkedin.com/in/predrag-jandric/)
 - Ayumi Sato - Developer: [GitHub](https://github.com/ayumi-ayumi) / [LinkedIn](https://www.linkedin.com/in/ayumi-sato/)
 
    ...
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Teammate name / role: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
