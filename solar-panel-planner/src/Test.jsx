@@ -3,111 +3,158 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Test() {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    date: null,
+  });
+
+  const handleInputChange = function (e) {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleDateChange = function (date) {
+    setFormData((prevData) => ({ ...prevData, date }));
+  };
+
+  const handleSubmit = function (e) {
+    e.preventDefault();
+    console.log(formData);
+    // commented out for testing purposes
+
+    // setFormData({
+    //   name: "",
+    //   email: "",
+    //   phone: "",
+    //   address: "",
+    //   date: null,
+    // });
+  };
 
   return (
-    <section className="bg-white flex flex-col gap-5 shadow-md w-[20rem] rounded mx-auto px-8 py-8">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white flex flex-col gap-5 shadow-md max-w-sm rounded mx-auto px-8 py-8"
+    >
+      {/* Name */}
       <article className="flex flex-col gap-2">
-        <label className="block text-gray-700 text-sm font-bold" htmlFor="name">
+        <label htmlFor="name" className="block text-gray-700 text-sm font-bold">
           Name
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none  
- focus:shadow-outline"
-          id="name"
           type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
           placeholder="Enter name"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
         />
       </article>
 
-      {/* email */}
+      {/* Email */}
       <article className="flex flex-col gap-2">
         <label
-          className="block text-gray-700 text-sm font-bold"
           htmlFor="email"
+          className="block text-gray-700 text-sm font-bold"
         >
           Email
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none  
- focus:shadow-outline"
-          id="name"
           type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
           placeholder="Enter email"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
         />
       </article>
 
-      {/* phone nmb */}
+      {/* Phone Number */}
       <article className="flex flex-col gap-2">
         <label
-          className="block text-gray-700 text-sm font-bold"
           htmlFor="phone"
+          className="block text-gray-700 text-sm font-bold"
         >
-          Phone number
+          Phone Number
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none  
- focus:shadow-outline"
-          id="name"
           type="text"
+          id="phone"
+          name="phone"
+          value={formData.phone}
+          onChange={handleInputChange}
           placeholder="Enter phone number"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
         />
       </article>
 
-      {/* adress */}
+      {/* Address */}
       <article className="flex flex-col gap-2">
         <label
+          htmlFor="address"
           className="block text-gray-700 text-sm font-bold"
-          htmlFor="adress"
         >
-          Adress
+          Address
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none  
- focus:shadow-outline"
-          id="name"
           type="text"
-          placeholder="Enter adress"
+          id="address"
+          name="address"
+          value={formData.address}
+          onChange={handleInputChange}
+          placeholder="Enter address"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
         />
       </article>
 
-      {/* date */}
+      {/* Date */}
       <article className="flex flex-col gap-2">
-        <label className="block text-gray-700 text-sm font-bold" htmlFor="date">
-          Preferred timeslot
+        <label htmlFor="date" className="block text-gray-700 text-sm font-bold">
+          Preferred Timeslot
         </label>
-
         <DatePicker
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
+          selected={formData.date}
+          onChange={handleDateChange}
           showTimeSelect
           timeFormat="HH:mm"
-          className="shadow border w-[16rem] rounded py-2 px-3 text-gray-700 focus:outline-none  
- focus:shadow-outline"
           timeIntervals={60}
           timeCaption="Time"
-          placeholderText="Clik to select"
           dateFormat="MMMM d, yyyy h:mm"
+          placeholderText="Click to select"
+          className="shadow border w-full rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
         />
       </article>
 
-      {/* Add more fields for email, phone number, and address */}
+      {/* Buttons */}
       <article className="flex gap-5 mt-4">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Submit
         </button>
         <button
-          className="bg-gray-300  
- hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded"
-          type="button"
+          type="button" // prevent form submission
+          onClick={() =>
+            setFormData({
+              name: "",
+              email: "",
+              phone: "",
+              address: "",
+              date: null,
+            })
+          }
+          className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded"
         >
           Cancel
         </button>
       </article>
-    </section>
+    </form>
   );
 }
 
