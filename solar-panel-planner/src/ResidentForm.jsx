@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
 
-function Test() {
+function ResidentForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -179,4 +179,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default ResidentForm;

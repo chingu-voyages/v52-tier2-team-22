@@ -1,9 +1,11 @@
-import Test from "./Test";
+// import ResidentForm from "./ResidentForm";
+import RoleSelection from "./RoleSelection";
 
 function App() {
   return (
-    <main className="h-screen w-full bg-slate-700 place-content-center">
-      <Test />
+    <main className="h-screen w-full  place-content-center">
+      {/* <ResidentForm /> */}
+      <RoleSelection />
     </main>
   );
 }
