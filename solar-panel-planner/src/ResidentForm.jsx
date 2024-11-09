@@ -43,10 +43,12 @@ function ResidentForm() {
   };
 
   return (
-    <>
+    <section className="bg-zinc-100 py-8">
+      <h2 className="text-center text-5xl">Book an appointment</h2>
+
       <form
         onSubmit={handleSubmit}
-        className="bg-white flex flex-col gap-5 shadow-md max-w-sm rounded mx-auto px-8 py-8"
+        className="bg-stone-50 flex my-8 flex-col gap-5 shadow-lg max-w-sm rounded mx-auto px-8 py-8"
       >
         {/* Name */}
         <article className="flex flex-col gap-2">
@@ -175,7 +177,7 @@ function ResidentForm() {
         <TiTickOutline className="mx-auto size-10 text-green-400" />
         <p>Form submitted succesfully !</p>
       </Modal>
-    </>
+    </section>
   );
 }
 

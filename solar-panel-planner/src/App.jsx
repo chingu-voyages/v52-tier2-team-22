@@ -1,11 +1,17 @@
-// import ResidentForm from "./ResidentForm";
+import ResidentForm from "./ResidentForm";
+import { useState } from "react";
 import RoleSelection from "./RoleSelection";
 
 function App() {
+  const [selectedForm, setSelectedForm] = useState(null);
+
   return (
-    <main className="h-screen w-full  place-content-center">
+    <main className="h-screen w-full">
       {/* <ResidentForm /> */}
-      <RoleSelection />
+      <RoleSelection setSelectedForm={setSelectedForm} />
+
+      {selectedForm === "resident" && <ResidentForm />}
+      {selectedForm === "admin" && <p>admin</p>}
     </main>
   );
 }
