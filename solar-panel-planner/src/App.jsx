@@ -1,6 +1,7 @@
-import ResidentForm from "./ResidentForm";
 import { useState } from "react";
 import RoleSelection from "./RoleSelection";
+import ResidentForm from "./ResidentForm";
+import AdminForm from "./AdminForm";
 
 function App() {
   const [selectedForm, setSelectedForm] = useState(null);
@@ -11,7 +12,7 @@ function App() {
       <RoleSelection setSelectedForm={setSelectedForm} />
 
       {selectedForm === "resident" && <ResidentForm />}
-      {selectedForm === "admin" && <p>admin</p>}
+      {selectedForm === "admin" && <AdminForm />}
     </main>
   );
 }
