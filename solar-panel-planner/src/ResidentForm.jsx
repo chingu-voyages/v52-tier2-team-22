@@ -6,7 +6,7 @@ import { TiTickOutline } from "react-icons/ti";
 
 function ResidentForm() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
+  const [residentFormData, setResidentFormData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -16,20 +16,20 @@ function ResidentForm() {
 
   const handleInputChange = function (e) {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setResidentFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleDateChange = function (date) {
-    setFormData((prevData) => ({ ...prevData, date }));
+    setResidentFormData((prevData) => ({ ...prevData, date }));
   };
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    console.log(formData);
+    console.log(residentFormData);
     setIsModalOpen(true);
     // commented out for testing purposes
 
-    // setFormData({
+    // setResidentFormData({
     //   name: "",
     //   email: "",
     //   phone: "",
@@ -62,7 +62,7 @@ function ResidentForm() {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={residentFormData.name}
             onChange={handleInputChange}
             placeholder="Enter name"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
@@ -81,7 +81,7 @@ function ResidentForm() {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
+            value={residentFormData.email}
             onChange={handleInputChange}
             placeholder="Enter email"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
@@ -100,7 +100,7 @@ function ResidentForm() {
             type="text"
             id="phone"
             name="phone"
-            value={formData.phone}
+            value={residentFormData.phone}
             onChange={handleInputChange}
             placeholder="Enter phone number"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
@@ -119,7 +119,7 @@ function ResidentForm() {
             type="text"
             id="address"
             name="address"
-            value={formData.address}
+            value={residentFormData.address}
             onChange={handleInputChange}
             placeholder="Enter address"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
@@ -135,7 +135,7 @@ function ResidentForm() {
             Preferred Timeslot
           </label>
           <DatePicker
-            selected={formData.date}
+            selected={residentFormData.date}
             onChange={handleDateChange}
             showTimeSelect
             timeFormat="HH:mm"
@@ -158,7 +158,7 @@ function ResidentForm() {
           <button
             type="button" // prevent form submission
             onClick={() =>
-              setFormData({
+              setResidentFormData({
                 name: "",
                 email: "",
                 phone: "",
