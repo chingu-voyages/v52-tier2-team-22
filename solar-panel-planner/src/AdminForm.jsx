@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { FiKey } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AdminForm() {
+  const navigate = useNavigate();
   const [adminFormData, setAdminFormData] = useState({
     name: "",
     password: "",
@@ -21,6 +25,19 @@ function AdminForm() {
     //   name: "",
     //   password: "",
     // });
+
+    if (
+      adminFormData.name === "Admin John Smith" &&
+      adminFormData.password === "admin_678"
+    ) {
+      navigate("/adminpage");
+    } else {
+      toast.error("Incorrect username or password");
+      setAdminFormData({
+        name: "",
+        password: "",
+      });
+    }
   };
 
   const handleAutofill = function () {
@@ -32,6 +49,7 @@ function AdminForm() {
 
   return (
     <section className="bg-zinc-100 py-8">
+      <ToastContainer />
       <h2 className="text-center text-5xl">Login as admin</h2>
 
       <form
@@ -50,6 +68,7 @@ function AdminForm() {
             type="text"
             id="name"
             name="name"
+            required
             value={adminFormData.name}
             onChange={handleInputChange}
             placeholder="Enter name"
@@ -68,6 +87,7 @@ function AdminForm() {
           <input
             type="password"
             id="password"
+            required
             name="password"
             value={adminFormData.password}
             onChange={handleInputChange}
@@ -99,6 +119,7 @@ function AdminForm() {
             Cancel
           </button>
           <button
+            type="button"
             onClick={handleAutofill}
             className="bg-blue-500 ml-auto hover:bg-blue-700 text-white py-2 px-3 rounded"
           >
