@@ -1,19 +1,15 @@
-import { useState } from "react";
-import RoleSelection from "./RoleSelection";
-import ResidentForm from "./ResidentForm";
-import AdminForm from "./AdminForm";
+import AdminPage from "./pages/AdminPage";
+import Homepage from "./pages/Homepage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-  const [selectedForm, setSelectedForm] = useState(null);
-
   return (
-    <main className="h-screen w-full">
-      {/* <ResidentForm /> */}
-      <RoleSelection setSelectedForm={setSelectedForm} />
-
-      {selectedForm === "resident" && <ResidentForm />}
-      {selectedForm === "admin" && <AdminForm />}
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Homepage />} />
+        <Route path="/adminpage" element={<AdminPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
