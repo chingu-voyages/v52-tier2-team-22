@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
 
 function ResidentForm() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [residentFormData, setResidentFormData] = useState({
     name: "",
     email: "",
@@ -174,8 +174,18 @@ function ResidentForm() {
       </form>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <TiTickOutline className="mx-auto size-10 text-green-400" />
-        <p>Form submitted succesfully !</p>
+        <div className="flex flex-col gap-6">
+          <TiTickOutline className="mx-auto size-10 text-green-400" />
+          <p>Form submitted succesfully !</p>
+          <p>
+            Your preffered timeslot is only indicative ! You will receinve a
+            confirmation via phone call a few hours before scheduled visit
+          </p>
+          <p>
+            If you want to cancel your appointment, you can reach us at this
+            number 1-800-123-4567
+          </p>
+        </div>
       </Modal>
     </section>
   );
