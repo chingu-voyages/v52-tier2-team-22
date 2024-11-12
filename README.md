@@ -1,4 +1,3 @@
-readme
 ## Requirements & Specifications
 ## 🔗 [LINK](https://github.com/chingu-voyages/voyage-project-tier2-solar-panel-planner)
 

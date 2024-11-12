@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
 
 function ResidentForm() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [residentFormData, setResidentFormData] = useState({
     name: "",
     email: "",
