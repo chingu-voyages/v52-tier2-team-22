@@ -1,4 +1,3 @@
-readme
 ## Requirements & Specifications
 ## 🔗 [LINK](https://github.com/chingu-voyages/voyage-project-tier2-solar-panel-planner)
 
@@ -47,6 +46,6 @@ readme
 - Anita Boakye-Yiadom - Scrum Master: [GitHub](https://github.com/AnitaBoakye) / [LinkedIn](https://linkedin.com/in/anitaboakyeyiadom/)
 - Predrag Jandric - Developer: [GitHub](https://github.com/Predrag-Jandric) / [LinkedIn](https://www.linkedin.com/in/predrag-jandric/)
 - Ayumi Sato - Developer: [GitHub](https://github.com/ayumi-ayumi) / [LinkedIn](https://www.linkedin.com/in/ayumi-sato/)
-
-   ...
-- Teammate name / role: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Noora Saleh - Scrum Master: [GitHub](https://github.com/NooraHakim1) / [LinkedIn](https://www.linkedin.com/in/noora-hakim-156144244/)
+- Ikram Maizi - Developer: [GitHub](https://github.com/ikrammaizi) / [LinkedIn](https://www.linkedin.com/in/ikram-maizi-6142011bb/)
+  
