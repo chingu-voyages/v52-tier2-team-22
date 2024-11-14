@@ -1,10 +1,15 @@
+import AdminPage from "./pages/AdminPage";
+import Homepage from "./pages/Homepage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 function App() {
   return (
-    <div className="h-screen w-full bg-slate-700 place-content-center">
-      <h1 className="font-bold text-center text-5xl underline text-teal-400">
-        hello react
-      </h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Homepage />} />
+        <Route path="/adminpage" element={<AdminPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
