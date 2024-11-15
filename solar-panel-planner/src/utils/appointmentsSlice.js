@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const appointmentsSlice = createSlice({
-    name: 'appointments',
-    initialState: [],
-    reducers: {
-        addAppointment: (state, action) => {
-            console.log(state, action);
-            
-        }
-    }
-})
+const initialState = {
+  appointments: []
+};
 
-export const {addAppointment} = appointmentsSlice.actions
-export default appointmentsSlice.reducer
+export const appointmentsSlice = createSlice({
+  name: "appointments",
+  initialState,
+  reducers: {
+    addAppointment: (state, action) => {
+      console.log(state, action);
+      state.appointments.push(action.payload)
+    },
+  },
+});
+
+export const { addAppointment } = appointmentsSlice.actions;
+export default appointmentsSlice.reducer;

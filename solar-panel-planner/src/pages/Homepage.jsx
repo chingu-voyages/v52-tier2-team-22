@@ -3,6 +3,7 @@ import RoleSelection from "../RoleSelection";
 import ResidentForm from "../ResidentForm";
 import AdminForm from "../AdminForm";
 import landingpage from "../assets/landingpage.png";
+import Test from "../Test";
 
 function Homepage() {
   const [selectedForm, setSelectedForm] = useState(null);
@@ -14,6 +15,8 @@ function Homepage() {
 
       {selectedForm === "resident" && <ResidentForm />}
       {selectedForm === "admin" && <AdminForm />}
+
+      <Test/>
     </main>
   );
 }

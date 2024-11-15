@@ -3,15 +3,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
+import { useDispatch } from "react-redux";
+import { addAppointment } from "./utils/appointmentsSlice";
 
 function ResidentForm() {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [residentFormData, setResidentFormData] = useState({
     name: "",
     email: "",
     phone: "",
     address: "",
-    date: null,
+    date: "",
   });
 
   const handleInputChange = function (e) {
@@ -27,15 +30,24 @@ function ResidentForm() {
     e.preventDefault();
     console.log(residentFormData);
     setIsModalOpen(true);
-    // commented out for testing purposes
 
-    // setResidentFormData({
-    //   name: "",
-    //   email: "",
-    //   phone: "",
-    //   address: "",
-    //   date: null,
-    // });
+    const serializedData = {
+      ...residentFormData,
+      date: residentFormData.date
+        ? new Date(residentFormData.date).toISOString()
+        : "",
+    };
+
+    dispatch(addAppointment(serializedData));
+
+    // commented out for testing purposes
+    setResidentFormData({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      date: "",
+    });
   };
 
   const handleCloseModal = () => {
@@ -163,7 +175,7 @@ function ResidentForm() {
                 email: "",
                 phone: "",
                 address: "",
-                date: null,
+                date: "",
               })
             }
             className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded"
