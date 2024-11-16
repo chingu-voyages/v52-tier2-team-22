@@ -3,16 +3,19 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
+import { useDispatch } from "react-redux";
+import { addAppointment } from "./utils/appointmentsSlice";
 import { ScheduleMeeting } from "react-schedule-meeting";
 
 function ResidentForm() {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [residentFormData, setResidentFormData] = useState({
     name: "",
     email: "",
     phone: "",
     address: "",
-    date: null,
+    date: "",
   });
 
   // this generates basic available timeslots for the next 6 days
@@ -87,15 +90,24 @@ function ResidentForm() {
     e.preventDefault();
     console.log(residentFormData);
     setIsModalOpen(true);
-    // commented out for testing purposes
 
-    // setResidentFormData({
-    //   name: "",
-    //   email: "",
-    //   phone: "",
-    //   address: "",
-    //   date: null,
-    // });
+    const serializedData = {
+      ...residentFormData,
+      date: residentFormData.date
+        ? new Date(residentFormData.date).toISOString()
+        : "",
+    };
+
+    dispatch(addAppointment(serializedData));
+
+    // commented out for testing purposes
+    setResidentFormData({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      date: "",
+    });
   };
 
   const handleCloseModal = () => {
@@ -216,6 +228,27 @@ function ResidentForm() {
             />
           </article>
 
+        {/* Date */}
+        <article className="flex flex-col gap-2">
+          <label
+            htmlFor="date"
+            className="block text-gray-700 text-sm font-bold"
+          >
+            Preferred Timeslot
+          </label>
+          <DatePicker
+            selected={residentFormData.date}
+            onChange={handleDateChange}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={60}
+            timeCaption="Time"
+            dateFormat="MMMM d, yyyy h:mm"
+            placeholderText="Click to select"
+            className="shadow border w-full rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          />
+        </article>
+
           {/* Buttons */}
           <article className="flex gap-5 mt-4">
             <button
@@ -232,7 +265,7 @@ function ResidentForm() {
                   email: "",
                   phone: "",
                   address: "",
-                  date: null,
+                  date: "",
                 })
               }
               className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
