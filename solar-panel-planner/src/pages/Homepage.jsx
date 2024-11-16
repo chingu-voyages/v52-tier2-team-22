@@ -4,6 +4,7 @@ import ResidentForm from "../ResidentForm";
 import AdminForm from "../AdminForm";
 import landingpage from "../assets/landingpage.png";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Img1 from "../assets/img1.jpg"
 import Img2 from "../assets/img2.webp"
 import Img3 from "../assets/img3.jpeg"
@@ -67,6 +68,7 @@ function Homepage() {
         Send a Request
       </button>
     </div>
+    <Footer />
     </main>
   );
 }
