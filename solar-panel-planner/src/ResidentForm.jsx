@@ -1,24 +1,25 @@
-import { useState } from "react";
-import DatePicker from "react-datepicker";
+import { useState, useRef, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
 import { useDispatch } from "react-redux";
 import { addAppointment } from "./utils/appointmentsSlice";
 import { ScheduleMeeting } from "react-schedule-meeting";
+import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
 
 function ResidentForm() {
+  const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [residentFormData, setResidentFormData] = useState({
+  const defaultValue = {
     name: "",
     email: "",
     phone: "",
-    address: "",
+    address: { street_address: "", zipcode: "" },
     date: "",
-  });
+  };
+  const [residentFormData, setResidentFormData] = useState(defaultValue);
 
-  // this generates basic available timeslots for the next 6 days
   const today = new Date();
   let year = today.getFullYear();
   let month = today.getMonth() + 1;
@@ -26,63 +27,55 @@ function ResidentForm() {
   let LastDayOfMonth = new Date(year, month, 0).getDate();
   let daysLeft = LastDayOfMonth - day;
 
-  // const availableTimeslots = [0, 1, 2, 3, 4, 5].map((id) => {
-  //   return {
-  //     id,
-  //     startTime: new Date(
-  //       new Date(new Date().setDate(new Date().getDate() + id)).setHours(
-  //         9,
-  //         0,
-  //         0,
-  //         0
-  //       )
-  //     ),
-  //     endTime: new Date(
-  //       new Date(new Date().setDate(new Date().getDate() + id)).setHours(
-  //         17,
-  //         0,
-  //         0,
-  //         0
-  //       )
-  //     ),
-  //   };
-  // });
-
   let availableTimeslots = [];
-  for (let i = 0; i <= daysLeft; i++) {
-    let dayOfWeek = new Date(
-      new Date(new Date().setDate(new Date().getDate() + i))
-    ).getDay();
+  function getAvailableTimeslots(dayOfWeek, dayCount) {
     if (dayOfWeek !== 0 && dayOfWeek !== 6) {
       availableTimeslots.push({
-        id: i,
+        id: dayCount,
         startTime: new Date(
-          new Date(new Date().setDate(new Date().getDate() + i)).setHours(
-            9,
-            0,
-            0,
-            0
-          )
+          new Date(
+            new Date().setDate(new Date().getDate() + dayCount)
+          ).setHours(9, 0, 0, 0)
         ),
         endTime: new Date(
-          new Date(new Date().setDate(new Date().getDate() + i)).setHours(
-            17,
-            0,
-            0,
-            0
-          )
+          new Date(
+            new Date().setDate(new Date().getDate() + dayCount)
+          ).setHours(17, 0, 0, 0)
         ),
       });
     }
   }
 
+  for (let dayCount = 0; dayCount <= daysLeft; dayCount++) {
+    let dayOfWeek = new Date(
+      new Date(new Date().setDate(new Date().getDate() + dayCount))
+    ).getDay();
+
+    getAvailableTimeslots(dayOfWeek, dayCount);
+  }
+
   const handleInputChange = function (e) {
     const { name, value } = e.target;
-    setResidentFormData((prevData) => ({ ...prevData, [name]: value }));
+    let inputData = { ...residentFormData };
+    if (name === "street_address" || name === "zipcode") {
+      inputData = {
+        ...inputData,
+        address: {
+          ...inputData.address,
+          [name]: value,
+        },
+      };
+    } else {
+      inputData = {
+        ...inputData,
+        [name]: value,
+      };
+    }
+
+    setResidentFormData(inputData);
   };
 
   const handleDateChange = function (date) {
-    console.log(date.startTime);
     setResidentFormData((prevData) => ({ ...prevData, date: date.startTime }));
   };
 
@@ -101,13 +94,7 @@ function ResidentForm() {
     dispatch(addAppointment(serializedData));
 
     // commented out for testing purposes
-    setResidentFormData({
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      date: "",
-    });
+    setResidentFormData(defaultValue);
   };
 
   const handleCloseModal = () => {
@@ -131,25 +118,6 @@ function ResidentForm() {
           onStartTimeSelect={handleDateChange}
           format_selectedDateDayTitleFormatString="ccc, LLLL do"
         />
-        {/* <article className="flex flex-col gap-2">
-          <label
-            htmlFor="date"
-            className="block text-gray-700 text-sm font-bold"
-          >
-            Preferred Timeslot
-          </label>
-          <DatePicker
-            selected={residentFormData.date}
-            onChange={handleDateChange}
-            showTimeSelect
-            timeFormat="HH:mm"
-            timeIntervals={60}
-            timeCaption="Time"
-            dateFormat="MMMM d, yyyy h:mm"
-            placeholderText="Click to select"
-            className="shadow border w-full rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-          />
-        </article> */}
 
         <div className="max-w-xl mx-auto my-5">
           {/* Name */}
@@ -167,6 +135,7 @@ function ResidentForm() {
               value={residentFormData.name}
               onChange={handleInputChange}
               placeholder="Enter name"
+              required
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
             />
           </article>
@@ -186,6 +155,7 @@ function ResidentForm() {
               value={residentFormData.email}
               onChange={handleInputChange}
               placeholder="Enter email"
+              required
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
             />
           </article>
@@ -199,55 +169,27 @@ function ResidentForm() {
               Phone Number
             </label>
             <input
-              type="text"
+              type="tel"
               id="phone"
               name="phone"
               value={residentFormData.phone}
               onChange={handleInputChange}
               placeholder="Enter phone number"
+              required
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
             />
           </article>
 
           {/* Address */}
           <article className="flex flex-col gap-2">
-            <label
-              htmlFor="address"
-              className="block text-gray-700 text-sm font-bold"
-            >
-              Address
-            </label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              value={residentFormData.address}
-              onChange={handleInputChange}
-              placeholder="Enter address"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-            />
+            <APIProvider apiKey={API_KEY}>
+              <PlaceAutocomplete
+                residentFormData={residentFormData}
+                setResidentFormData={setResidentFormData}
+                handleInputChange={handleInputChange}
+              />
+            </APIProvider>
           </article>
-
-        {/* Date */}
-        <article className="flex flex-col gap-2">
-          <label
-            htmlFor="date"
-            className="block text-gray-700 text-sm font-bold"
-          >
-            Preferred Timeslot
-          </label>
-          <DatePicker
-            selected={residentFormData.date}
-            onChange={handleDateChange}
-            showTimeSelect
-            timeFormat="HH:mm"
-            timeIntervals={60}
-            timeCaption="Time"
-            dateFormat="MMMM d, yyyy h:mm"
-            placeholderText="Click to select"
-            className="shadow border w-full rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-          />
-        </article>
 
           {/* Buttons */}
           <article className="flex gap-5 mt-4">
@@ -259,15 +201,7 @@ function ResidentForm() {
             </button>
             <button
               type="button" // prevent form submission
-              onClick={() =>
-                setResidentFormData({
-                  name: "",
-                  email: "",
-                  phone: "",
-                  address: "",
-                  date: "",
-                })
-              }
+              onClick={() => setResidentFormData(defaultValue)}
               className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
             >
               Cancel
@@ -295,3 +229,105 @@ function ResidentForm() {
 }
 
 export default ResidentForm;
+
+const PlaceAutocomplete = ({
+  residentFormData,
+  setResidentFormData,
+  handleInputChange,
+}) => {
+  const [placeAutocomplete, setPlaceAutocomplete] = useState(null);
+  const inputRef = useRef(null);
+  const places = useMapsLibrary("places");
+
+  useEffect(() => {
+    if (!places || !inputRef.current) return;
+
+    const options = {
+      fields: ["address_components"],
+      componentRestrictions: { country: "us" },
+    };
+
+    setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
+  }, [places]);
+
+  useEffect(() => {
+    if (!placeAutocomplete) return;
+
+    placeAutocomplete.addListener("place_changed", fillInAddress);
+  }, [setResidentFormData, placeAutocomplete]);
+
+  function fillInAddress() {
+    const place = placeAutocomplete.getPlace();
+
+    let street_address = "";
+    let zipcode = "";
+
+    for (const component of place.address_components) {
+      const componentType = component.types[0];
+
+      switch (componentType) {
+        case "street_number": {
+          street_address = `${component.long_name} ${street_address}`;
+          break;
+        }
+
+        case "route": {
+          street_address += component.short_name;
+          break;
+        }
+
+        case "postal_code": {
+          zipcode = `${component.long_name}${zipcode}`;
+          break;
+        }
+      }
+    }
+
+    setResidentFormData((prevData) => ({
+      ...prevData,
+      address: {
+        ...prevData.address,
+        street_address: street_address,
+        zipcode: zipcode,
+      },
+    }));
+  }
+
+  return (
+    <>
+      <label
+        htmlFor="street_address"
+        className="block text-gray-700 text-sm font-bold"
+      >
+        Street Address
+      </label>
+      <input
+        type="text"
+        id="street_address"
+        name="street_address"
+        value={residentFormData.address.street_address}
+        ref={inputRef}
+        onChange={handleInputChange}
+        placeholder="Street Address"
+        required
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+      />
+      <label
+        htmlFor="zipcode"
+        className="block text-gray-700 text-sm font-bold"
+      >
+        Zipcode
+      </label>
+      <input
+        type="text"
+        id="zipcode"
+        name="zipcode"
+        value={residentFormData.address.zipcode}
+        onChange={handleInputChange}
+        placeholder="Zipcode"
+        required
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+      />
+    </>
+  );
+};

@@ -12,7 +12,8 @@ function Test() {
             {el.name}
             {el.email}
             {el.phone}
-            {el.address}
+            {el.address.street_address}
+            {el.address.zipcode}
             {el.date}
           </li>
         ))}
