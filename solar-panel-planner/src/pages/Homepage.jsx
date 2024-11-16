@@ -8,18 +8,33 @@ import Footer from "../components/Footer";
 import Img1 from "../assets/img1.jpg"
 import Img2 from "../assets/img2.webp"
 import Img3 from "../assets/img3.jpeg"
+import Img4 from "../assets/img4.png"
 
 function Homepage() {
   const [selectedForm, setSelectedForm] = useState(null);
 
   return (
-    <main className="h-screen w-full bg-background">
+    <main className="w-full bg-background">
       <Navbar />
-      <img className="w-full" src={landingpage} alt="landingpage" />
+      {/* <img className="w-full" src={landingpage} alt="landingpage" /> */}
       {/* <RoleSelection setSelectedForm={setSelectedForm} />
 
       {selectedForm === "resident" && <ResidentForm />}
       {selectedForm === "admin" && <AdminForm />} */}
+
+      <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 bg-purple-900 text-white">
+        <div className="text-center md:text-left max-w-md pl-8">
+          <h2 className="text-3xl font-bold mb-4">SolarSync LA</h2>
+          <p className="text-l">
+          Making solar energy adoption simple and accessible for LA residents.
+          </p>
+        </div>
+        <img
+          src={Img4}
+          alt="Send a Request"
+          className="w-full md:w-1/2 shadow-lg"
+        />
+      </div>
 
 
       <div className="flex flex-col gap-12 px-6 py-12 ">
@@ -36,7 +51,7 @@ function Homepage() {
           className="w-full md:w-1/2 rounded-lg shadow-lg"
         />
       </div>
-      <div className="flex flex-col md:flex-row items-center md:justify-between gap-6">
+      <div className="flex flex-col md:flex-row items-center md:gap-6">
         <img
           src={Img2}
           alt="Evaluation"

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="bg-primaryGreen py-4 px-8 text-white">
+    <div className=" py-4 px-8 text-grey-800">
       <div className="flex items-center justify-between">
         <div className="text-lg font-bold">Logo</div>
 
