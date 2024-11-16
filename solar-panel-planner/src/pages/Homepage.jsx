@@ -12,7 +12,7 @@ function Homepage() {
   const [selectedForm, setSelectedForm] = useState(null);
 
   return (
-    <main className="h-screen w-full">
+    <main className="h-screen w-full bg-background">
       <Navbar />
       <img className="w-full" src={landingpage} alt="landingpage" />
       {/* <RoleSelection setSelectedForm={setSelectedForm} />
@@ -21,7 +21,7 @@ function Homepage() {
       {selectedForm === "admin" && <AdminForm />} */}
 
 
-      <div className="flex flex-col gap-12 px-6 py-12 bg-background">
+      <div className="flex flex-col gap-12 px-6 py-12 ">
       <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6">
         <div className="text-center md:text-left max-w-md">
           <h2 className="text-2xl font-bold mb-4">Send a Request</h2>
@@ -61,6 +61,11 @@ function Homepage() {
           className="w-full md:w-1/2 rounded-lg shadow-lg"
         />
       </div>
+    </div>
+    <div className="flex justify-center py-12">
+      <button className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 rounded-lg shadow-md hover:bg-secondaryGreen">
+        Send a Request
+      </button>
     </div>
     </main>
   );
