@@ -1,6 +1,6 @@
 // import { useState } from "react";
 // import RoleSelection from "../RoleSelection";
-// import ResidentForm from "../ResidentForm";
+import ResidentForm from "../ResidentForm";
 // import AdminForm from "../AdminForm";
 // import landingpage from "../assets/landingpage.png";
 import Navbar from "../components/Navbar";
@@ -23,6 +23,9 @@ function Homepage() {
       {selectedForm === "admin" && <AdminForm />} */}
 
       <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6  bg-purple-900 text-white pb-10">
+
+      <ResidentForm />
+
         <div className="text-center flex flex-col gap-4 items-start md:text-left max-w-md pl-8">
           <h2 className="text-3xl font-bold ">SolarSync LA</h2>
           <p className="text-l">
