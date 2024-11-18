@@ -22,12 +22,15 @@ function Homepage() {
       {selectedForm === "resident" && <ResidentForm />}
       {selectedForm === "admin" && <AdminForm />} */}
 
-      <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 bg-purple-900 text-white">
-        <div className="text-center md:text-left max-w-md pl-8">
-          <h2 className="text-3xl font-bold mb-4">SolarSync LA</h2>
+      <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6  bg-purple-900 text-white pb-10">
+        <div className="text-center flex flex-col gap-4 items-start md:text-left max-w-md pl-8">
+          <h2 className="text-3xl font-bold ">SolarSync LA</h2>
           <p className="text-l">
           Making solar energy adoption simple and accessible for LA residents.
           </p>
+          <button className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 rounded-lg shadow-md hover:bg-secondaryGreen">
+        Send a Request
+      </button>
         </div>
         <img
           src={Img4}
