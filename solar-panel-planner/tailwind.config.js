@@ -11,7 +11,7 @@ export default {
         primaryGreen: '#95d387',
         secondaryYellow: '#f2dc96',
         secondaryGreen: '#d8eaab',
-        background: '#f2ead0',
+        background: '#f9f8f3',
       }
     },
   },
