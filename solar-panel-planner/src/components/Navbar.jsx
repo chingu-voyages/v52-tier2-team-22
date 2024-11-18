@@ -33,17 +33,17 @@ export default function Navbar() {
 
         <ul className="hidden md:flex flex-row space-x-6 py-4">
           <li>
-            <Link to="." className="hover:underline">
+            <Link to="." className="font-semibold">
               Send Request
             </Link>
           </li>
           <li>
-            <Link to="." className="hover:underline">
+            <Link to="." className="font-semibold">
               My Request
             </Link>
           </li>
           <li>
-            <Link to="." className="hover:underline">
+            <Link to="." className="font-semibold">
               Admin
             </Link>
           </li>
