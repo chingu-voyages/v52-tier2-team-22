@@ -3,14 +3,17 @@ import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
 import { useDispatch } from "react-redux";
 import { addAppointment } from "./utils/appointmentsSlice";
+import { userDb } from "./userDb";
 import { ScheduleMeeting } from "react-schedule-meeting";
 import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
+import { v4 as uuid } from "uuid";
 
 function ResidentForm() {
   const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const defaultValue = {
+    id: "",
     name: "",
     email: "",
     phone: "",
@@ -85,6 +88,7 @@ function ResidentForm() {
 
     const serializedData = {
       ...residentFormData,
+      id:uuid(),
       date: residentFormData.date
         ? new Date(residentFormData.date).toISOString()
         : "",
@@ -100,6 +104,12 @@ function ResidentForm() {
     setIsModalOpen(false);
   };
 
+  const setSampleData = () => {
+    let ranNum = Math.ceil(Math.random() * 20)
+    setResidentFormData(userDb[ranNum])
+  }
+
+  console.log(new Date())
   return (
     <section className="bg-zinc-100 py-8">
       <h2 className="text-center text-5xl">Book an appointment</h2>
@@ -116,7 +126,8 @@ function ResidentForm() {
           availableTimeslots={availableTimeslots}
           onStartTimeSelect={handleDateChange}
           format_selectedDateDayTitleFormatString="ccc, LLLL do"
-        />
+          defaultDate={residentFormData.date ? new Date(residentFormData.date) : new Date()}
+          />
 
         <div className="max-w-xl mx-auto my-5">
           {/* Name */}
@@ -204,6 +215,13 @@ function ResidentForm() {
               className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
             >
               Cancel
+            </button>
+            <button
+              type="button" // prevent form submission
+              onClick={() => setSampleData()}
+              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
+            >
+              Sample data
             </button>
           </article>
         </div>

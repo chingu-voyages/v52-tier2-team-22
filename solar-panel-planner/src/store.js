@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import {appointmentsSlice} from './utils/appointmentsSlice'
+import appointmentsSlice  from './utils/appointmentsSlice'
 
 
 

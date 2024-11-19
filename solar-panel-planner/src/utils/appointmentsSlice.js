@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const appointmentsSlice = createSlice({
+export const appointmentsSlice = createSlice({
     name: 'appointments',
     initialState: [],
     reducers: {
@@ -11,5 +11,5 @@ const appointmentsSlice = createSlice({
     }
 })
 
-export const {addAppointment} = appointmentsSlice.actions
+export const { addAppointment } = appointmentsSlice.actions
 export default appointmentsSlice.reducer

@@ -16,11 +16,11 @@ function Homepage() {
   return (
     <main className="w-full bg-background">
       <Navbar />
-      {/* <img className="w-full" src={landingpage} alt="landingpage" /> */}
-      {/* <RoleSelection setSelectedForm={setSelectedForm} />
+      <img className="w-full" src={landingpage} alt="landingpage" />
+      <RoleSelection setSelectedForm={setSelectedForm} />
 
       {selectedForm === "resident" && <ResidentForm />}
-      {selectedForm === "admin" && <AdminForm />} */}
+      {selectedForm === "admin" && <AdminForm />}
 
       <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 bg-purple-900 text-white">
         <div className="text-center md:text-left max-w-md pl-8">
