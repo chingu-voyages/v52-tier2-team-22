@@ -1,41 +1,99 @@
-import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { useState, useRef, useEffect } from "react";
 import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
+import { useDispatch } from "react-redux";
+import { addAppointment } from "./utils/appointmentsSlice";
+import { ScheduleMeeting } from "react-schedule-meeting";
+import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
 
 function ResidentForm() {
+  const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [residentFormData, setResidentFormData] = useState({
+  const defaultValue = {
     name: "",
     email: "",
     phone: "",
-    address: "",
-    date: null,
-  });
+    address: { street_address: "", zipcode: "" },
+    date: "",
+  };
+  const [residentFormData, setResidentFormData] = useState(defaultValue);
+
+  const today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let day = today.getDate();
+  let LastDayOfMonth = new Date(year, month, 0).getDate();
+  let daysLeft = LastDayOfMonth - day;
+
+  let availableTimeslots = [];
+  function getAvailableTimeslots(dayOfWeek, dayCount) {
+    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+      availableTimeslots.push({
+        id: dayCount,
+        startTime: new Date(
+          new Date(
+            new Date().setDate(new Date().getDate() + dayCount)
+          ).setHours(9, 0, 0, 0)
+        ),
+        endTime: new Date(
+          new Date(
+            new Date().setDate(new Date().getDate() + dayCount)
+          ).setHours(17, 0, 0, 0)
+        ),
+      });
+    }
+  }
+
+  for (let dayCount = 0; dayCount <= daysLeft; dayCount++) {
+    let dayOfWeek = new Date(
+      new Date(new Date().setDate(new Date().getDate() + dayCount))
+    ).getDay();
+
+    getAvailableTimeslots(dayOfWeek, dayCount);
+  }
 
   const handleInputChange = function (e) {
     const { name, value } = e.target;
-    setResidentFormData((prevData) => ({ ...prevData, [name]: value }));
+    let inputData = { ...residentFormData };
+    if (name === "street_address" || name === "zipcode") {
+      inputData = {
+        ...inputData,
+        address: {
+          ...inputData.address,
+          [name]: value,
+        },
+      };
+    } else {
+      inputData = {
+        ...inputData,
+        [name]: value,
+      };
+    }
+
+    setResidentFormData(inputData);
   };
 
   const handleDateChange = function (date) {
-    setResidentFormData((prevData) => ({ ...prevData, date }));
+    setResidentFormData((prevData) => ({ ...prevData, date: date.startTime }));
   };
 
   const handleSubmit = function (e) {
     e.preventDefault();
     console.log(residentFormData);
     setIsModalOpen(true);
-    // commented out for testing purposes
 
-    // setResidentFormData({
-    //   name: "",
-    //   email: "",
-    //   phone: "",
-    //   address: "",
-    //   date: null,
-    // });
+    const serializedData = {
+      ...residentFormData,
+      date: residentFormData.date
+        ? new Date(residentFormData.date).toISOString()
+        : "",
+    };
+
+    dispatch(addAppointment(serializedData));
+
+    // commented out for testing purposes
+    setResidentFormData(defaultValue);
   };
 
   const handleCloseModal = () => {
@@ -48,129 +106,107 @@ function ResidentForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-stone-50 flex my-8 flex-col gap-5 shadow-lg max-w-sm rounded mx-auto px-8 py-8"
+        className="bg-stone-50 my-8 flex-col gap-5 shadow-lg max-w-5xl rounded mx-auto px-8 py-8"
       >
-        {/* Name */}
-        <article className="flex flex-col gap-2">
-          <label
-            htmlFor="name"
-            className="block text-gray-700 text-sm font-bold"
-          >
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={residentFormData.name}
-            onChange={handleInputChange}
-            placeholder="Enter name"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-          />
-        </article>
-
-        {/* Email */}
-        <article className="flex flex-col gap-2">
-          <label
-            htmlFor="email"
-            className="block text-gray-700 text-sm font-bold"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={residentFormData.email}
-            onChange={handleInputChange}
-            placeholder="Enter email"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-          />
-        </article>
-
-        {/* Phone Number */}
-        <article className="flex flex-col gap-2">
-          <label
-            htmlFor="phone"
-            className="block text-gray-700 text-sm font-bold"
-          >
-            Phone Number
-          </label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            value={residentFormData.phone}
-            onChange={handleInputChange}
-            placeholder="Enter phone number"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-          />
-        </article>
-
-        {/* Address */}
-        <article className="flex flex-col gap-2">
-          <label
-            htmlFor="address"
-            className="block text-gray-700 text-sm font-bold"
-          >
-            Address
-          </label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            value={residentFormData.address}
-            onChange={handleInputChange}
-            placeholder="Enter address"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-          />
-        </article>
-
         {/* Date */}
-        <article className="flex flex-col gap-2">
-          <label
-            htmlFor="date"
-            className="block text-gray-700 text-sm font-bold"
-          >
-            Preferred Timeslot
-          </label>
-          <DatePicker
-            selected={residentFormData.date}
-            onChange={handleDateChange}
-            showTimeSelect
-            timeFormat="HH:mm"
-            timeIntervals={60}
-            timeCaption="Time"
-            dateFormat="MMMM d, yyyy h:mm"
-            placeholderText="Click to select"
-            className="shadow border w-full rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-          />
-        </article>
+        <ScheduleMeeting
+          borderRadius={50}
+          primaryColor="#3f5b85"
+          eventDurationInMinutes={30}
+          availableTimeslots={availableTimeslots}
+          onStartTimeSelect={handleDateChange}
+          format_selectedDateDayTitleFormatString="ccc, LLLL do"
+        />
 
-        {/* Buttons */}
-        <article className="flex gap-5 mt-4">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Submit
-          </button>
-          <button
-            type="button" // prevent form submission
-            onClick={() =>
-              setResidentFormData({
-                name: "",
-                email: "",
-                phone: "",
-                address: "",
-                date: null,
-              })
-            }
-            className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded"
-          >
-            Cancel
-          </button>
-        </article>
+        <div className="max-w-xl mx-auto my-5">
+          {/* Name */}
+          <article className="flex flex-col gap-2">
+            <label
+              htmlFor="name"
+              className="block text-gray-700 text-sm font-bold"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={residentFormData.name}
+              onChange={handleInputChange}
+              placeholder="Enter name"
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+            />
+          </article>
+
+          {/* Email */}
+          <article className="flex flex-col gap-2">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 text-sm font-bold"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={residentFormData.email}
+              onChange={handleInputChange}
+              placeholder="Enter email"
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+            />
+          </article>
+
+          {/* Phone Number */}
+          <article className="flex flex-col gap-2">
+            <label
+              htmlFor="phone"
+              className="block text-gray-700 text-sm font-bold"
+            >
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={residentFormData.phone}
+              onChange={handleInputChange}
+              placeholder="Enter phone number"
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+            />
+          </article>
+
+          {/* Address */}
+          <article className="flex flex-col gap-2">
+            <APIProvider apiKey={API_KEY}>
+              <PlaceAutocomplete
+                residentFormData={residentFormData}
+                setResidentFormData={setResidentFormData}
+                handleInputChange={handleInputChange}
+              />
+            </APIProvider>
+          </article>
+
+          {/* Buttons */}
+          <article className="flex gap-5 mt-4">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-3/4"
+            >
+              Submit
+            </button>
+            <button
+              type="button" // prevent form submission
+              onClick={() => setResidentFormData(defaultValue)}
+              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
+            >
+              Cancel
+            </button>
+          </article>
+        </div>
       </form>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
@@ -192,3 +228,105 @@ function ResidentForm() {
 }
 
 export default ResidentForm;
+
+const PlaceAutocomplete = ({
+  residentFormData,
+  setResidentFormData,
+  handleInputChange,
+}) => {
+  const [placeAutocomplete, setPlaceAutocomplete] = useState(null);
+  const inputRef = useRef(null);
+  const places = useMapsLibrary("places");
+
+  useEffect(() => {
+    if (!places || !inputRef.current) return;
+
+    const options = {
+      fields: ["address_components"],
+      componentRestrictions: { country: "us" },
+    };
+
+    setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
+  }, [places]);
+
+  useEffect(() => {
+    if (!placeAutocomplete) return;
+
+    placeAutocomplete.addListener("place_changed", fillInAddress);
+  }, [setResidentFormData, placeAutocomplete]);
+
+  function fillInAddress() {
+    const place = placeAutocomplete.getPlace();
+
+    let street_address = "";
+    let zipcode = "";
+
+    for (const component of place.address_components) {
+      const componentType = component.types[0];
+
+      switch (componentType) {
+        case "street_number": {
+          street_address = `${component.long_name} ${street_address}`;
+          break;
+        }
+
+        case "route": {
+          street_address += component.short_name;
+          break;
+        }
+
+        case "postal_code": {
+          zipcode = `${component.long_name}${zipcode}`;
+          break;
+        }
+      }
+    }
+
+    setResidentFormData((prevData) => ({
+      ...prevData,
+      address: {
+        ...prevData.address,
+        street_address: street_address,
+        zipcode: zipcode,
+      },
+    }));
+  }
+
+  return (
+    <>
+      <label
+        htmlFor="street_address"
+        className="block text-gray-700 text-sm font-bold"
+      >
+        Street Address
+      </label>
+      <input
+        type="text"
+        id="street_address"
+        name="street_address"
+        value={residentFormData.address.street_address}
+        ref={inputRef}
+        onChange={handleInputChange}
+        placeholder="Street Address"
+        required
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+      />
+      <label
+        htmlFor="zipcode"
+        className="block text-gray-700 text-sm font-bold"
+      >
+        Zipcode
+      </label>
+      <input
+        type="text"
+        id="zipcode"
+        name="zipcode"
+        value={residentFormData.address.zipcode}
+        onChange={handleInputChange}
+        placeholder="Zipcode"
+        required
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+      />
+    </>
+  );
+};
