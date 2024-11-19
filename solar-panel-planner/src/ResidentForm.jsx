@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import "react-datepicker/dist/react-datepicker.css";
 import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
 import { useDispatch } from "react-redux";
