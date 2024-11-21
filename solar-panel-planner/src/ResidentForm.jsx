@@ -7,6 +7,7 @@ import { userDb } from "./userDb";
 import { ScheduleMeeting } from "react-schedule-meeting";
 import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
 import { v4 as uuid } from "uuid";
+import AddressAutoComplete from "./AddressAutoComplete";
 
 function ResidentForm() {
   const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -20,7 +21,10 @@ function ResidentForm() {
     address: { street_address: "", zipcode: "" },
     date: "",
   };
+
   const [residentFormData, setResidentFormData] = useState(defaultValue);
+
+
 
   const today = new Date();
   let year = today.getFullYear();
@@ -88,7 +92,7 @@ function ResidentForm() {
 
     const serializedData = {
       ...residentFormData,
-      id:uuid(),
+      id: uuid(),
       date: residentFormData.date
         ? new Date(residentFormData.date).toISOString()
         : "",
@@ -105,11 +109,10 @@ function ResidentForm() {
   };
 
   const setSampleData = () => {
-    let ranNum = Math.ceil(Math.random() * 20)
-    setResidentFormData(userDb[ranNum])
-  }
+    let ranNum = Math.ceil(Math.random() * 20);
+    setResidentFormData(userDb[ranNum]);
+  };
 
-  console.log(new Date())
   return (
     <section className="bg-zinc-100 py-8">
       <h2 className="text-center text-5xl">Book an appointment</h2>
@@ -126,8 +129,10 @@ function ResidentForm() {
           availableTimeslots={availableTimeslots}
           onStartTimeSelect={handleDateChange}
           format_selectedDateDayTitleFormatString="ccc, LLLL do"
-          defaultDate={residentFormData.date ? new Date(residentFormData.date) : new Date()}
-          />
+          defaultDate={
+            residentFormData.date ? new Date(residentFormData.date) : new Date()
+          }
+        />
 
         <div className="max-w-xl mx-auto my-5">
           {/* Name */}
@@ -191,7 +196,7 @@ function ResidentForm() {
           </article>
 
           {/* Address */}
-          <article className="flex flex-col gap-2">
+          {/* <article className="flex flex-col gap-2">
             <APIProvider apiKey={API_KEY}>
               <PlaceAutocomplete
                 residentFormData={residentFormData}
@@ -199,7 +204,14 @@ function ResidentForm() {
                 handleInputChange={handleInputChange}
               />
             </APIProvider>
-          </article>
+          </article> */}
+          <APIProvider apiKey={API_KEY}>
+            <AddressAutoComplete
+              residentFormData={residentFormData}
+              setResidentFormData={setResidentFormData}
+              handleInputChange={handleInputChange}
+            />
+          </APIProvider>
 
           {/* Buttons */}
           <article className="flex gap-5 mt-4">
@@ -247,104 +259,104 @@ function ResidentForm() {
 
 export default ResidentForm;
 
-const PlaceAutocomplete = ({
-  residentFormData,
-  setResidentFormData,
-  handleInputChange,
-}) => {
-  const [placeAutocomplete, setPlaceAutocomplete] = useState(null);
-  const inputRef = useRef(null);
-  const places = useMapsLibrary("places");
+// const PlaceAutocomplete = ({
+//   residentFormData,
+//   setResidentFormData,
+//   handleInputChange,
+// }) => {
+//   const [placeAutocomplete, setPlaceAutocomplete] = useState(null);
+//   const inputRef = useRef(null);
+//   const places = useMapsLibrary("places");
 
-  useEffect(() => {
-    if (!places || !inputRef.current) return;
+//   useEffect(() => {
+//     if (!places || !inputRef.current) return;
 
-    const options = {
-      fields: ["address_components"],
-      componentRestrictions: { country: "us" },
-    };
+//     const options = {
+//       fields: ["address_components", "formatted_address"],
+//       componentRestrictions: { country: "us" },
+//     };
 
-    setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
-  }, [places]);
+//     setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
+//   }, [places]);
 
-  useEffect(() => {
-    if (!placeAutocomplete) return;
+//   useEffect(() => {
+//     if (!placeAutocomplete) return;
 
-    placeAutocomplete.addListener("place_changed", fillInAddress);
-  }, [setResidentFormData, placeAutocomplete]);
+//     placeAutocomplete.addListener("place_changed", fillInAddress);
+//     function fillInAddress() {
+//       const place = placeAutocomplete.getPlace();
 
-  function fillInAddress() {
-    const place = placeAutocomplete.getPlace();
+//       let street_address = "";
+//       let zipcode = "";
+//       console.log(place);
 
-    let street_address = "";
-    let zipcode = "";
+//       for (const component of place.address_components) {
+//         const componentType = component.types[0];
 
-    for (const component of place.address_components) {
-      const componentType = component.types[0];
+//         switch (componentType) {
+//           case "street_number": {
+//             street_address = `${component.long_name} ${street_address}`;
+//             break;
+//           }
 
-      switch (componentType) {
-        case "street_number": {
-          street_address = `${component.long_name} ${street_address}`;
-          break;
-        }
+//           case "route": {
+//             street_address += component.short_name;
+//             break;
+//           }
 
-        case "route": {
-          street_address += component.short_name;
-          break;
-        }
+//           case "postal_code": {
+//             zipcode = `${component.long_name}${zipcode}`;
+//             break;
+//           }
+//         }
+//       }
 
-        case "postal_code": {
-          zipcode = `${component.long_name}${zipcode}`;
-          break;
-        }
-      }
-    }
+//       setResidentFormData((prevData) => ({
+//         ...prevData,
+//         address: {
+//           ...prevData.address,
+//           street_address: street_address,
+//           zipcode: zipcode,
+//         },
+//       }));
+//     }
+//   }, [setResidentFormData, placeAutocomplete]);
 
-    setResidentFormData((prevData) => ({
-      ...prevData,
-      address: {
-        ...prevData.address,
-        street_address: street_address,
-        zipcode: zipcode,
-      },
-    }));
-  }
-
-  return (
-    <>
-      <label
-        htmlFor="street_address"
-        className="block text-gray-700 text-sm font-bold"
-      >
-        Street Address
-      </label>
-      <input
-        type="text"
-        id="street_address"
-        name="street_address"
-        value={residentFormData.address.street_address}
-        ref={inputRef}
-        onChange={handleInputChange}
-        placeholder="Street Address"
-        required
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-      />
-      <label
-        htmlFor="zipcode"
-        className="block text-gray-700 text-sm font-bold"
-      >
-        Zipcode
-      </label>
-      <input
-        type="text"
-        id="zipcode"
-        name="zipcode"
-        value={residentFormData.address.zipcode}
-        onChange={handleInputChange}
-        placeholder="Zipcode"
-        required
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-      />
-    </>
-  );
-};
+//   return (
+//     <>
+//       <label
+//         htmlFor="street_address"
+//         className="block text-gray-700 text-sm font-bold"
+//       >
+//         Street Address
+//       </label>
+//       <input
+//         type="text"
+//         id="street_address"
+//         name="street_address"
+//         value={residentFormData.address.street_address}
+//         ref={inputRef}
+//         onChange={handleInputChange}
+//         placeholder="Street Address"
+//         required
+//         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+//       />
+//       <label
+//         htmlFor="zipcode"
+//         className="block text-gray-700 text-sm font-bold"
+//       >
+//         Zipcode
+//       </label>
+//       <input
+//         type="text"
+//         id="zipcode"
+//         name="zipcode"
+//         value={residentFormData.address.zipcode}
+//         onChange={handleInputChange}
+//         placeholder="Zipcode"
+//         required
+//         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+//       />
+//     </>
+//   );
+// };
