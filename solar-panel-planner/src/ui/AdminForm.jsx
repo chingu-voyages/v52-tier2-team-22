@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { FiKey } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function AdminForm() {
-  const navigate = useNavigate();
+function AdminForm({setIsLoggedIn}) {
+
   const [adminFormData, setAdminFormData] = useState({
     name: "",
     password: "",
@@ -30,7 +30,8 @@ function AdminForm() {
       adminFormData.name === "Admin John Smith" &&
       adminFormData.password === "admin_678"
     ) {
-      navigate("/adminpage");
+      setIsLoggedIn(true)
+      toast.success("Welcome Admin")
     } else {
       toast.error("Incorrect username or password");
       setAdminFormData({

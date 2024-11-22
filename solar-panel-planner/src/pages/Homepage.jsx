@@ -1,17 +1,19 @@
-import { useState } from "react";
-import RoleSelection from "../RoleSelection";
-import ResidentForm from "../ResidentForm";
-import AdminForm from "../AdminForm";
-import landingpage from "../assets/landingpage.png";
+// import { useState } from "react";
+// import RoleSelection from "../RoleSelection";
+// import ResidentForm from "../ResidentForm";
+// import AdminForm from "../AdminForm";
+// import landingpage from "../assets/landingpage.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Img1 from "../assets/img1.jpg"
 import Img2 from "../assets/img2.webp"
 import Img3 from "../assets/img3.jpeg"
 import Img4 from "../assets/img4.png"
+import { Link } from "react-router-dom";
 
 function Homepage() {
-  const [selectedForm, setSelectedForm] = useState(null);
+  // const [selectedForm, setSelectedForm] = useState(null);
+
 
   return (
     <main className="w-full bg-background">
@@ -22,12 +24,18 @@ function Homepage() {
       {selectedForm === "resident" && <ResidentForm />}
       {selectedForm === "admin" && <AdminForm />} */}
 
-      <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 bg-purple-900 text-white">
-        <div className="text-center md:text-left max-w-md pl-8">
-          <h2 className="text-3xl font-bold mb-4">SolarSync LA</h2>
+      <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6  bg-purple-900 text-white pb-10">
+
+      {/* <ResidentForm /> */}
+
+        <div className="text-center flex flex-col gap-4 items-start md:text-left max-w-md pl-8">
+          <h2 className="text-3xl font-bold ">SolarSync LA</h2>
           <p className="text-l">
           Making solar energy adoption simple and accessible for LA residents.
           </p>
+          <Link to="/residentpage" className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 rounded-lg shadow-md hover:bg-secondaryGreen">
+        Send a Request
+      </Link>
         </div>
         <img
           src={Img4}
@@ -79,9 +87,9 @@ function Homepage() {
       </div>
     </div>
     <div className="flex justify-center py-12">
-      <button className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 rounded-lg shadow-md hover:bg-secondaryGreen">
+      <Link to="/residentpage" className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 rounded-lg shadow-md hover:bg-secondaryGreen">
         Send a Request
-      </button>
+      </Link>
     </div>
     <Footer />
     </main>

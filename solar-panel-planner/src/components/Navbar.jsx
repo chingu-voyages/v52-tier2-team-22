@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {Link} from 'react-router-dom'
 
 export default function Navbar() {
@@ -31,17 +31,12 @@ export default function Navbar() {
 
         <ul className="hidden md:flex flex-row space-x-6">
           <li>
-            <Link to="." className="hover:underline">
+            <Link to="/residentpage" className="hover:underline">
               Send Request
             </Link>
           </li>
           <li>
-            <Link to="." className="hover:underline">
-              My Request
-            </Link>
-          </li>
-          <li>
-            <Link to="." className="hover:underline">
+            <Link to="/adminpage" className="hover:underline">
               Admin
             </Link>
           </li>
