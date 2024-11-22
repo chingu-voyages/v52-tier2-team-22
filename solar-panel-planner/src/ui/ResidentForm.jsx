@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import Modal from "./Modal";
+import Modal from "../utils/Modal";
 import { TiTickOutline } from "react-icons/ti";
 import { useDispatch } from "react-redux";
-import { addAppointment } from "./utils/appointmentsSlice";
+import { addAppointment } from "../utils/appointmentsSlice";
 import { ScheduleMeeting } from "react-schedule-meeting";
 import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
 
