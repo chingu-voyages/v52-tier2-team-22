@@ -15,13 +15,19 @@ function AdminDataTable() {
         </tr>
       </thead>
       <tbody>
-        {appointments.map((item, index) => (
+        {appointments.map((appointment, index) => (
           <tr key={index} className="text-center">
-            <td className="border border-gray-400 px-4 py-2">{item.name}</td>
-            <td className="border border-gray-400 px-4 py-2">{item.email}</td>
-            <td className="border border-gray-400 px-4 py-2">{item.phone}</td>
-            <td className="border border-gray-400 px-4 py-2">{item.address}</td>
-            <td className="border border-gray-400 px-4 py-2">{item.date}</td>
+            <td className="border border-gray-400 px-4 py-2">
+              {appointment.name}
+            </td>
+            <td className="border border-gray-400 px-4 py-2">
+              {appointment.email}
+            </td>
+            <td className="border border-gray-400 px-4 py-2">
+              {appointment.phone}
+            </td>
+            {/* <td className="border border-gray-400 px-4 py-2">{appointment.address}</td>
+            <td className="border border-gray-400 px-4 py-2">{appointment.date}</td> */}
           </tr>
         ))}
       </tbody>

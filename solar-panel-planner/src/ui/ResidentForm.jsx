@@ -230,9 +230,9 @@ function ResidentForm() {
 export default ResidentForm;
 
 const PlaceAutocomplete = ({
-  residentFormData,
+  // residentFormData,
   setResidentFormData,
-  handleInputChange,
+  // handleInputChange,
 }) => {
   const [placeAutocomplete, setPlaceAutocomplete] = useState(null);
   const inputRef = useRef(null);
@@ -294,7 +294,7 @@ const PlaceAutocomplete = ({
 
   return (
     <>
-      <label
+      {/* <label
         htmlFor="street_address"
         className="block text-gray-700 text-sm font-bold"
       >
@@ -310,8 +310,8 @@ const PlaceAutocomplete = ({
         placeholder="Street Address"
         required
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-      />
-      <label
+      /> */}
+      {/* <label
         htmlFor="zipcode"
         className="block text-gray-700 text-sm font-bold"
       >
@@ -326,7 +326,7 @@ const PlaceAutocomplete = ({
         placeholder="Zipcode"
         required
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-      />
+      /> */}
     </>
   );
 };

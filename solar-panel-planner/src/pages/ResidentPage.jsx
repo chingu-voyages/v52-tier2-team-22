@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ResidentForm from "../ui/ResidentForm";
+import ResidentSubmitedForms from "../ui/ResidentSubmitedForms";
 
 function ResidentPage() {
   const navigate = useNavigate();
@@ -14,6 +15,10 @@ function ResidentPage() {
         Back
       </button>
       <ResidentForm />
+
+      <h2 className="text-3xl text-center">Your submitted forms</h2>
+
+      <ResidentSubmitedForms />
     </div>
   );
 }
