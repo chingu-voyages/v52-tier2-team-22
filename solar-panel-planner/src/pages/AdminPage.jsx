@@ -1,20 +1,22 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AdminDataTable from "../ui/AdminDataTable";
+import AdminForm from "../ui/AdminForm";
+import { useState } from "react";
 
 function AdminPage() {
-  const navigate = useNavigate();
+const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
     <section className="p-6 bg-green-100">
+     
+     {isLoggedIn ? <AdminDataTable/> : <AdminForm setIsLoggedIn={setIsLoggedIn} />}
 
-    <AdminDataTable/>
-
-      <button
+      <Link
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold my-6 py-2 px-4 rounded"
-        onClick={() => navigate(-1)}
+        to="/"
       >
         Go back
-      </button>
+      </Link>
     </section>
   );
 }
