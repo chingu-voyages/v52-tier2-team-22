@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { addAppointment } from "./utils/appointmentsSlice";
 import { ScheduleMeeting } from "react-schedule-meeting";
 import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
 
 function ResidentForm() {
   const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const defaultValue = {
     name: "",
@@ -90,7 +90,7 @@ function ResidentForm() {
         : "",
     };
 
-    dispatch(addAppointment(serializedData));
+    // dispatch(addAppointment(serializedData));
 
     // commented out for testing purposes
     setResidentFormData(defaultValue);
