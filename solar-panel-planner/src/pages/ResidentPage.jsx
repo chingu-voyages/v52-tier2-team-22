@@ -1,23 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import ResidentForm from "../ui/ResidentForm";
 import ResidentSubmitedForms from "../ui/ResidentSubmitedForms";
+import Navbar from "../components/Navbar";
 
 function ResidentPage() {
   const navigate = useNavigate();
 
   return (
-    <div>
-      ResidentPage
-      <button
-        onClick={() => navigate("/")}
-        className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 rounded-lg shadow-md hover:bg-secondaryGreen"
-      >
-        Back
-      </button>
+    <div className="w-full bg-background">
+      <Navbar />
       <ResidentForm />
-
-      <h2 className="text-3xl text-center">Your submitted forms</h2>
-
+      <h3 className="text-center text-2xl font-semibold mt-8">Your Previous Requests</h3>
       <ResidentSubmitedForms />
     </div>
   );
