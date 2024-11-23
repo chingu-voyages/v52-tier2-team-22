@@ -100,13 +100,15 @@ function ResidentForm() {
     setIsModalOpen(false);
   };
 
+
+
   return (
     <section className="bg-background py-8">
       <h2 className="text-center text-3xl font-bold">Book an appointment</h2>
 
       <form
         onSubmit={handleSubmit}
-        className=" my-8 flex gap-5 shadow-lg rounded mx-auto px-8 py-8"
+        className=" my-8 flex gap-5 rounded mx-auto px-8 py-8"
       >
         {/* Date */}
         <ScheduleMeeting
@@ -209,6 +211,7 @@ function ResidentForm() {
         </div>
       </form>
 
+
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <div className="flex flex-col gap-6">
           <TiTickOutline className="mx-auto size-10 text-green-400" />
@@ -224,6 +227,7 @@ function ResidentForm() {
         </div>
       </Modal>
     </section>
+    
   );
 }
 
