@@ -101,24 +101,24 @@ function ResidentForm() {
   };
 
   return (
-    <section className="bg-zinc-100 py-8">
-      <h2 className="text-center text-5xl">Book an appointment</h2>
+    <section className="bg-background py-4">
+      <h2 className="text-center text-3xl font-bold">Book an appointment</h2>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-stone-50 my-8 flex-col gap-5 shadow-lg max-w-5xl rounded mx-auto px-8 py-8"
+        className="my-8 flex gap-5 rounded mx-auto px-8 py-8"
       >
         {/* Date */}
         <ScheduleMeeting
-          borderRadius={50}
-          primaryColor="#3f5b85"
+          borderRadius={20}
+          primaryColor="#95d387"
           eventDurationInMinutes={30}
           availableTimeslots={availableTimeslots}
           onStartTimeSelect={handleDateChange}
           format_selectedDateDayTitleFormatString="ccc, LLLL do"
         />
 
-        <div className="max-w-xl mx-auto my-5">
+        <div className="w-1/2 mx-auto my-5">
           {/* Name */}
           <article className="flex flex-col gap-2">
             <label
@@ -194,7 +194,7 @@ function ResidentForm() {
           <article className="flex gap-5 mt-4">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-3/4"
+              className="bg-primaryGreen hover:bg-secondaryGreen text-white font-bold py-2 px-4 rounded w-3/4"
             >
               Submit
             </button>
