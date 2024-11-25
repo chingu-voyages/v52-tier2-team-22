@@ -26,20 +26,10 @@ function ResidentForm() {
   const handleInputChange = function (e) {
     const { name, value } = e.target;
     let inputData = { ...residentFormData };
-    if (name === "street_address" || name === "zipcode") {
-      inputData = {
-        ...inputData,
-        address: {
-          ...inputData.address,
-          [name]: value,
-        },
-      };
-    } else {
-      inputData = {
-        ...inputData,
-        [name]: value,
-      };
-    }
+    inputData = {
+      ...inputData,
+      [name]: value,
+    };
 
     setResidentFormData(inputData);
   };
@@ -153,7 +143,7 @@ function ResidentForm() {
             >
               Street Address
             </label>
-            <AddressAutoComplete setAddress={setAddress}/>
+            <AddressAutoComplete setAddress={setAddress} />
           </article>
 
           {/* Buttons */}
@@ -201,4 +191,3 @@ function ResidentForm() {
 }
 
 export default ResidentForm;
-

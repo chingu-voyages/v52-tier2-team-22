@@ -9,6 +9,7 @@ import Img1 from "../assets/img1.jpg"
 import Img2 from "../assets/img2.webp"
 import Img3 from "../assets/img3.jpeg"
 import Img4 from "../assets/img4.png"
+import ShowMap from "../ShowMap";
 
 function Homepage() {
   const [selectedForm, setSelectedForm] = useState(null);
@@ -21,6 +22,8 @@ function Homepage() {
 
       {selectedForm === "resident" && <ResidentForm />}
       {selectedForm === "admin" && <AdminForm />}
+
+      <ShowMap />
 
       <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 bg-purple-900 text-white">
         <div className="text-center md:text-left max-w-md pl-8">
