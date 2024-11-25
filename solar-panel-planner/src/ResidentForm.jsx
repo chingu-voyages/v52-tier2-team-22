@@ -1,16 +1,14 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
 import { useDispatch } from "react-redux";
 import { addAppointment } from "./utils/appointmentsSlice";
 import { userDb } from "./userDb";
-import { ScheduleMeeting } from "react-schedule-meeting";
-import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
 import { v4 as uuid } from "uuid";
 import AddressAutoComplete from "./AddressAutoComplete";
+import ShowAvailableTimeSlot from "./ShowAvailableTimeSlot";
 
 function ResidentForm() {
-  const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const defaultValue = {
@@ -23,42 +21,7 @@ function ResidentForm() {
   };
 
   const [residentFormData, setResidentFormData] = useState(defaultValue);
-
-
-
-  const today = new Date();
-  let year = today.getFullYear();
-  let month = today.getMonth() + 1;
-  let day = today.getDate();
-  let LastDayOfMonth = new Date(year, month, 0).getDate();
-  let daysLeft = LastDayOfMonth - day;
-
-  let availableTimeslots = [];
-  function getAvailableTimeslots(dayOfWeek, dayCount) {
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-      availableTimeslots.push({
-        id: dayCount,
-        startTime: new Date(
-          new Date(
-            new Date().setDate(new Date().getDate() + dayCount)
-          ).setHours(9, 0, 0, 0)
-        ),
-        endTime: new Date(
-          new Date(
-            new Date().setDate(new Date().getDate() + dayCount)
-          ).setHours(17, 0, 0, 0)
-        ),
-      });
-    }
-  }
-
-  for (let dayCount = 0; dayCount <= daysLeft; dayCount++) {
-    let dayOfWeek = new Date(
-      new Date(new Date().setDate(new Date().getDate() + dayCount))
-    ).getDay();
-
-    getAvailableTimeslots(dayOfWeek, dayCount);
-  }
+  const [address, setAddress] = useState({});
 
   const handleInputChange = function (e) {
     const { name, value } = e.target;
@@ -81,10 +44,6 @@ function ResidentForm() {
     setResidentFormData(inputData);
   };
 
-  const handleDateChange = function (date) {
-    setResidentFormData((prevData) => ({ ...prevData, date: date.startTime }));
-  };
-
   const handleSubmit = function (e) {
     e.preventDefault();
     console.log(residentFormData);
@@ -93,6 +52,7 @@ function ResidentForm() {
     const serializedData = {
       ...residentFormData,
       id: uuid(),
+      address: address,
       date: residentFormData.date
         ? new Date(residentFormData.date).toISOString()
         : "",
@@ -122,17 +82,7 @@ function ResidentForm() {
         className="bg-stone-50 my-8 flex-col gap-5 shadow-lg max-w-5xl rounded mx-auto px-8 py-8"
       >
         {/* Date */}
-        <ScheduleMeeting
-          borderRadius={50}
-          primaryColor="#3f5b85"
-          eventDurationInMinutes={30}
-          availableTimeslots={availableTimeslots}
-          onStartTimeSelect={handleDateChange}
-          format_selectedDateDayTitleFormatString="ccc, LLLL do"
-          defaultDate={
-            residentFormData.date ? new Date(residentFormData.date) : new Date()
-          }
-        />
+        <ShowAvailableTimeSlot setResidentFormData={setResidentFormData} />
 
         <div className="max-w-xl mx-auto my-5">
           {/* Name */}
@@ -196,22 +146,15 @@ function ResidentForm() {
           </article>
 
           {/* Address */}
-          {/* <article className="flex flex-col gap-2">
-            <APIProvider apiKey={API_KEY}>
-              <PlaceAutocomplete
-                residentFormData={residentFormData}
-                setResidentFormData={setResidentFormData}
-                handleInputChange={handleInputChange}
-              />
-            </APIProvider>
-          </article> */}
-          <APIProvider apiKey={API_KEY}>
-            <AddressAutoComplete
-              residentFormData={residentFormData}
-              setResidentFormData={setResidentFormData}
-              handleInputChange={handleInputChange}
-            />
-          </APIProvider>
+          <article className="flex flex-col gap-2">
+            <label
+              htmlFor="street_address"
+              className="block text-gray-700 text-sm font-bold"
+            >
+              Street Address
+            </label>
+            <AddressAutoComplete setAddress={setAddress}/>
+          </article>
 
           {/* Buttons */}
           <article className="flex gap-5 mt-4">
@@ -259,104 +202,3 @@ function ResidentForm() {
 
 export default ResidentForm;
 
-// const PlaceAutocomplete = ({
-//   residentFormData,
-//   setResidentFormData,
-//   handleInputChange,
-// }) => {
-//   const [placeAutocomplete, setPlaceAutocomplete] = useState(null);
-//   const inputRef = useRef(null);
-//   const places = useMapsLibrary("places");
-
-//   useEffect(() => {
-//     if (!places || !inputRef.current) return;
-
-//     const options = {
-//       fields: ["address_components", "formatted_address"],
-//       componentRestrictions: { country: "us" },
-//     };
-
-//     setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
-//   }, [places]);
-
-//   useEffect(() => {
-//     if (!placeAutocomplete) return;
-
-//     placeAutocomplete.addListener("place_changed", fillInAddress);
-//     function fillInAddress() {
-//       const place = placeAutocomplete.getPlace();
-
-//       let street_address = "";
-//       let zipcode = "";
-//       console.log(place);
-
-//       for (const component of place.address_components) {
-//         const componentType = component.types[0];
-
-//         switch (componentType) {
-//           case "street_number": {
-//             street_address = `${component.long_name} ${street_address}`;
-//             break;
-//           }
-
-//           case "route": {
-//             street_address += component.short_name;
-//             break;
-//           }
-
-//           case "postal_code": {
-//             zipcode = `${component.long_name}${zipcode}`;
-//             break;
-//           }
-//         }
-//       }
-
-//       setResidentFormData((prevData) => ({
-//         ...prevData,
-//         address: {
-//           ...prevData.address,
-//           street_address: street_address,
-//           zipcode: zipcode,
-//         },
-//       }));
-//     }
-//   }, [setResidentFormData, placeAutocomplete]);
-
-//   return (
-//     <>
-//       <label
-//         htmlFor="street_address"
-//         className="block text-gray-700 text-sm font-bold"
-//       >
-//         Street Address
-//       </label>
-//       <input
-//         type="text"
-//         id="street_address"
-//         name="street_address"
-//         value={residentFormData.address.street_address}
-//         ref={inputRef}
-//         onChange={handleInputChange}
-//         placeholder="Street Address"
-//         required
-//         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-//       />
-//       <label
-//         htmlFor="zipcode"
-//         className="block text-gray-700 text-sm font-bold"
-//       >
-//         Zipcode
-//       </label>
-//       <input
-//         type="text"
-//         id="zipcode"
-//         name="zipcode"
-//         value={residentFormData.address.zipcode}
-//         onChange={handleInputChange}
-//         placeholder="Zipcode"
-//         required
-//         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-//       />
-//     </>
-//   );
-// };

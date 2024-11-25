@@ -28,7 +28,7 @@ export const userDb = [
     name: "Sophie Williams",
     email: "5be52f8iuspfo@googlemail.com",
     phone: "3230459385",
-    address: { street_address: "8700 Lilienthal Ave", zipcode: "90045" },
+    address: { street_address: "4989 O'sullivan Dr", zipcode: "90032" },
     date: "2024-11-25T10:00:00.000Z",
   },
   {
