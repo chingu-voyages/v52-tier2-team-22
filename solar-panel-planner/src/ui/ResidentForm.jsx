@@ -1,4 +1,3 @@
-<<<<<<< HEAD:solar-panel-planner/src/ResidentForm.jsx
 import { useState } from "react";
 import Modal from "./Modal";
 import { TiTickOutline } from "react-icons/ti";
@@ -8,15 +7,6 @@ import { userDb } from "./userDb";
 import { v4 as uuid } from "uuid";
 import AddressAutoComplete from "./AddressAutoComplete";
 import ShowAvailableTimeSlot from "./ShowAvailableTimeSlot";
-=======
-import { useState, useRef, useEffect } from "react";
-import Modal from "../utils/Modal";
-import { TiTickOutline } from "react-icons/ti";
-import { useDispatch } from "react-redux";
-import { addAppointment } from "../utils/appointmentsSlice";
-import { ScheduleMeeting } from "react-schedule-meeting";
-import { APIProvider, useMapsLibrary } from "@vis.gl/react-google-maps";
->>>>>>> origin/development:solar-panel-planner/src/ui/ResidentForm.jsx
 
 function ResidentForm() {
   const dispatch = useDispatch();
@@ -54,8 +44,8 @@ function ResidentForm() {
       id: uuid(),
       address: address,
       date: residentFormData.date
-        // ? new Date(residentFormData.date)
-        ? new Date(residentFormData.date).toISOString()
+        ? // ? new Date(residentFormData.date)
+          new Date(residentFormData.date).toISOString()
         : "",
     };
 
@@ -83,18 +73,7 @@ function ResidentForm() {
         className="my-8 flex gap-5 rounded mx-auto px-8 py-8"
       >
         {/* Date */}
-<<<<<<< HEAD:solar-panel-planner/src/ResidentForm.jsx
         <ShowAvailableTimeSlot setResidentFormData={setResidentFormData} />
-=======
-        <ScheduleMeeting
-          borderRadius={20}
-          primaryColor="#95d387"
-          eventDurationInMinutes={30}
-          availableTimeslots={availableTimeslots}
-          onStartTimeSelect={handleDateChange}
-          format_selectedDateDayTitleFormatString="ccc, LLLL do"
-        />
->>>>>>> origin/development:solar-panel-planner/src/ui/ResidentForm.jsx
 
         <div className="w-1/2 mx-auto my-5">
           {/* Name */}
@@ -213,108 +192,3 @@ function ResidentForm() {
 }
 
 export default ResidentForm;
-<<<<<<< HEAD:solar-panel-planner/src/ResidentForm.jsx
-=======
-
-const PlaceAutocomplete = ({
-  // residentFormData,
-  setResidentFormData,
-  // handleInputChange,
-}) => {
-  const [placeAutocomplete, setPlaceAutocomplete] = useState(null);
-  const inputRef = useRef(null);
-  const places = useMapsLibrary("places");
-
-  useEffect(() => {
-    if (!places || !inputRef.current) return;
-
-    const options = {
-      fields: ["address_components"],
-      componentRestrictions: { country: "us" },
-    };
-
-    setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
-  }, [places]);
-
-  useEffect(() => {
-    if (!placeAutocomplete) return;
-
-    placeAutocomplete.addListener("place_changed", fillInAddress);
-  }, [setResidentFormData, placeAutocomplete]);
-
-  function fillInAddress() {
-    const place = placeAutocomplete.getPlace();
-
-    let street_address = "";
-    let zipcode = "";
-
-    for (const component of place.address_components) {
-      const componentType = component.types[0];
-
-      switch (componentType) {
-        case "street_number": {
-          street_address = `${component.long_name} ${street_address}`;
-          break;
-        }
-
-        case "route": {
-          street_address += component.short_name;
-          break;
-        }
-
-        case "postal_code": {
-          zipcode = `${component.long_name}${zipcode}`;
-          break;
-        }
-      }
-    }
-
-    setResidentFormData((prevData) => ({
-      ...prevData,
-      address: {
-        ...prevData.address,
-        street_address: street_address,
-        zipcode: zipcode,
-      },
-    }));
-  }
-
-  return (
-    <>
-      {/* <label
-        htmlFor="street_address"
-        className="block text-gray-700 text-sm font-bold"
-      >
-        Street Address
-      </label>
-      <input
-        type="text"
-        id="street_address"
-        name="street_address"
-        value={residentFormData.address.street_address}
-        ref={inputRef}
-        onChange={handleInputChange}
-        placeholder="Street Address"
-        required
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-      /> */}
-      {/* <label
-        htmlFor="zipcode"
-        className="block text-gray-700 text-sm font-bold"
-      >
-        Zipcode
-      </label>
-      <input
-        type="text"
-        id="zipcode"
-        name="zipcode"
-        value={residentFormData.address.zipcode}
-        onChange={handleInputChange}
-        placeholder="Zipcode"
-        required
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-      /> */}
-    </>
-  );
-};
->>>>>>> origin/development:solar-panel-planner/src/ui/ResidentForm.jsx
