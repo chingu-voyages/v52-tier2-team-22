@@ -16,7 +16,7 @@ function ResidentForm() {
     name: "",
     email: "",
     phone: "",
-    address: { street_address: "", zipcode: "" },
+    address: { combinedAddress: "", zipcode: "", coord: { lat: "", lng: "" } },
     date: "",
   };
 
@@ -36,7 +36,7 @@ function ResidentForm() {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    console.log(residentFormData);
+    console.log(residentFormData.date);
     setIsModalOpen(true);
 
     const serializedData = {
@@ -44,6 +44,7 @@ function ResidentForm() {
       id: uuid(),
       address: address,
       date: residentFormData.date
+        // ? new Date(residentFormData.date)
         ? new Date(residentFormData.date).toISOString()
         : "",
     };

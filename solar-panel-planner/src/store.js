@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import appointmentsSlice  from './utils/appointmentsSlice'
+import appointmentsReducer  from './utils/appointmentsSlice'
 
 
 
 const store = configureStore({
-  reducer: appointmentsSlice,
+  reducer: {
+    appointments: appointmentsReducer,
+  },
 })
 
 export default store

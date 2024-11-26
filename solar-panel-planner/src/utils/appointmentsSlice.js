@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {userDb} from "../userDb"
+
+const initialState = userDb
 
 export const appointmentsSlice = createSlice({
+
     name: 'appointments',
-    initialState: [],
+    initialState,
     reducers: {
         addAppointment: (state, action) => {
             console.log(state, action);
