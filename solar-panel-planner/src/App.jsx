@@ -1,6 +1,6 @@
 import AdminPage from "./pages/AdminPage";
 import Homepage from "./pages/Homepage";
-import ResidentForm from './ResidentForm'
+import ResidentPage from './pages/ResidentPage'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route index element={<Homepage />} />
         <Route path="/adminpage" element={<AdminPage />} />
-        <Route path="/residentform" element={<ResidentForm />} />
+        <Route path="/residentpage" element={<ResidentPage />} />
       </Routes>
     </BrowserRouter>
   );

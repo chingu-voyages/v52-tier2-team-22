@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {Link} from 'react-router-dom'
+import Logo from "../assets/logo1.png"
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className=" py-4 px-8 text-grey-800">
+    <div className=" py-1 px-8 text-grey-800">
       <div className="flex items-center justify-between">
-        <div className="text-lg font-bold">Logo</div>
+      <img src={Logo} alt="logo" className="h-12" />
 
         <button
           className="block md:hidden"
@@ -29,19 +30,14 @@ export default function Navbar() {
           </svg>
         </button>
 
-        <ul className="hidden md:flex flex-row space-x-6">
+        <ul className="hidden md:flex flex-row space-x-6 py-4">
           <li>
-            <Link to="." className="hover:underline">
+            <Link to="/residentpage" className="font-semibold">
               Send Request
             </Link>
           </li>
           <li>
-            <Link to="." className="hover:underline">
-              My Request
-            </Link>
-          </li>
-          <li>
-            <Link to="." className="hover:underline">
+            <Link to="/adminpage" className="font-semibold">
               Admin
             </Link>
           </li>
