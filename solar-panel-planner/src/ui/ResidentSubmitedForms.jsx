@@ -5,7 +5,7 @@ function ResidentSubmitedForms() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-8">
-      {appointments.map((appointment, index) => (
+      {appointments?.map((appointment, index) => (
         <div
           key={index}
           className="bg-white border-2 border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
@@ -27,7 +27,7 @@ function ResidentSubmitedForms() {
             </li>
             <li>
               <span className="font-semibold">Address:</span>{" "}
-              {appointment.address}
+              {appointment.address.combinedAddress}
             </li>
             <li>
               <span className="font-semibold">Preferred Date:</span>{" "}

@@ -8,7 +8,6 @@ import Footer from "../components/Footer";
 import Img1 from "../assets/img1.jpg";
 import Img2 from "../assets/img2.webp";
 import Img3 from "../assets/img3.jpeg";
-import ShowMap from "../ShowMap";
 import Img4 from "../assets/hero-back.jpg";
 import { Link } from "react-router-dom";
 
@@ -23,8 +22,6 @@ function Homepage() {
 
       {selectedForm === "resident" && <ResidentForm />}
       {selectedForm === "admin" && <AdminForm />} */}
-
-      <ShowMap />
 
       <div
         className="relative bg-cover bg-center h-screen"

@@ -7,7 +7,6 @@ import {
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
 import { useSelector } from "react-redux";
-// import { userDb } from "./userDb";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 

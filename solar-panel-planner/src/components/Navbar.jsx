@@ -1,13 +1,15 @@
-import { useState } from 'react';
-import {Link} from 'react-router-dom'
-import Logo from "../assets/logo1.png"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Logo from "../assets/logo1.png";
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className=" py-1 px-8 text-grey-800">
       <div className="flex items-center justify-between">
-      <img src={Logo} alt="logo" className="h-12" />
+        <Link to="/">
+          <img src={Logo} alt="logo" className="h-12" />
+        </Link>
 
         <button
           className="block md:hidden"
@@ -64,5 +66,5 @@ export default function Navbar() {
         </ul>
       )}
     </div>
-  )
+  );
 }

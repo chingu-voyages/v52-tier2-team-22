@@ -8,35 +8,39 @@ export default function AddressAutoComplete({ setAddress }) {
   const [datasetLA, setDatasetLA] = useState([]);
 
   useEffect(() => {
-    if (house_number === "" || !house_number) return;
+    if (house_number === "") return;
     if (datasetLA.length > 0) return;
 
     let url = `https://data.lacity.org/resource/4ca8-mxuh.json?hse_nbr=${house_number}`;
 
-    fetch(url, {
-      headers: {
-        "X-App-Token": LACITY_APP_TOKEN,
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        const arr = json?.map((record) => {
-          const combinedAddress = `${record.hse_nbr}${
-            record.hse_frac_nbr || ""
-          } ${record.hse_dir_cd || ""} ${record.str_nm} ${
-            record.str_sfx_cd || ""
-          } ${record.zip_cd}`;
-
-          return {
-            ...record,
-            id: record.hse_id,
-            combinedAddress: combinedAddress,
-          };
-        });
-
-        setDatasetLA(arr);
+    function fetchDatasetLA(url) {
+      fetch(url, {
+        headers: {
+          "X-App-Token": LACITY_APP_TOKEN,
+        },
       })
-      .catch((error) => console.error("Network error", error));
+        .then((res) => res.json())
+        .then((json) => {
+          const arr = json?.map((record) => {
+            const combinedAddress = `${record.hse_nbr}${
+              record.hse_frac_nbr || ""
+            } ${record.hse_dir_cd || ""} ${record.str_nm} ${
+              record.str_sfx_cd || ""
+            } ${record.zip_cd}`;
+
+            return {
+              ...record,
+              id: record.hse_id,
+              combinedAddress: combinedAddress,
+            };
+          });
+
+          setDatasetLA(arr);
+        })
+        .catch((error) => console.error("Network error", error));
+    }
+
+    fetchDatasetLA(url);
   }, [house_number]);
 
   const handleOnSearch = (string) => {
@@ -81,8 +85,6 @@ export default function AddressAutoComplete({ setAddress }) {
         resultStringKeyName="combinedAddress"
         showIcon={false}
         maxResults={15}
-        autoFocus
-        showItemsOnFocus={true}
         fuseOptions={{
           keys: ["combinedAddress"],
           location: 0,
