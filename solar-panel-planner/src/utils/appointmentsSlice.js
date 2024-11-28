@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { userDb } from "../userDb";
 
-const initialState = userDb;
+const initialState = { appointments: userDb };
 
 // const initialState = {
 //   appointments: [

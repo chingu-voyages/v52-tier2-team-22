@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Modal from "./Modal";
+import Modal from "../utils/Modal";
 import { TiTickOutline } from "react-icons/ti";
 import { useDispatch } from "react-redux";
-import { addAppointment } from "./utils/appointmentsSlice";
-import { userDb } from "./userDb";
+import { addAppointment } from "../utils/appointmentsSlice";
+import { userDb } from "../userDb";
 import { v4 as uuid } from "uuid";
-import AddressAutoComplete from "./AddressAutoComplete";
-import ShowAvailableTimeSlot from "./ShowAvailableTimeSlot";
+import AddressAutoComplete from "../AddressAutoComplete";
+import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
 
 function ResidentForm() {
   const dispatch = useDispatch();
@@ -44,8 +44,7 @@ function ResidentForm() {
       id: uuid(),
       address: address,
       date: residentFormData.date
-        ? // ? new Date(residentFormData.date)
-          new Date(residentFormData.date).toISOString()
+        ? new Date(residentFormData.date).toISOString()
         : "",
     };
 
