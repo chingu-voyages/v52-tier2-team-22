@@ -1,13 +1,15 @@
+import moment from "moment";
 import { useSelector } from "react-redux";
 
 function ResidentSubmitedForms() {
   const appointments = useSelector((state) => state.appointments.appointments);
+  console.log(new Date(appointments[0].date));
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-8">
       {appointments?.map((appointment, index) => (
         <div
-          key={index}
+          key={appointment.id}
           className="bg-white border-2 border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
         >
           <div className="mb-4">
@@ -27,11 +29,13 @@ function ResidentSubmitedForms() {
             </li>
             <li>
               <span className="font-semibold">Address:</span>{" "}
-              {appointment.address.combinedAddress}
+              {appointment.address.combinedAddress +
+                " " +
+                appointment.address.zipcode}
             </li>
             <li>
               <span className="font-semibold">Preferred Date:</span>{" "}
-              {appointment.date}
+              {moment(appointment.date).format("MMMM Do YYYY, h:mm a")}
             </li>
           </ul>
           <button className="mt-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 w-full">

@@ -16,7 +16,7 @@ export default function AddressAutoComplete({ setAddress }) {
     function fetchDatasetLA(url) {
       fetch(url, {
         headers: {
-          "X-App-Token": LACITY_APP_TOKEN,
+          // "X-App-Token": LACITY_APP_TOKEN,
         },
       })
         .then((res) => res.json())
