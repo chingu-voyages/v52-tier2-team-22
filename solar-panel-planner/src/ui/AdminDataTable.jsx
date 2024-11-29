@@ -1,8 +1,19 @@
 import { useSelector } from "react-redux";
 import ShowMap from "../ShowMap";
+import { jsPDF } from "jspdf";
 
 function AdminDataTable() {
   const appointments = useSelector((state) => state.appointments.appointments);
+  const exportToPDF = (appointment) => {
+    const doc = new jsPDF();
+    doc.text(`Appointment Details`, 10, 10);
+    doc.text(`Name: ${appointment.name}`, 10, 20);
+    doc.text(`Email: ${appointment.email}`, 10, 30);
+    doc.text(`Phone: ${appointment.phone}`, 10, 40);
+    doc.text(`Address: ${appointment.address}`, 10, 50);
+    doc.text(`Date: ${appointment.date}`, 10, 60);
+    doc.save(`${appointment.name}_appointment.pdf`);
+  };
 
   return (
     <div className="flex flex-col overflow-auto rounded-lg shadow-lg m-8">
@@ -17,6 +28,7 @@ function AdminDataTable() {
             <th className="px-6 py-3">Phone</th>
             <th className="px-6 py-3">Address</th>
             <th className="px-6 py-3">Date</th>
+            <th className="px-6 py-3">Export</th>
           </tr>
         </thead>
         <tbody>
@@ -25,8 +37,17 @@ function AdminDataTable() {
               <td className="px-6 py-3 border-t border-gray-200">{appointment.name}</td>
               <td className="px-6 py-3 border-t border-gray-200">{appointment.email}</td>
               <td className="px-6 py-3 border-t border-gray-200">{appointment.phone}</td>
-              {/* <td className="px-6 py-3 border-t border-gray-200">{appointment.address}</td>
-              <td className="px-6 py-3 border-t border-gray-200">{appointment.date}</td> */}
+              {/* <td className="px-6 py-3 border-t border-gray-200">{appointment.address}</td> */}
+              <td className="px-6 py-3 border-t border-gray-200">address</td>
+              <td className="px-6 py-3 border-t border-gray-200">{appointment.date}</td>
+              <td className="px-6 py-3 border-t border-gray-200">
+              <button
+                onClick={() => exportToPDF(appointment)}
+                className="px-4 py-2 bg-primaryYellow text-white rounded-md hover:bg-secondaryYellow"
+              >
+                Export PDF
+              </button>
+            </td>
             </tr>
           ))}
         </tbody>
