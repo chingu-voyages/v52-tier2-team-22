@@ -8,9 +8,9 @@ export default {
     extend: {
       colors: {
         primaryYellow: '#efcd5d',
-        primaryGreen: '#95d387',
+        primaryGreen: '#7bc86a',
         secondaryYellow: '#f2dc96',
-        secondaryGreen: '#d8eaab',
+        secondaryGreen: '#96d388',
         background: '#f9f8f3',
       }
     },

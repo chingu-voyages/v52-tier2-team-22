@@ -5,10 +5,10 @@ import Logo from "../assets/logo1.png";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className=" py-1 px-8 text-grey-800">
+    <div className="bg-stone-200 py-1 px-8 text-grey-800">
       <div className="flex items-center justify-between">
         <Link to="/">
-          <img src={Logo} alt="logo" className="h-12" />
+          <img src={Logo} alt="logo" className="h-12 hover:bg-red-300 transition" />
         </Link>
 
         <button

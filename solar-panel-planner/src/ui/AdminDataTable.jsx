@@ -16,7 +16,11 @@ function AdminDataTable() {
   };
 
   return (
+    <>
+    
+    <h1 className="my-8 mx-8 text-2xl">Welcome Admin, here are all resident submitted requests</h1>
     <div className="flex flex-col overflow-auto rounded-lg shadow-lg m-8">
+      
       <div className="flex items-center justify-between px-6 py-4 bg-secondaryGreen text-white text-center rounded-t-lg">
         <h2 className="text-lg text-center font-semibold">Appointment Requests</h2>
       </div>
@@ -43,7 +47,7 @@ function AdminDataTable() {
               <td className="px-6 py-3 border-t border-gray-200">
               <button
                 onClick={() => exportToPDF(appointment)}
-                className="px-4 py-2 bg-primaryYellow text-white rounded-md hover:bg-secondaryYellow"
+                className="px-4 py-2 bg-primaryYellow transition rounded-md hover:bg-secondaryYellow"
               >
                 Export PDF
               </button>
@@ -55,6 +59,7 @@ function AdminDataTable() {
 
       <ShowMap />
     </div>
+    </>
   );
 }
 

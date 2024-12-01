@@ -1,10 +1,19 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteAppointment } from "../utils/appointmentsSlice";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 function ResidentSubmitedForms() {
   const appointments = useSelector((state) => state.appointments.appointments);
+  const dispatch = useDispatch();
+
+  const handleCancelRequest = (index) => {
+    dispatch(deleteAppointment(index));
+    toast.success("Request deleted");
+  };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-8">
+    <div className="grid py-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 mt-8 px-6">
       {appointments?.map((appointment, index) => (
         <div
           key={index}
@@ -34,22 +43,17 @@ function ResidentSubmitedForms() {
               {appointment.date}
             </li>
           </ul>
-          <button className="mt-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 w-full">
+          <button
+            onClick={() => handleCancelRequest(index)}
+            className="mt-4 bg-white border-[2px] text-black border-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-500 w-full transition"
+          >
             Cancel Request
           </button>
         </div>
       ))}
+      <ToastContainer />
     </div>
   );
 }
 
 export default ResidentSubmitedForms;
-{
-  /* <p>{appointment.name}</p>
-          <p>{appointment.email}</p>
-          <p>{appointment.phone}</p> */
-}
-{
-  /* <p>{appointment.adress}</p>
-          <p>{appointment.date}</p> */
-}

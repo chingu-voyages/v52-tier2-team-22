@@ -50,7 +50,6 @@ function ResidentForm() {
 
     dispatch(addAppointment(serializedData));
 
-    // commented out for testing purposes
     setResidentFormData(defaultValue);
   };
 
@@ -58,8 +57,9 @@ function ResidentForm() {
     setIsModalOpen(false);
   };
 
+  // ranNUm * 3. this number MUST NOT be higher than the number of objects of fake users in UserDb.js
   const setSampleData = () => {
-    let ranNum = Math.ceil(Math.random() * 20);
+    let ranNum = Math.ceil(Math.random() * 3);
     setResidentFormData(userDb[ranNum]);
   };
 
@@ -150,21 +150,21 @@ function ResidentForm() {
           <article className="flex gap-5 mt-4">
             <button
               type="submit"
-              className="bg-primaryGreen hover:bg-secondaryGreen text-white font-bold py-2 px-4 rounded w-3/4"
+              className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-bold py-2 px-4 rounded w-3/4"
             >
               Submit
             </button>
             <button
               type="button" // prevent form submission
               onClick={() => setResidentFormData(defaultValue)}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
+              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
             >
               Cancel
             </button>
             <button
               type="button" // prevent form submission
               onClick={() => setSampleData()}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
+              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
             >
               Sample data
             </button>
@@ -173,16 +173,18 @@ function ResidentForm() {
       </form>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <div className="flex flex-col gap-6">
-          <TiTickOutline className="mx-auto size-10 text-green-400" />
-          <p>Form submitted succesfully !</p>
-          <p>
-            Your preffered timeslot is only indicative ! You will receinve a
-            confirmation via phone call a few hours before scheduled visit
+        <div className="flex flex-col gap-6 text-lg">
+          <TiTickOutline className="mx-auto size-14 text-primaryGreen" />
+          <p className="font-bold text-primaryGreen text-xl">
+            Form submitted succesfully !
           </p>
           <p>
-            If you want to cancel your appointment, you can reach us at this
-            number 1-800-123-4567
+            Your preffered timeslot is only i͟n͟d͟i͟c͟a͟t͟i͟v͟e͟. You will receive a
+            confirmation via phone call a few hours before scheduled visit.
+          </p>
+          <p>
+            If you want to cancel your appointment, you can reach us at number
+            1-800-123-4567
           </p>
         </div>
       </Modal>
