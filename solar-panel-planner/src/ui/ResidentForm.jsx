@@ -57,6 +57,7 @@ function ResidentForm() {
     setIsModalOpen(false);
   };
 
+  // ranNUm * 3. this number MUST NOT be higher than the number of objects of fake users in UserDb.js
   const setSampleData = () => {
     let ranNum = Math.ceil(Math.random() * 3);
     setResidentFormData(userDb[ranNum]);
@@ -174,14 +175,16 @@ function ResidentForm() {
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <div className="flex flex-col gap-6 text-lg">
           <TiTickOutline className="mx-auto size-14 text-primaryGreen" />
-          <p className="font-bold text-primaryGreen text-xl">Form submitted succesfully !</p>
+          <p className="font-bold text-primaryGreen text-xl">
+            Form submitted succesfully !
+          </p>
           <p>
             Your preffered timeslot is only i͟n͟d͟i͟c͟a͟t͟i͟v͟e͟. You will receive a
             confirmation via phone call a few hours before scheduled visit.
           </p>
           <p>
-            If you want to cancel your appointment, you can reach us at 
-            number 1-800-123-4567
+            If you want to cancel your appointment, you can reach us at number
+            1-800-123-4567
           </p>
         </div>
       </Modal>
