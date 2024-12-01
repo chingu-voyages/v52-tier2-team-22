@@ -35,18 +35,18 @@ export const userDb = [
     },
     date: "2024-11-27T16:30:00.000Z",
   },
-  // {
-  //   id: 4,
-  //   name: "Sophie Williams",
-  //   email: "5be52f8iuspfo@googlemail.com",
-  //   phone: "3230459385",
-  //   address: {
-  //     combinedAddress: "4989 O'sullivan Dr",
-  //     zipcode: "90032",
-  //     coord: { lat: 34.068096923029124, lng: -118.17473394155478 },
-  //   },
-  //   date: "2024-11-25T10:00:00.000Z",
-  // },
+  {
+    id: 4,
+    name: "Sophie Williams",
+    email: "5be52f8iuspfo@googlemail.com",
+    phone: "3230459385",
+    address: {
+      combinedAddress: "4989 O'sullivan Dr",
+      zipcode: "90032",
+      coord: { lat: 34.068096923029124, lng: -118.17473394155478 },
+    },
+    date: "2024-11-25T10:00:00.000Z",
+  },
   // {
   //   id: 5,
   //   name: "Ryszard Terrell",

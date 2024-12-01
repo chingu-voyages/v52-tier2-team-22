@@ -58,7 +58,7 @@ function ResidentForm() {
   };
 
   const setSampleData = () => {
-    let ranNum = Math.ceil(Math.random() * 20);
+    let ranNum = Math.ceil(Math.random() * 3);
     setResidentFormData(userDb[ranNum]);
   };
 
@@ -172,15 +172,15 @@ function ResidentForm() {
       </form>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <div className="flex flex-col gap-6">
-          <TiTickOutline className="mx-auto size-10 text-green-400" />
-          <p>Form submitted succesfully !</p>
+        <div className="flex flex-col gap-6 text-lg">
+          <TiTickOutline className="mx-auto size-14 text-primaryGreen" />
+          <p className="font-bold text-primaryGreen text-xl">Form submitted succesfully !</p>
           <p>
-            Your preffered timeslot is only indicative ! You will receinve a
-            confirmation via phone call a few hours before scheduled visit
+            Your preffered timeslot is only i͟n͟d͟i͟c͟a͟t͟i͟v͟e͟. You will receive a
+            confirmation via phone call a few hours before scheduled visit.
           </p>
           <p>
-            If you want to cancel your appointment, you can reach us at this
+            If you want to cancel your appointment, you can reach us at 
             number 1-800-123-4567
           </p>
         </div>
