@@ -50,7 +50,6 @@ function ResidentForm() {
 
     dispatch(addAppointment(serializedData));
 
-    // commented out for testing purposes
     setResidentFormData(defaultValue);
   };
 

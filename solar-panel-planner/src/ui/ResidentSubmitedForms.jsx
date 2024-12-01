@@ -34,7 +34,7 @@ function ResidentSubmitedForms() {
               {appointment.date}
             </li>
           </ul>
-          <button className="mt-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 w-full">
+          <button className="mt-4 bg-white border-[2px] text-black border-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-500 w-full transition">
             Cancel Request
           </button>
         </div>

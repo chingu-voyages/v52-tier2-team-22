@@ -1,8 +1,3 @@
-// import { useState } from "react";
-// import RoleSelection from "../RoleSelection";
-// import ResidentForm from "../ResidentForm";
-// import AdminForm from "../AdminForm";
-// import landingpage from "../assets/landingpage.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Img1 from "../assets/img1.jpg";
@@ -12,16 +7,10 @@ import Img4 from "../assets/hero-back.jpg";
 import { Link } from "react-router-dom";
 
 function Homepage() {
-  // const [selectedForm, setSelectedForm] = useState(null);
 
   return (
     <main className="w-full bg-background">
       <Navbar />
-      {/* <img className="w-full" src={landingpage} alt="landingpage" />
-      <RoleSelection setSelectedForm={setSelectedForm} />
-
-      {selectedForm === "resident" && <ResidentForm />}
-      {selectedForm === "admin" && <AdminForm />} */}
 
       <div
         className="relative bg-cover bg-center h-screen"
