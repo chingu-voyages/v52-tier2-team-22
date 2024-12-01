@@ -149,21 +149,21 @@ function ResidentForm() {
           <article className="flex gap-5 mt-4">
             <button
               type="submit"
-              className="bg-primaryGreen hover:bg-secondaryGreen text-white font-bold py-2 px-4 rounded w-3/4"
+              className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-bold py-2 px-4 rounded w-3/4"
             >
               Submit
             </button>
             <button
               type="button" // prevent form submission
               onClick={() => setResidentFormData(defaultValue)}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
+              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
             >
               Cancel
             </button>
             <button
               type="button" // prevent form submission
               onClick={() => setSampleData()}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
+              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
             >
               Sample data
             </button>

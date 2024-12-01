@@ -28,7 +28,7 @@ function Homepage() {
           </h2>
           <p className="text-white text-lg mt-4">GO SOLAR, SAVE ENERGY</p>
           <Link to="/residentpage">
-            <button className="mt-6 px-6 py-3 bg-primaryYellow hover:bg-primaryYellow text-white font-bold rounded-lg">
+            <button className="mt-6 px-6 py-3 transition bg-primaryYellow hover:bg-primaryYellow text-white font-bold rounded-lg">
               Send Request
             </button>
           </Link>
@@ -82,7 +82,7 @@ function Homepage() {
       <div className="flex justify-center py-12">
         <Link
           to="/residentpage"
-          className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 rounded-lg shadow-md hover:bg-secondaryGreen"
+          className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 transition rounded-lg shadow-md hover:bg-secondaryGreen"
         >
           Send a Request
         </Link>
