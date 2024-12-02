@@ -49,17 +49,17 @@ export default function Navbar() {
       {isOpen && (
         <ul className="flex flex-col mt-4 space-y-4 md:hidden">
           <li>
-            <Link to="." className="hover:underline">
+            <Link to="/residentpage" className="hover:underline">
               Send Request
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="." className="hover:underline">
               My Request
             </Link>
-          </li>
+          </li> */}
           <li>
-            <Link to="." className="hover:underline">
+            <Link to="/adminpage" className="hover:underline">
               Admin
             </Link>
           </li>

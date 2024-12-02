@@ -17,7 +17,9 @@ function ResidentForm() {
     email: "",
     phone: "",
     address: { combinedAddress: "", zipcode: "", coord: { lat: "", lng: "" } },
-    date: "",
+    requestDate: "",
+    status:"",
+    sentDate:""
   };
 
   const [residentFormData, setResidentFormData] = useState(defaultValue);
@@ -36,18 +38,21 @@ function ResidentForm() {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    console.log(residentFormData.date);
+    console.log(residentFormData.requestDate);
     setIsModalOpen(true);
 
     const serializedData = {
       ...residentFormData,
       id: uuid(),
       address: address,
-      date: residentFormData.date
-        ? new Date(residentFormData.date).toISOString()
+      requestDate: residentFormData.requestDate
+        ? new Date(residentFormData.requestDate).toISOString()
         : "",
+      status: "pending",
+      sentDate: new Date().toISOString()
     };
 
+    localStorage.setItem('request', JSON.stringify((serializedData)));
     dispatch(addAppointment(serializedData));
 
     // commented out for testing purposes

@@ -51,7 +51,7 @@ export default function ShowAvailableTimeSlot({ setResidentFormData }) {
   }
 
   const handleDateChange = function (date) {
-    setResidentFormData((prevData) => ({ ...prevData, date: date.startTime }));
+    setResidentFormData((prevData) => ({ ...prevData, requestDate: date.startTime }));
   };
 
   return (

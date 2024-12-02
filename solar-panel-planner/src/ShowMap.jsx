@@ -5,6 +5,7 @@ import {
   AdvancedMarker,
   InfoWindow,
   useAdvancedMarkerRef,
+  Pin,
 } from "@vis.gl/react-google-maps";
 import { useSelector } from "react-redux";
 
@@ -14,6 +15,7 @@ export default function ShowMap() {
   const coordLA = { lat: 34.0549, lng: -118.2426 };
   const [markerID, setMarkerID] = useState(null);
   const userDb = useSelector((state) => state.appointments.appointments)
+  console.log(userDb)
 
   return (
     <>
@@ -51,7 +53,9 @@ function PlaceMarker({ user, isOpen, setMarkerID }) {
         position={user.address.coord}
         key={user.id}
         title={"AdvancedMarker that opens an Infowindow when clicked."}
-      />
+      >
+        {user.id <= 30 ? <Pin background={'#FBBC04'} glyphColor={'#000'} borderColor={'#000'} /> : <Pin background={'purple'} glyphColor={'#000'} borderColor={'#000'} />}
+      </ AdvancedMarker>
       {isOpen && (
         <InfoWindow
           anchor={marker}
