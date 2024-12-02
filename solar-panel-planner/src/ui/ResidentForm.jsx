@@ -44,6 +44,8 @@ function ResidentForm() {
     console.log(residentFormData.requestDate);
     setIsModalOpen(true);
 
+// toast.error("please select the date")
+
     const serializedData = {
       ...residentFormData,
       id: uuid(),

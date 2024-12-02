@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addAppointment } from "../utils/appointmentsSlice";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 function Homepage() {
   const dispatch = useDispatch();
@@ -17,13 +18,12 @@ function Homepage() {
   useEffect(() => {
     const requestItems = JSON.parse(localStorage.getItem("request"));
     dispatch(addAppointment(requestItems));
-    
   }, []);
 
-console.log(appointments)
+  console.log(appointments);
 
   return (
-    <main className="w-full bg-background">
+    <main className="w-full bg-background overflow-x-hidden">
       <Navbar />
 
       <div
@@ -33,7 +33,22 @@ console.log(appointments)
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-4">
+        <motion.div
+          initial={{
+            y: 70,
+            opacity: 0,
+          }}
+          whileInView={{
+            y: 0,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.6,
+            delay: 0.2,
+          }}
+          viewport={{ once: true }}
+          className="relative z-10 flex flex-col items-center justify-center text-center h-full px-4"
+        >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
             SolarSync LA
           </h1>
@@ -45,12 +60,28 @@ console.log(appointments)
             <button className="mt-6 px-6 py-3 transition bg-primaryYellow hover:bg-primaryYellow text-white font-bold rounded-lg">
               Send Request
             </button>
+            
           </Link>
-        </div>
+        </motion.div>
       </div>
 
       <div className="flex flex-col gap-12 px-6 py-12 ">
-        <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6">
+        <motion.div
+          initial={{
+            x: 70,
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.6,
+            delay: 0.1,
+          }}
+          viewport={{ once: true }}
+          className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6"
+        >
           <div className="text-center md:text-left max-w-md">
             <h2 className="text-2xl font-bold mb-4">Send a Request</h2>
             <p className="text-gray-600">
@@ -63,8 +94,20 @@ console.log(appointments)
             alt="Send a Request"
             className="w-full md:w-1/2 rounded-lg shadow-lg"
           />
-        </div>
-        <div className="flex flex-col md:flex-row items-center md:gap-6">
+        </motion.div>
+        <motion.div initial={{
+            x: -70,
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.6,
+            delay: 0.25,
+          }}
+          viewport={{ once: true }} className="flex flex-col md:flex-row items-center md:gap-6">
           <img
             src={Img2}
             alt="Evaluation"
@@ -77,8 +120,23 @@ console.log(appointments)
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
-        </div>
-        <div className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 ">
+        </motion.div>
+        <motion.div
+          initial={{
+            x: 70,
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.6,
+            delay: 0.45,
+          }}
+          viewport={{ once: true }}
+          className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 "
+        >
           <div className="text-center md:text-left max-w-md">
             <h2 className="text-2xl font-bold mb-4">Installation</h2>
             <p className="text-gray-600">
@@ -91,7 +149,7 @@ console.log(appointments)
             alt="Installation"
             className="w-full md:w-1/2 rounded-lg shadow-lg"
           />
-        </div>
+        </motion.div>
       </div>
       <div className="flex justify-center py-12">
         <Link
