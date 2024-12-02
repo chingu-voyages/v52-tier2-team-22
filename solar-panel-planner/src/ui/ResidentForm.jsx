@@ -77,14 +77,14 @@ function ResidentForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="my-8 flex gap-5 rounded mx-auto px-8 py-8"
+        className="my-8 flex flex-col sm:flex-row gap-5 rounded mx-auto px-8 py-8"
       >
         {/* Date */}
         <ShowAvailableTimeSlot setResidentFormData={setResidentFormData} />
 
-        <div className="w-1/2 mx-auto my-5">
+        <div className="mx-auto my-5 sm:w-1/2">
           {/* Name */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="name"
               className="block text-gray-700 text-sm font-bold"
@@ -104,7 +104,7 @@ function ResidentForm() {
           </article>
 
           {/* Email */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="email"
               className="block text-gray-700 text-sm font-bold"
@@ -124,7 +124,7 @@ function ResidentForm() {
           </article>
 
           {/* Phone Number */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="phone"
               className="block text-gray-700 text-sm font-bold"
@@ -144,7 +144,7 @@ function ResidentForm() {
           </article>
 
           {/* Address */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="street_address"
               className="block text-gray-700 text-sm font-bold"
@@ -155,9 +155,9 @@ function ResidentForm() {
           </article>
 
           {/* Buttons */}
-          <article className="flex gap-5 mt-4">
+          <article className="flex gap-5 mt-8">
             <button
-              type="submit"
+              type="submit" //submit the form
               className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-bold py-2 px-4 rounded w-3/4"
             >
               Submit
@@ -170,7 +170,7 @@ function ResidentForm() {
               Cancel
             </button>
             <button
-              type="button" // prevent form submission
+              type="button" // fill the form with sample data
               onClick={() => setSampleData()}
               className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
             >
