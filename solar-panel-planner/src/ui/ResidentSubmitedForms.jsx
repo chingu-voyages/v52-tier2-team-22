@@ -8,8 +8,9 @@ function ResidentSubmitedForms({request}) {
   // const appointments = useSelector((state) => state.appointments.appointments);
   const dispatch = useDispatch();
 
-  const handleCancelRequest = (index) => {
-    dispatch(deleteAppointment(index));
+  const handleCancelRequest = (id) => {
+    localStorage.removeItem("request");
+    dispatch(deleteAppointment(id));
     toast.success("Request deleted");
   };
 
@@ -50,7 +51,7 @@ function ResidentSubmitedForms({request}) {
           </li>
           </ul>
           <button
-            onClick={() => handleCancelRequest(index)}
+            onClick={() => handleCancelRequest(request.id)}
             className="mt-4 bg-white border-[2px] text-black border-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-500 w-full transition"
           >
             Cancel Request

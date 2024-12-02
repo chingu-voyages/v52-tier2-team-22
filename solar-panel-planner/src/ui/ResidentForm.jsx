@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "../utils/Modal";
 import { TiTickOutline } from "react-icons/ti";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addAppointment } from "../utils/appointmentsSlice";
 import { userDb } from "../userDb";
 import { v4 as uuid } from "uuid";
@@ -11,6 +11,9 @@ import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
 function ResidentForm() {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const appointments = useSelector((state) => state.appointments.appointments);
+  console.log(appointments)
+
   const defaultValue = {
     id: "",
     name: "",

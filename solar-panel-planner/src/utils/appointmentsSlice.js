@@ -9,11 +9,14 @@ export const appointmentsSlice = createSlice({
   reducers: {
     addAppointment: (state, action) => {
       // console.log(state, action);
-      state.appointments.push(action.payload);
+      // state.appointments.push(action.payload);
+      state.appointments = [...state.appointments, action.payload];
     },
     deleteAppointment: (state, action) => {
       const index = action.payload;
-      state.appointments = state.appointments.filter((_, i) => i !== index);
+      console.log(index)
+      state.appointments = state.appointments.filter((item) => item.id !== index);
+      // state.appointments = state.appointments.filter((_, i) => i !== index);
     },
   },
 });
