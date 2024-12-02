@@ -72,7 +72,7 @@ function ResidentForm() {
   };
 
   return (
-    <section className="bg-background py-4">
+    <section className="py-4">
       <h2 className="text-center text-3xl font-bold">Book an appointment</h2>
 
       <form

@@ -49,7 +49,7 @@ function AdminForm({setIsLoggedIn}) {
   };
 
   return (
-    <section className="bg-background py-8">
+    <section className="py-8">
       <ToastContainer />
       <h2 className="text-center text-3xl font-semibold mt-4 py-5">Login as Admin</h2>
 
