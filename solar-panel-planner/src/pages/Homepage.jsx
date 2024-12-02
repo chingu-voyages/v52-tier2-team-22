@@ -1,8 +1,3 @@
-// import { useState } from "react";
-// import RoleSelection from "../RoleSelection";
-// import ResidentForm from "../ResidentForm";
-// import AdminForm from "../AdminForm";
-// import landingpage from "../assets/landingpage.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Img1 from "../assets/img1.jpg";
@@ -30,11 +25,6 @@ console.log(appointments)
   return (
     <main className="w-full bg-background">
       <Navbar />
-      {/* <img className="w-full" src={landingpage} alt="landingpage" />
-      <RoleSelection setSelectedForm={setSelectedForm} />
-
-      {selectedForm === "resident" && <ResidentForm />}
-      {selectedForm === "admin" && <AdminForm />} */}
 
       <div
         className="relative bg-cover bg-center h-screen"
@@ -52,7 +42,7 @@ console.log(appointments)
           </h2>
           <p className="text-white text-lg mt-4">GO SOLAR, SAVE ENERGY</p>
           <Link to="/residentpage">
-            <button className="mt-6 px-6 py-3 bg-primaryYellow hover:bg-primaryYellow text-white font-bold rounded-lg">
+            <button className="mt-6 px-6 py-3 transition bg-primaryYellow hover:bg-primaryYellow text-white font-bold rounded-lg">
               Send Request
             </button>
           </Link>
@@ -106,7 +96,7 @@ console.log(appointments)
       <div className="flex justify-center py-12">
         <Link
           to="/residentpage"
-          className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 rounded-lg shadow-md hover:bg-secondaryGreen"
+          className="bg-primaryGreen text-white text-xl font-semibold px-9 py-5 transition rounded-lg shadow-md hover:bg-secondaryGreen"
         >
           Send a Request
         </Link>

@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ResidentForm from "../ui/ResidentForm";
 import ResidentSubmitedForms from "../ui/ResidentSubmitedForms";
