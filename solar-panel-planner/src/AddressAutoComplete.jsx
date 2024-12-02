@@ -50,12 +50,11 @@ export default function AddressAutoComplete({ setAddress }) {
   };
 
   const handleOnSelect = (item) => {
+    console.log(Number(item.lat))
     setAddress({
-      address: {
         combinedAddress: item.combinedAddress,
         zipcode: item.zip_cd,
-        coord: { lat: item.lat, lng: item.lon },
-      },
+        coord: { lat: Number(item.lat), lng: Number(item.lon) },
     });
   };
 
@@ -79,7 +78,7 @@ export default function AddressAutoComplete({ setAddress }) {
           setHouse_number("");
           setDatasetLA([]);
         }}
-        inputDebounce={600}
+        inputDebounce={400}
         formatResult={formatResult}
         placeholder="Input your house number"
         resultStringKeyName="combinedAddress"

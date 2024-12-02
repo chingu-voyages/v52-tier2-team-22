@@ -1,6 +1,7 @@
 import { ScheduleMeeting } from "react-schedule-meeting";
 
 export default function ShowAvailableTimeSlot({ setResidentFormData }) {
+  // const today = new Date();
   const today = new Date();
   let year = today.getFullYear();
   let month = today.getMonth() + 1;
@@ -10,33 +11,47 @@ export default function ShowAvailableTimeSlot({ setResidentFormData }) {
 
   let availableTimeslots = [];
   function getAvailableTimeslots(dayOfWeek, dayCount) {
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-      availableTimeslots.push({
-        id: dayCount,
-        startTime: new Date(
-          new Date(
-            new Date().setDate(new Date().getDate() + dayCount)
-          ).setHours(9, 0, 0, 0)
-        ),
-        endTime: new Date(
-          new Date(
-            new Date().setDate(new Date().getDate() + dayCount)
-          ).setHours(17, 0, 0, 0)
-        ),
-      });
+    if (dayOfWeek === 0 || dayOfWeek === 6) return;
+
+    availableTimeslots.push({
+      id: dayCount,
+      startTime: new Date(
+        new Date(new Date().setDate(new Date().getDate() + dayCount)).setHours(
+          9,
+          0,
+          0,
+          0
+        )
+      ),
+      endTime: new Date(
+        new Date(new Date().setDate(new Date().getDate() + dayCount)).setHours(
+          17,
+          0,
+          0,
+          0
+        )
+      ),
+    });
+  }
+
+  if (daysLeft < 5) {
+    for (let dayCount = 0; dayCount <= daysLeft + 14; dayCount++) {
+      let dayOfWeek = new Date(
+        new Date(new Date().setDate(new Date().getDate() + dayCount))
+      ).getDay();
+      getAvailableTimeslots(dayOfWeek, dayCount);
+    }
+  } else {
+    for (let dayCount = 0; dayCount <= daysLeft; dayCount++) {
+      let dayOfWeek = new Date(
+        new Date(new Date().setDate(new Date().getDate() + dayCount))
+      ).getDay();
+      getAvailableTimeslots(dayOfWeek, dayCount);
     }
   }
 
-  for (let dayCount = 0; dayCount <= daysLeft; dayCount++) {
-    let dayOfWeek = new Date(
-      new Date(new Date().setDate(new Date().getDate() + dayCount))
-    ).getDay();
-
-    getAvailableTimeslots(dayOfWeek, dayCount);
-  }
-
   const handleDateChange = function (date) {
-    setResidentFormData((prevData) => ({ ...prevData, date: date.startTime }));
+    setResidentFormData((prevData) => ({ ...prevData, requestDate: date.startTime }));
   };
 
   return (

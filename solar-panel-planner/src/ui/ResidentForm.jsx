@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "../utils/Modal";
 import { TiTickOutline } from "react-icons/ti";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addAppointment } from "../utils/appointmentsSlice";
 import { userDb } from "../userDb";
 import { v4 as uuid } from "uuid";
@@ -11,13 +11,18 @@ import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
 function ResidentForm() {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const appointments = useSelector((state) => state.appointments.appointments);
+  console.log(appointments)
+
   const defaultValue = {
     id: "",
     name: "",
     email: "",
     phone: "",
     address: { combinedAddress: "", zipcode: "", coord: { lat: "", lng: "" } },
-    date: "",
+    requestDate: "",
+    status:"",
+    sentDate:""
   };
 
   const [residentFormData, setResidentFormData] = useState(defaultValue);
@@ -36,18 +41,21 @@ function ResidentForm() {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    console.log(residentFormData.date);
+    console.log(residentFormData.requestDate);
     setIsModalOpen(true);
 
     const serializedData = {
       ...residentFormData,
       id: uuid(),
       address: address,
-      date: residentFormData.date
-        ? new Date(residentFormData.date).toISOString()
+      requestDate: residentFormData.requestDate
+        ? new Date(residentFormData.requestDate).toISOString()
         : "",
+      status: "pending",
+      sentDate: new Date().toISOString()
     };
 
+    localStorage.setItem('request', JSON.stringify((serializedData)));
     dispatch(addAppointment(serializedData));
 
     setResidentFormData(defaultValue);

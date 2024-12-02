@@ -8,7 +8,11 @@ export default function Navbar() {
     <div className="bg-stone-200 py-1 px-8 text-grey-800">
       <div className="flex items-center justify-between">
         <Link to="/">
-          <img src={Logo} alt="logo" className="h-12 hover:bg-red-300 transition" />
+          <img
+            src={Logo}
+            alt="logo"
+            className="h-12 hover:bg-red-300 transition"
+          />
         </Link>
 
         <button
@@ -47,19 +51,14 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <ul className="flex flex-col mt-4 space-y-4 md:hidden">
+        <ul className="flex flex-col items-end mt-4 space-y-4 md:hidden">
           <li>
-            <Link to="." className="hover:underline">
+            <Link to="/residentpage" className="hover:underline">
               Send Request
             </Link>
           </li>
           <li>
-            <Link to="." className="hover:underline">
-              My Request
-            </Link>
-          </li>
-          <li>
-            <Link to="." className="hover:underline">
+            <Link to="/adminpage" className="hover:underline">
               Admin
             </Link>
           </li>
