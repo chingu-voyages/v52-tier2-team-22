@@ -15,7 +15,7 @@ function ResidentPage() {
     <div className="w-full bg-background">
       <Navbar />
       <ResidentForm />
-      <h3 className="text-center text-2xl font-semibold mt-8">
+      <h3 className="mt-6 text-center text-3xl font-semibold">
         Your Previous Requests
       </h3>
       {request ? (

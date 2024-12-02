@@ -73,11 +73,11 @@ function ResidentForm() {
 
   return (
     <section className="py-4">
-      <h2 className="text-center text-3xl font-bold">Book an appointment</h2>
+      <h2 className="mt-8 text-center text-3xl font-semibold">Book an Appointment</h2>
 
       <form
         onSubmit={handleSubmit}
-        className="my-8 flex flex-col sm:flex-row gap-5 rounded mx-auto px-8 py-8"
+        className="my-4 flex flex-col sm:flex-row gap-5 rounded mx-auto px-8 py-8"
       >
         {/* Date */}
         <ShowAvailableTimeSlot setResidentFormData={setResidentFormData} />

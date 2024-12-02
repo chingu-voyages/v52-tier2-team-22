@@ -30,10 +30,10 @@ function AdminDataTable() {
 
   return (
     <>
-      <h1 className="my-8 mx-8 text-2xl">
+      <h1 className="mt-8 mx-8 text-2xl">
         Welcome Admin, here are all resident submitted requests
       </h1>
-      <div className="flex flex-col overflow-auto rounded-lg shadow-lg m-8">
+      <div className="flex flex-col overflow-auto rounded-lg shadow-lg mx-8 my-4">
         <div className="flex items-center justify-between px-6 py-4 bg-secondaryGreen text-white text-center rounded-t-lg">
           <h2 className="text-lg text-center font-semibold">
             Appointment Requests
@@ -104,9 +104,8 @@ function AdminDataTable() {
             ))}
           </tbody>
         </table>
-
-        <ShowMap />
       </div>
+      <ShowMap />
     </>
   );
 }
