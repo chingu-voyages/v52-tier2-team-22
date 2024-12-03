@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo1.png";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="bg-stone-200 py-1 px-8 text-grey-800">
+    <div className="bg-navbarBackground py-1 px-8 text-grey-800 shadow-md">
       <div className="flex items-center justify-between">
         <Link to="/">
           <img
             src={Logo}
             alt="logo"
-            className="h-12 hover:bg-red-300 transition"
+            className="h-12"
           />
         </Link>
 
@@ -37,17 +38,43 @@ export default function Navbar() {
         </button>
 
         <ul className="hidden md:flex flex-row space-x-6 py-4">
+        <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `hover:font-bold hover:text-grey-700 ${
+                  isActive ? "font-bold text-grey-700" : "font-semibold text-grey-500"
+                }`
+              }
+            >
+              Home
+            </NavLink>
+          </li>
           <li>
-            <Link to="/residentpage" className="font-semibold">
+            <NavLink
+              to="/residentpage"
+              className={({ isActive }) =>
+                `hover:font-bold hover:text-grey-700 ${
+                  isActive ? "font-bold text-grey-700" : "font-semibold text-grey-500"
+                }`
+              }
+            >
               Send Request
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/adminpage" className="font-semibold">
+            <NavLink
+              to="/adminpage"
+              className={({ isActive }) =>
+                `hover:font-bold hover:text-grey-700 ${
+                  isActive ? "font-bold text-grey-700" : "font-semibold text-grey-500"
+                }`
+              }
+            >
               Admin
-            </Link>
+            </NavLink>
           </li>
-        </ul>
+</ul>
       </div>
 
       {isOpen && (

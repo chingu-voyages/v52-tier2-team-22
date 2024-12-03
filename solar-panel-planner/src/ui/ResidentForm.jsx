@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Modal from "../utils/Modal";
 import { TiTickOutline } from "react-icons/ti";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addAppointment } from "../utils/appointmentsSlice";
 import { userDb } from "../userDb";
 import { v4 as uuid } from "uuid";
 import AddressAutoComplete from "../AddressAutoComplete";
 import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
+import { FiKey } from "react-icons/fi";
+
 
 function ResidentForm({ setIsRequested }) {
   const dispatch = useDispatch();
@@ -39,7 +41,6 @@ function ResidentForm({ setIsRequested }) {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-
     if (!address || !residentFormData.requestDate) return alert("You forgot to select a request date or your address");
 
     const serializedData = {
@@ -64,26 +65,26 @@ function ResidentForm({ setIsRequested }) {
   };
 
   // ranNUm * 3. this number MUST NOT be higher than the number of objects of fake users in UserDb.js
-  // const setSampleData = () => {
-  //   let ranNum = Math.ceil(Math.random() * 3);
-  //   setResidentFormData(userDb[ranNum]);
-  // };
+  const setSampleData = () => {
+    let ranNum = Math.ceil(Math.random() * 3);
+    setResidentFormData(userDb[ranNum]);
+  };
   // console.log(residentFormData)
 
   return (
-    <section className="bg-background py-4">
-      <h2 className="text-center text-3xl font-bold">Book an appointment</h2>
+    <section className="py-4">
+      <h2 className="mt-8 text-center text-3xl font-semibold">Book an Appointment</h2>
 
       <form
         onSubmit={handleSubmit}
-        className="my-8 flex gap-5 rounded mx-auto px-8 py-8"
+        className="my-4 flex flex-col sm:flex-row gap-5 rounded mx-auto px-8 py-8"
       >
         {/* Date */}
-        <ShowAvailableTimeSlot setResidentFormData={setResidentFormData} />
+        <ShowAvailableTimeSlot  setResidentFormData={setResidentFormData} />
 
-        <div className="w-1/2 mx-auto my-5">
+        <div className="mx-auto my-5 sm:w-1/2 bg-white shadow-md rounded-lg p-6">
           {/* Name */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="name"
               className="block text-gray-700 text-sm font-bold"
@@ -98,12 +99,12 @@ function ResidentForm({ setIsRequested }) {
               onChange={handleInputChange}
               placeholder="Enter name"
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+              className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
 
           {/* Email */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="email"
               className="block text-gray-700 text-sm font-bold"
@@ -118,12 +119,12 @@ function ResidentForm({ setIsRequested }) {
               onChange={handleInputChange}
               placeholder="Enter email"
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+              className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
 
           {/* Phone Number */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="phone"
               className="block text-gray-700 text-sm font-bold"
@@ -143,7 +144,7 @@ function ResidentForm({ setIsRequested }) {
           </article>
 
           {/* Address */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="street_address"
               className="block text-gray-700 text-sm font-bold"
@@ -154,9 +155,9 @@ function ResidentForm({ setIsRequested }) {
           </article>
 
           {/* Buttons */}
-          <article className="flex gap-5 mt-4">
+          <article className="flex gap-5 mt-8">
             <button
-              type="submit"
+              type="submit" //submit the form
               className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-bold py-2 px-4 rounded w-3/4"
             >
               Submit
@@ -164,20 +165,22 @@ function ResidentForm({ setIsRequested }) {
             <button
               type="button" // prevent form submission
               onClick={() => setResidentFormData(defaultValue)}
-              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
             >
               Cancel
             </button>
-            {/* <button
-              type="button" // prevent form submission
-              onClick={() => setSampleData()}
-              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
-            >
-              Sample data
-            </button> */}
+            <button
+            type="button"
+            onClick={() => setSampleData()}
+            className="bg-primaryGreen hover:bg-secondaryGreen text-white p-2 rounded-full shadow-md transition duration-200 ml-auto flex items-center justify-center"
+          >
+            <FiKey className="size-5" />
+          </button>
           </article>
         </div>
       </form>
+
+     
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <div className="flex flex-col gap-6 text-lg">

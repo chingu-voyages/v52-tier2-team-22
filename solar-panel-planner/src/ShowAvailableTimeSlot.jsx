@@ -50,7 +50,10 @@ export default function ShowAvailableTimeSlot({ setResidentFormData }) {
   }
 
   const handleDateChange = function (date) {
-    setResidentFormData((prevData) => ({ ...prevData, requestDate: date.startTime }));
+    setResidentFormData((prevData) => ({
+      ...prevData,
+      requestDate: date.startTime,
+    }));
   };
 
   return (
@@ -58,8 +61,9 @@ export default function ShowAvailableTimeSlot({ setResidentFormData }) {
       <ScheduleMeeting
         borderRadius={50}
         primaryColor="#3f5b85"
-        eventDurationInMinutes={30}
+        eventDurationInMinutes={60}
         availableTimeslots={availableTimeslots}
+        className=""
         onStartTimeSelect={handleDateChange}
         format_selectedDateDayTitleFormatString="ccc, LLLL do"
       />

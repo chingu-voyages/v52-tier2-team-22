@@ -12,6 +12,7 @@ export default {
         secondaryYellow: '#f2dc96',
         secondaryGreen: '#96d388',
         background: '#f9f8f3',
+        navbarBackground: '#f5f4eb',
       }
     },
   },
