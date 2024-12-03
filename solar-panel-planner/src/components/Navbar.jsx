@@ -38,6 +38,18 @@ export default function Navbar() {
         </button>
 
         <ul className="hidden md:flex flex-row space-x-6 py-4">
+        <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `hover:font-bold hover:text-grey-700 ${
+                  isActive ? "font-bold text-grey-700" : "font-semibold text-grey-500"
+                }`
+              }
+            >
+              Home
+            </NavLink>
+          </li>
           <li>
             <NavLink
               to="/residentpage"
