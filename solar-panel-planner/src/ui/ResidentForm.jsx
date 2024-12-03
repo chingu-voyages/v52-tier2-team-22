@@ -1,18 +1,18 @@
 import { useState } from "react";
 import Modal from "../utils/Modal";
 import { TiTickOutline } from "react-icons/ti";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addAppointment } from "../utils/appointmentsSlice";
 import { userDb } from "../userDb";
 import { v4 as uuid } from "uuid";
 import AddressAutoComplete from "../AddressAutoComplete";
 import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
+import { FiKey } from "react-icons/fi";
 
-function ResidentForm() {
+
+function ResidentForm({ setIsRequested }) {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const appointments = useSelector((state) => state.appointments.appointments);
-  console.log(appointments)
 
   const defaultValue = {
     id: "",
@@ -21,8 +21,8 @@ function ResidentForm() {
     phone: "",
     address: { combinedAddress: "", zipcode: "", coord: { lat: "", lng: "" } },
     requestDate: "",
-    status:"",
-    sentDate:""
+    status: "",
+    sentDate: "",
   };
 
   const [residentFormData, setResidentFormData] = useState(defaultValue);
@@ -41,24 +41,26 @@ function ResidentForm() {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    console.log(residentFormData.requestDate);
-    setIsModalOpen(true);
+    if (!address || !residentFormData.requestDate)
+      return alert("You forgot to select a request date or your address");
+
+// toast.error("please select the date")
 
     const serializedData = {
       ...residentFormData,
       id: uuid(),
       address: address,
       requestDate: residentFormData.requestDate
-        ? new Date(residentFormData.requestDate).toISOString()
-        : "",
+      ? new Date(residentFormData.requestDate).toISOString()
+      : "",
       status: "pending",
-      sentDate: new Date().toISOString()
+      sentDate: new Date().toISOString(),
     };
-
-    localStorage.setItem('request', JSON.stringify((serializedData)));
+    
     dispatch(addAppointment(serializedData));
-
     setResidentFormData(defaultValue);
+    setIsModalOpen(true);
+    setIsRequested(true);
   };
 
   const handleCloseModal = () => {
@@ -80,9 +82,9 @@ function ResidentForm() {
         className="my-4 flex flex-col sm:flex-row gap-5 rounded mx-auto px-8 py-8"
       >
         {/* Date */}
-        <ShowAvailableTimeSlot setResidentFormData={setResidentFormData} />
+        <ShowAvailableTimeSlot  setResidentFormData={setResidentFormData} />
 
-        <div className="mx-auto my-5 sm:w-1/2">
+        <div className="mx-auto my-5 sm:w-1/2 bg-white shadow-md rounded-lg p-6">
           {/* Name */}
           <article className="flex flex-col gap-2 mt-4">
             <label
@@ -99,7 +101,7 @@ function ResidentForm() {
               onChange={handleInputChange}
               placeholder="Enter name"
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+              className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
 
@@ -119,7 +121,7 @@ function ResidentForm() {
               onChange={handleInputChange}
               placeholder="Enter email"
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+              className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
 
@@ -139,7 +141,7 @@ function ResidentForm() {
               onChange={handleInputChange}
               placeholder="Enter phone number"
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+              className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
 
@@ -165,20 +167,22 @@ function ResidentForm() {
             <button
               type="button" // prevent form submission
               onClick={() => setResidentFormData(defaultValue)}
-              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
             >
               Cancel
             </button>
             <button
-              type="button" // fill the form with sample data
-              onClick={() => setSampleData()}
-              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
-            >
-              Sample data
-            </button>
+            type="button"
+            onClick={() => setSampleData()}
+            className="bg-primaryGreen hover:bg-secondaryGreen text-white p-2 rounded-full shadow-md transition duration-200 ml-auto flex items-center justify-center"
+          >
+            <FiKey className="size-5" />
+          </button>
           </article>
         </div>
       </form>
+
+     
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <div className="flex flex-col gap-6 text-lg">

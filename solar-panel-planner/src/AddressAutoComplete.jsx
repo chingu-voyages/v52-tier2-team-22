@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import "./index.css";
 
 const LACITY_APP_TOKEN = import.meta.env.VITE_LACITY_APP_TOKEN;
 
@@ -16,7 +17,7 @@ export default function AddressAutoComplete({ setAddress }) {
     function fetchDatasetLA(url) {
       fetch(url, {
         headers: {
-          "X-App-Token": LACITY_APP_TOKEN,
+          // "X-App-Token": LACITY_APP_TOKEN,
         },
       })
         .then((res) => res.json())
@@ -50,11 +51,10 @@ export default function AddressAutoComplete({ setAddress }) {
   };
 
   const handleOnSelect = (item) => {
-    console.log(Number(item.lat))
     setAddress({
-        combinedAddress: item.combinedAddress,
-        zipcode: item.zip_cd,
-        coord: { lat: Number(item.lat), lng: Number(item.lon) },
+      combinedAddress: item.combinedAddress,
+      zipcode: item.zip_cd,
+      coord: { lat: Number(item.lat), lng: Number(item.lon) },
     });
   };
 
@@ -91,13 +91,8 @@ export default function AddressAutoComplete({ setAddress }) {
           distance: 0,
           minMatchCharLength: 2,
         }}
-        className="shadow border rounded w-full  text-gray-700 focus:outline-none focus:shadow-outline"
         styling={{
-          height: "44px",
-          border: "1px solid #dfe1e5",
-          borderRadius: "0.25rem",
-          hoverBackgroundColor: "#eee",
-          fontSize: "16px",
+          borderRadius: "0.375rem",
         }}
       />
     </>
