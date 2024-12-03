@@ -54,7 +54,7 @@ function AdminDataTable() {
       </table>
 
       <ShowMap />
-    </>
+    </div>
   );
 }
 
