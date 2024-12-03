@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "../utils/Modal";
 import { TiTickOutline } from "react-icons/ti";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addAppointment } from "../utils/appointmentsSlice";
 import { userDb } from "../userDb";
 import { v4 as uuid } from "uuid";
@@ -10,11 +10,9 @@ import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
 import { FiKey } from "react-icons/fi";
 
 
-function ResidentForm() {
+function ResidentForm({ setIsRequested }) {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const appointments = useSelector((state) => state.appointments.appointments);
-  console.log(appointments)
 
   const defaultValue = {
     id: "",
@@ -23,8 +21,8 @@ function ResidentForm() {
     phone: "",
     address: { combinedAddress: "", zipcode: "", coord: { lat: "", lng: "" } },
     requestDate: "",
-    status:"",
-    sentDate:""
+    status: "",
+    sentDate: "",
   };
 
   const [residentFormData, setResidentFormData] = useState(defaultValue);
@@ -43,8 +41,8 @@ function ResidentForm() {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    console.log(residentFormData.requestDate);
-    setIsModalOpen(true);
+    if (!address || !residentFormData.requestDate)
+      return alert("You forgot to select a request date or your address");
 
 // toast.error("please select the date")
 
@@ -53,16 +51,16 @@ function ResidentForm() {
       id: uuid(),
       address: address,
       requestDate: residentFormData.requestDate
-        ? new Date(residentFormData.requestDate).toISOString()
-        : "",
+      ? new Date(residentFormData.requestDate).toISOString()
+      : "",
       status: "pending",
-      sentDate: new Date().toISOString()
+      sentDate: new Date().toISOString(),
     };
-
-    localStorage.setItem('request', JSON.stringify((serializedData)));
+    
     dispatch(addAppointment(serializedData));
-
     setResidentFormData(defaultValue);
+    setIsModalOpen(true);
+    setIsRequested(true);
   };
 
   const handleCloseModal = () => {

@@ -1,7 +1,6 @@
 import { ScheduleMeeting } from "react-schedule-meeting";
 
 export default function ShowAvailableTimeSlot({ setResidentFormData }) {
-  // const today = new Date();
   const today = new Date();
   let year = today.getFullYear();
   let month = today.getMonth() + 1;

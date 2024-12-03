@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import "./index.css";
 
 const LACITY_APP_TOKEN = import.meta.env.VITE_LACITY_APP_TOKEN;
 
@@ -50,7 +51,6 @@ export default function AddressAutoComplete({ setAddress }) {
   };
 
   const handleOnSelect = (item) => {
-    console.log(Number(item.lat));
     setAddress({
       combinedAddress: item.combinedAddress,
       zipcode: item.zip_cd,
@@ -91,13 +91,8 @@ export default function AddressAutoComplete({ setAddress }) {
           distance: 0,
           minMatchCharLength: 2,
         }}
-        className="shadow border rounded w-full  text-red-600 focus:outline-none focus:shadow-lg"
         styling={{
-          height: "44px",
-          border: "1px solid #FF0000",
-          borderRadius: "0.25rem",
-          hoverBackgroundColor: "#FF0000",
-          fontSize: "16px",
+          borderRadius: "0.375rem",
         }}
       />
     </>
