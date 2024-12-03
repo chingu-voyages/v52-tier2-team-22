@@ -1,19 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
-import { deleteAppointment } from "../utils/appointmentsSlice";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 import moment from "moment";
 
 function ResidentSubmitedForms({ request, handleCancelRequest }) {
-  // const appointments = useSelector((state) => state.appointments.appointments);
-  // const dispatch = useDispatch();
-
-  // const handleCancelRequest = (id) => {
-  //   // localStorage.removeItem("request");
-  //   dispatch(deleteAppointment(id));
-  //   toast.success("Request deleted");
-  // };
-
   return (
     <div className="grid py-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 mt-8 px-6">
       <div
@@ -48,13 +35,12 @@ function ResidentSubmitedForms({ request, handleCancelRequest }) {
           </li>
         </ul>
         <button
-          onClick={() => handleCancelRequest(request.id)}
+          onClick={() => handleCancelRequest()}
           className="mt-4 bg-white border-[2px] text-black border-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-500 w-full transition"
         >
           Cancel Request
         </button>
       </div>
-      <ToastContainer />
     </div>
   );
 }

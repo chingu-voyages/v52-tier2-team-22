@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import {
   APIProvider,
   Map,
@@ -11,10 +11,9 @@ import { useSelector } from "react-redux";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
-export default function ShowMap() {
+export default function ShowMap({ appointmentsArr }) {
   const coordLA = { lat: 34.0549, lng: -118.2426 };
   const [markerID, setMarkerID] = useState(null);
-  const userDb = useSelector((state) => state.appointments.appointments)
 
   return (
     <>
@@ -27,10 +26,11 @@ export default function ShowMap() {
           gestureHandling={"greedy"}
           // disableDefaultUI={true}
         >
-          {userDb?.map((user) => (
+          {appointmentsArr?.map((user) => (
+
             <PlaceMarker
-              isOpen={user.id == markerID}
-              setMarkerID={setMarkerID}
+              // isOpen={user.id == markerID}
+              // setMarkerID={setMarkerID}
               key={user.id}
               user={user}
             />
@@ -41,25 +41,40 @@ export default function ShowMap() {
   );
 }
 
-function PlaceMarker({ user, isOpen, setMarkerID }) {
+function PlaceMarker({ user}) {
+// function PlaceMarker({ user, isOpen, setMarkerID }) {
   const [markerRef, marker] = useAdvancedMarkerRef();
-
+  const [infoWindowShown, setInfoWindowShown] = useState(false);
+  const handleMarkerClick = useCallback(
+    () => setInfoWindowShown((isShown) => !isShown),
+    []
+  );
   return (
     <>
       <AdvancedMarker
         ref={markerRef}
-        onClick={() => setMarkerID(isOpen ? null : user.id)}
+        // onClick={() => setMarkerID(isOpen ? null : user.id)}
+        onClick={handleMarkerClick}
         position={user.address.coord}
         key={user.id}
         title={"AdvancedMarker that opens an Infowindow when clicked."}
       >
-        {user.id <= 30 ? <Pin background={'#FBBC04'} glyphColor={'#000'} borderColor={'#000'} /> : <Pin background={'purple'} glyphColor={'#000'} borderColor={'#000'} />}
-      </ AdvancedMarker>
-      {isOpen && (
+        {user.id <= 30 ? (
+          <Pin
+            background={"#FBBC04"}
+            glyphColor={"#000"}
+            borderColor={"#000"}
+          />
+        ) : (
+          <Pin background={"purple"} glyphColor={"#000"} borderColor={"#000"} />
+        )}
+      </AdvancedMarker>
+      {/* {isOpen && ( */}
+      {infoWindowShown && (
         <InfoWindow
           anchor={marker}
           maxWidth={200}
-          onCloseClick={() => setMarkerID(null)}
+          // onCloseClick={() => setMarkerID(null)}
         >
           {user.name}
           <br />
@@ -67,7 +82,7 @@ function PlaceMarker({ user, isOpen, setMarkerID }) {
           <br />
           {user.phone}
           <br />
-          {(user.date)}
+          {user.date}
         </InfoWindow>
       )}
     </>

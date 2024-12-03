@@ -39,8 +39,8 @@ function ResidentForm({ setIsRequested }) {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    if (!address || !residentFormData.requestDate)
-      return alert("You forgot to select a request date or your address");
+
+    if (!address || !residentFormData.requestDate) return alert("You forgot to select a request date or your address");
 
     const serializedData = {
       ...residentFormData,
@@ -64,10 +64,11 @@ function ResidentForm({ setIsRequested }) {
   };
 
   // ranNUm * 3. this number MUST NOT be higher than the number of objects of fake users in UserDb.js
-  const setSampleData = () => {
-    let ranNum = Math.ceil(Math.random() * 3);
-    setResidentFormData(userDb[ranNum]);
-  };
+  // const setSampleData = () => {
+  //   let ranNum = Math.ceil(Math.random() * 3);
+  //   setResidentFormData(userDb[ranNum]);
+  // };
+  // console.log(residentFormData)
 
   return (
     <section className="bg-background py-4">
@@ -167,13 +168,13 @@ function ResidentForm({ setIsRequested }) {
             >
               Cancel
             </button>
-            <button
+            {/* <button
               type="button" // prevent form submission
               onClick={() => setSampleData()}
               className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
             >
               Sample data
-            </button>
+            </button> */}
           </article>
         </div>
       </form>

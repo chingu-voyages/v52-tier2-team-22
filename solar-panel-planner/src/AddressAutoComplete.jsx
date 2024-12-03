@@ -78,7 +78,7 @@ export default function AddressAutoComplete({ setAddress }) {
           setHouse_number("");
           setDatasetLA([]);
         }}
-        inputDebounce={400}
+        inputDebounce={300}
         formatResult={formatResult}
         placeholder="Input your house number"
         resultStringKeyName="combinedAddress"

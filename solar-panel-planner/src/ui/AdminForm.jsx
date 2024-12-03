@@ -47,7 +47,7 @@ function AdminForm({ setIsLoggedIn }) {
     setAdminFormData({
       name: "Admin John Smith",
       password: "admin_678",
-      email: "",
+      email: "theoriginald@googl.win",
     });
   };
 

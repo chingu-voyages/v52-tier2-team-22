@@ -2,11 +2,10 @@ import { useSelector } from "react-redux";
 import ShowMap from "../ShowMap";
 import { jsPDF } from "jspdf";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { loadState } from "../utils/localStorageUtils";
 
 function AdminDataTable() {
-  const appointments = useSelector((state) => state.appointments.appointments);
-
   const exportToPDF = (appointment) => {
     const doc = new jsPDF();
     doc.text(`Appointment Details`, 10, 10);
@@ -27,14 +26,22 @@ function AdminDataTable() {
     );
     doc.save(`${appointment.name}_appointment.pdf`);
   };
-  
+
+  const appointments = useSelector((state) => state.appointments.appointments);
   const [appointmentsArr, setAppointmentsArr] = useState(appointments);
+  console.log(appointmentsArr)
+
+  useEffect(() => {
+    if (loadState() === undefined) return
+    setAppointmentsArr(prev=>[...appointments, loadState()]);
+  }, []);
+
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const statusState = ["pending", "confirmed", "canceled", "visited"];
 
   useEffect(() => {
-    const appointmentsCOPY = [...appointments];
+    const appointmentsCOPY = [...appointmentsArr];
 
     if (selectedDay) {
       let filteredArr = [];
@@ -104,7 +111,7 @@ function AdminDataTable() {
                   className="w-6 ml-4"
                   onChange={(e) => setSelectedStatus(e.target.value)}
                 >
-                  <option value=""></option>
+                  <option value="" selected={!selectedStatus}></option>
                   {statusState.map((state) => (
                     <option value={state} key={state}>
                       {state}
@@ -181,7 +188,7 @@ function AdminDataTable() {
           </tbody>
         </table>
 
-        <ShowMap />
+        <ShowMap appointmentsArr={appointmentsArr} />
       </div>
     </>
   );

@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { loadState } from "../utils/localStorageUtils";
 import { deleteAppointment } from "../utils/appointmentsSlice";
 import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+
 
 function ResidentPage() {
   const [request, setRequest] = useState("");
@@ -13,7 +15,7 @@ function ResidentPage() {
   useEffect(() => {
     setRequest(loadState());
   }, [isRequested]);
-  console.log(request);
+  console.log(request)
 
   const dispatch = useDispatch();
 
@@ -26,6 +28,7 @@ function ResidentPage() {
 
   return (
     <div className="w-full bg-background">
+      <ToastContainer />
       <ResidentForm setIsRequested={setIsRequested} />
       <h3 className="text-center text-2xl font-semibold mt-8">
         Your Previous Requests
