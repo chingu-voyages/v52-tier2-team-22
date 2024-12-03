@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
-import Img1 from "../assets/img1.jpg";
-import Img2 from "../assets/img2.webp";
-import Img3 from "../assets/img3.jpeg";
+import Img1 from "../assets/image2.png";
+import Img2 from "../assets/image1.png";
+import Img3 from "../assets/image3.png";
 import Img4 from "../assets/hero-back.jpg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -48,7 +48,7 @@ function Homepage() {
         </motion.div>
       </div>
 
-      <div className="flex flex-col gap-12 px-6 py-12 ">
+      <div className="flex flex-col gap-16 px-6 py-12 bg-background md: px-20">
         <motion.div
           initial={{
             x: 70,
@@ -66,18 +66,19 @@ function Homepage() {
           className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6"
         >
           <div className="text-center md:text-left max-w-md">
-            <h2 className="text-2xl font-bold mb-4">Send a Request</h2>
-            <p className="text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <h2 className="text-4xl font-semibold text-gray-800 mb-8">Request Your Solar Panel Evaluation</h2>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              Our team will assess your property to determine the ideal solar panel system that suits your energy needs.
+              Book an evaluation and start your journey toward sustainable energy today.
             </p>
           </div>
           <img
             src={Img1}
             alt="Send a Request"
-            className="w-full md:w-1/2 rounded-lg shadow-lg"
+            className="w-full md:w-2/5 rounded-lg shadow-xl"
           />
         </motion.div>
+      
         <motion.div
           initial={{
             x: -70,
@@ -92,18 +93,18 @@ function Homepage() {
             delay: 0.25,
           }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row items-center md:gap-6"
+          className="flex flex-col md:flex-row items-center justify-between md: gap-16"
         >
           <img
             src={Img2}
             alt="Evaluation"
-            className="w-full md:w-1/2 rounded-lg shadow-lg"
+            className="w-full md:w-2/5 rounded-lg shadow-xl"
           />
           <div className="text-center md:text-left max-w-md">
-            <h2 className="text-2xl font-bold mb-4">Evaluation</h2>
-            <p className="text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <h2 className="text-4xl font-semibold text-gray-800 mb-4">Solar Panel Evaluation</h2>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              Our expert evaluators will visit your home to examine your roof, assess energy consumption, and explain
+              the best options for your solar panel installation. We’ll guide you every step of the way.
             </p>
           </div>
         </motion.div>
@@ -124,16 +125,16 @@ function Homepage() {
           className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 "
         >
           <div className="text-center md:text-left max-w-md">
-            <h2 className="text-2xl font-bold mb-4">Installation</h2>
-            <p className="text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <h2 className="text-4xl font-semibold text-gray-800 mb-4">Solar Panel Installation</h2>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              Once your evaluation is complete, our certified installation team will install your solar panels with
+              the utmost care and precision, ensuring efficiency and durability. Begin saving on energy bills immediately.
             </p>
           </div>
           <img
             src={Img3}
             alt="Installation"
-            className="w-full md:w-1/2 rounded-lg shadow-lg"
+            className="w-full md:w-2/5 rounded-lg shadow-xl"
           />
         </motion.div>
       </div>

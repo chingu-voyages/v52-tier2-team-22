@@ -52,15 +52,13 @@ function AdminForm({ setIsLoggedIn }) {
   };
 
   return (
-    <section className="bg-background py-8">
+    <section className="py-8">
       <ToastContainer />
-      <h2 className="text-center text-4xl font-semibold mt-4 py-5">
-        Login as Admin
-      </h2>
+      <h2 className="my-8 text-center text-3xl font-semibold">Login as Admin</h2>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white flex flex-col gap-6 shadow-md max-w-sm rounded-lg mx-auto p-6 border border-gray-200"
+        className="bg-white flex flex-col gap-6 shadow-md max-w-md rounded-lg mx-auto px-8 py-8 border border-gray-200"
       >
         {/* Name */}
         <article className="flex flex-col gap-1.5">

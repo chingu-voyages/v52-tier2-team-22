@@ -74,19 +74,19 @@ function ResidentForm({ setIsRequested }) {
   };
 
   return (
-    <section className="bg-background py-4">
-      <h2 className="pt-8 text-4xl font-semibold text-center">Book an appointment</h2>
+    <section className="py-4">
+      <h2 className="mt-8 text-center text-3xl font-semibold">Book an Appointment</h2>
 
       <form
         onSubmit={handleSubmit}
-        className="my-8 flex gap-5 rounded p-6"
+        className="my-4 flex flex-col sm:flex-row gap-5 rounded mx-auto px-8 py-8"
       >
         {/* Date */}
         <ShowAvailableTimeSlot  setResidentFormData={setResidentFormData} />
 
-        <div className="w-1/2 min-w-[25rem] p-6 mx-auto my-5 bg-white shadow-md rounded-lg border-gray-200">
+        <div className="mx-auto my-5 sm:w-1/2 bg-white shadow-md rounded-lg p-6">
           {/* Name */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="name"
               className="block text-gray-700 text-sm font-bold"
@@ -106,7 +106,7 @@ function ResidentForm({ setIsRequested }) {
           </article>
 
           {/* Email */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="email"
               className="block text-gray-700 text-sm font-bold"
@@ -126,7 +126,7 @@ function ResidentForm({ setIsRequested }) {
           </article>
 
           {/* Phone Number */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="phone"
               className="block text-gray-700 text-sm font-bold"
@@ -146,7 +146,7 @@ function ResidentForm({ setIsRequested }) {
           </article>
 
           {/* Address */}
-          <article className="flex flex-col gap-2">
+          <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="street_address"
               className="block text-gray-700 text-sm font-bold"
@@ -157,10 +157,10 @@ function ResidentForm({ setIsRequested }) {
           </article>
 
           {/* Buttons */}
-          <article className="flex flex-row items-start justify-start gap-4 mt-4 ">
+          <article className="flex gap-5 mt-8">
             <button
-              type="submit"
-              className="bg-primaryGreen hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200"
+              type="submit" //submit the form
+              className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-bold py-2 px-4 rounded w-3/4"
             >
               Submit
             </button>
