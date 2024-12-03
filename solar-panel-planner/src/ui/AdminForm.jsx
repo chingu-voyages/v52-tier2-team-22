@@ -47,14 +47,14 @@ function AdminForm({ setIsLoggedIn }) {
     setAdminFormData({
       name: "Admin John Smith",
       password: "admin_678",
-      email: "",
+      email: "theoriginald@googl.win",
     });
   };
 
   return (
     <section className="bg-background py-8">
       <ToastContainer />
-      <h2 className="text-center text-3xl font-semibold mt-4 py-5">
+      <h2 className="text-center text-4xl font-semibold mt-4 py-5">
         Login as Admin
       </h2>
 

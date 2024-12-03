@@ -17,11 +17,13 @@ function AdminDataTable() {
       `Address: ${
         appointment.address.combinedAddress + " " + appointment.address.zipcode
       }`,
-      10, 50
+      10,
+      50
     );
     doc.text(
       `Date: ${moment(appointment.requestDate).format("MMMM Do YYYY, h:mm a")}`,
-      10, 60
+      10,
+      60
     );
     doc.save(`${appointment.name}_appointment.pdf`);
   };
@@ -33,26 +35,28 @@ function AdminDataTable() {
 
   useEffect(() => {
     if (!appointments) return; // Prevent errors if appointments is null or undefined.
-  
+
     let filteredArr = [...appointments];
-  
+
     // Apply date filter if selectedDay is provided.
     if (selectedDay) {
-      filteredArr = filteredArr.filter((req) =>
-        moment(req.requestDate).format("YYYY-MM-DD") === selectedDay
+      filteredArr = filteredArr.filter(
+        (req) => moment(req.requestDate).format("YYYY-MM-DD") === selectedDay
       );
     }
-  
+
     // Apply status filter if selectedStatus is provided.
     if (selectedStatus) {
       filteredArr = filteredArr.filter((req) => req.status === selectedStatus);
     }
-  
+
     // Sort by date if any filtering is applied.
     if (selectedDay || selectedStatus) {
-      filteredArr.sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
+      filteredArr.sort(
+        (a, b) => new Date(a.requestDate) - new Date(b.requestDate)
+      );
     }
-  
+
     setAppointmentsArr(filteredArr);
   }, [appointments, selectedDay, selectedStatus]);
 
@@ -64,16 +68,14 @@ function AdminDataTable() {
 
   return (
     <>
-      <h1 className="my-8 mx-8 text-2xl">
-        Welcome Admin, here are all resident submitted requests
-      </h1>
+      <h1 className="ml-8 text-3xl font-semibold pt-8">Welcome Admin</h1>
       <div className="flex flex-col overflow-auto rounded-lg shadow-lg m-8">
         <div className="flex items-center justify-between px-6 py-4 bg-secondaryGreen text-white text-center rounded-t-lg">
-          <h2 className="text-lg text-center font-semibold">
-            Appointment Requests
+          <h2 className="text-lg text-black text-center font-semibold">
+            All Apppointment Requests
           </h2>
           <button
-            className="p-2 text-white bg-blue-500 hover:bg-blue-700 rounded-md"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
             onClick={resetFilter}
           >
             Reset filters
@@ -82,10 +84,10 @@ function AdminDataTable() {
         <table className="w-full border-collapse bg-background rounded-b-lg shadow-md">
           <thead>
             <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
-              <th className="px-6 py-3">
+              <th className="px-6 py-3 flex w-fit items-center">
                 Status
                 <select
-                  className="ml-4"
+                  className="ml-4 px-2 bg-white py-1 rounded-md"
                   value={selectedStatus}
                   onChange={(e) => setSelectedStatus(e.target.value)}
                 >
@@ -101,13 +103,13 @@ function AdminDataTable() {
               <th className="px-6 py-3">Email</th>
               <th className="px-6 py-3">Phone</th>
               <th className="px-6 py-3">Address</th>
-              <th className="px-6 py-3">
+              <th className="px-6 py-3 min-w-[15rem]">
                 Date
                 <input
                   type="date"
                   value={selectedDay}
                   onChange={(e) => setSelectedDay(e.target.value)}
-                  className="ml-3"
+                  className="ml-3 px-2 rounded-md py-1"
                 />
               </th>
               <th className="px-6 py-3">Export</th>

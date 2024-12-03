@@ -75,7 +75,7 @@ function ResidentForm({ setIsRequested }) {
 
   return (
     <section className="bg-background py-4">
-      <h2 className="text-center text-3xl font-bold">Book an appointment</h2>
+      <h2 className="pt-8 text-4xl font-semibold text-center">Book an appointment</h2>
 
       <form
         onSubmit={handleSubmit}
