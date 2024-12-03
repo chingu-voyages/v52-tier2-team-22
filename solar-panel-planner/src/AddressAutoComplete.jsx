@@ -50,11 +50,11 @@ export default function AddressAutoComplete({ setAddress }) {
   };
 
   const handleOnSelect = (item) => {
-    console.log(Number(item.lat))
+    console.log(Number(item.lat));
     setAddress({
-        combinedAddress: item.combinedAddress,
-        zipcode: item.zip_cd,
-        coord: { lat: Number(item.lat), lng: Number(item.lon) },
+      combinedAddress: item.combinedAddress,
+      zipcode: item.zip_cd,
+      coord: { lat: Number(item.lat), lng: Number(item.lon) },
     });
   };
 
@@ -91,12 +91,12 @@ export default function AddressAutoComplete({ setAddress }) {
           distance: 0,
           minMatchCharLength: 2,
         }}
-        className="shadow border rounded w-full  text-gray-700 focus:outline-none focus:shadow-outline"
+        className="shadow border rounded w-full  text-red-600 focus:outline-none focus:shadow-lg"
         styling={{
           height: "44px",
-          border: "1px solid #dfe1e5",
+          border: "1px solid #FF0000",
           borderRadius: "0.25rem",
-          hoverBackgroundColor: "#eee",
+          hoverBackgroundColor: "#FF0000",
           fontSize: "16px",
         }}
       />

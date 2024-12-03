@@ -7,6 +7,8 @@ import { userDb } from "../userDb";
 import { v4 as uuid } from "uuid";
 import AddressAutoComplete from "../AddressAutoComplete";
 import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
+import { FiKey } from "react-icons/fi";
+
 
 function ResidentForm() {
   const dispatch = useDispatch();
@@ -79,12 +81,12 @@ function ResidentForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="my-8 flex gap-5 rounded mx-auto px-8 py-8"
+        className="my-8 flex gap-5 rounded p-6"
       >
         {/* Date */}
-        <ShowAvailableTimeSlot setResidentFormData={setResidentFormData} />
+        <ShowAvailableTimeSlot  setResidentFormData={setResidentFormData} />
 
-        <div className="w-1/2 mx-auto my-5">
+        <div className="w-1/2 min-w-[25rem] p-6 mx-auto my-5 bg-white shadow-md rounded-lg border-gray-200">
           {/* Name */}
           <article className="flex flex-col gap-2">
             <label
@@ -101,7 +103,7 @@ function ResidentForm() {
               onChange={handleInputChange}
               placeholder="Enter name"
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+              className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
 
@@ -121,7 +123,7 @@ function ResidentForm() {
               onChange={handleInputChange}
               placeholder="Enter email"
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+              className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
 
@@ -141,7 +143,7 @@ function ResidentForm() {
               onChange={handleInputChange}
               placeholder="Enter phone number"
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+              className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
 
@@ -157,30 +159,32 @@ function ResidentForm() {
           </article>
 
           {/* Buttons */}
-          <article className="flex gap-5 mt-4">
+          <article className="flex flex-row items-start justify-start gap-4 mt-4 ">
             <button
               type="submit"
-              className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-bold py-2 px-4 rounded w-3/4"
+              className="bg-primaryGreen hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200"
             >
               Submit
             </button>
             <button
               type="button" // prevent form submission
               onClick={() => setResidentFormData(defaultValue)}
-              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
             >
               Cancel
             </button>
             <button
-              type="button" // prevent form submission
-              onClick={() => setSampleData()}
-              className="bg-gray-300 transition hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded ml-auto"
-            >
-              Sample data
-            </button>
+            type="button"
+            onClick={() => setSampleData()}
+            className="bg-primaryGreen hover:bg-secondaryGreen text-white p-2 rounded-full shadow-md transition duration-200 ml-auto flex items-center justify-center"
+          >
+            <FiKey className="size-5" />
+          </button>
           </article>
         </div>
       </form>
+
+     
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <div className="flex flex-col gap-6 text-lg">

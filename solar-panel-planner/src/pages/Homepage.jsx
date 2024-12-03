@@ -56,11 +56,11 @@ function Homepage() {
             Making solar energy adoption simple and accessible for LA residents.
           </h2>
           <p className="text-white text-lg mt-4">GO SOLAR, SAVE ENERGY</p>
-          <Link to="/residentpage">
-            <button className="mt-6 px-6 py-3 transition bg-primaryYellow hover:bg-primaryYellow text-white font-bold rounded-lg">
-              Send Request
-            </button>
-            
+          <Link
+            to="/residentpage"
+            className="bg-primaryGreen mt-6 text-white text-xl font-semibold px-9 py-5 transition rounded-lg shadow-md hover:bg-secondaryGreen"
+          >
+            Send a Request
           </Link>
         </motion.div>
       </div>
@@ -95,7 +95,8 @@ function Homepage() {
             className="w-full md:w-1/2 rounded-lg shadow-lg"
           />
         </motion.div>
-        <motion.div initial={{
+        <motion.div
+          initial={{
             x: -70,
             opacity: 0,
           }}
@@ -107,7 +108,9 @@ function Homepage() {
             duration: 0.6,
             delay: 0.25,
           }}
-          viewport={{ once: true }} className="flex flex-col md:flex-row items-center md:gap-6">
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row items-center md:gap-6"
+        >
           <img
             src={Img2}
             alt="Evaluation"

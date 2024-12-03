@@ -55,7 +55,7 @@ function AdminForm({setIsLoggedIn}) {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white flex flex-col gap-6 shadow-md max-w-sm rounded-lg mx-auto px-6 py-6 border border-gray-200"
+        className="bg-white flex flex-col gap-6 shadow-md max-w-sm rounded-lg mx-auto p-6 border border-gray-200"
       >
         {/* Name */}
         <article className="flex flex-col gap-1.5">
@@ -115,7 +115,7 @@ function AdminForm({setIsLoggedIn}) {
               })
             }
             type="button"
-            className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
           >
             Cancel
           </button>
