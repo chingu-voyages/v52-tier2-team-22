@@ -1,25 +1,40 @@
 import { useState, useEffect } from "react";
 import ResidentForm from "../ui/ResidentForm";
 import ResidentSubmitedForms from "../ui/ResidentSubmitedForms";
-import Navbar from "../components/Navbar";
+import { useDispatch } from "react-redux";
+import { loadState } from "../utils/localStorageUtils";
+import { deleteAppointment } from "../utils/appointmentsSlice";
+import { toast } from "react-toastify";
 
 function ResidentPage() {
   const [request, setRequest] = useState("");
+  const [isRequested, setIsRequested] = useState(false);
 
   useEffect(() => {
-    const requestItems = JSON.parse(localStorage.getItem("request"));
-    if (requestItems) setRequest(requestItems);
-  }, []);
+    setRequest(loadState());
+  }, [isRequested]);
+  console.log(request);
+
+  const dispatch = useDispatch();
+
+  const handleCancelRequest = (id) => {
+    toast.success("Request deleted");
+    dispatch(deleteAppointment(id));
+    setRequest("");
+    setIsRequested(false);
+  };
 
   return (
     <div className="w-full bg-background">
-      <Navbar />
-      <ResidentForm />
+      <ResidentForm setIsRequested={setIsRequested} />
       <h3 className="text-center text-2xl font-semibold mt-8">
         Your Previous Requests
       </h3>
       {request ? (
-        <ResidentSubmitedForms request={request} />
+        <ResidentSubmitedForms
+          request={request}
+          handleCancelRequest={handleCancelRequest}
+        />
       ) : (
         <div>No request yet</div>
       )}

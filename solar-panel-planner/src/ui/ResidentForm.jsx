@@ -8,11 +8,9 @@ import { v4 as uuid } from "uuid";
 import AddressAutoComplete from "../AddressAutoComplete";
 import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
 
-function ResidentForm() {
+function ResidentForm({ setIsRequested }) {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const appointments = useSelector((state) => state.appointments.appointments);
-  console.log(appointments)
 
   const defaultValue = {
     id: "",
@@ -21,8 +19,8 @@ function ResidentForm() {
     phone: "",
     address: { combinedAddress: "", zipcode: "", coord: { lat: "", lng: "" } },
     requestDate: "",
-    status:"",
-    sentDate:""
+    status: "",
+    sentDate: "",
   };
 
   const [residentFormData, setResidentFormData] = useState(defaultValue);
@@ -41,24 +39,24 @@ function ResidentForm() {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    console.log(residentFormData.requestDate);
-    setIsModalOpen(true);
+    if (!address || !residentFormData.requestDate)
+      return alert("You forgot to select a request date or your address");
 
     const serializedData = {
       ...residentFormData,
       id: uuid(),
       address: address,
       requestDate: residentFormData.requestDate
-        ? new Date(residentFormData.requestDate).toISOString()
-        : "",
+      ? new Date(residentFormData.requestDate).toISOString()
+      : "",
       status: "pending",
-      sentDate: new Date().toISOString()
+      sentDate: new Date().toISOString(),
     };
-
-    localStorage.setItem('request', JSON.stringify((serializedData)));
+    
     dispatch(addAppointment(serializedData));
-
     setResidentFormData(defaultValue);
+    setIsModalOpen(true);
+    setIsRequested(true);
   };
 
   const handleCloseModal = () => {
@@ -139,7 +137,7 @@ function ResidentForm() {
               onChange={handleInputChange}
               placeholder="Enter phone number"
               required
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+              className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
 

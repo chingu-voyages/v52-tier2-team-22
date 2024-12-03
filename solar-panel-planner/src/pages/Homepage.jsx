@@ -1,31 +1,13 @@
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Img1 from "../assets/img1.jpg";
 import Img2 from "../assets/img2.webp";
 import Img3 from "../assets/img3.jpeg";
 import Img4 from "../assets/hero-back.jpg";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { addAppointment } from "../utils/appointmentsSlice";
-import { useEffect } from "react";
 
 function Homepage() {
-  const dispatch = useDispatch();
-  // const [selectedForm, setSelectedForm] = useState(null);
-  const appointments = useSelector((state) => state.appointments.appointments);
-  useEffect(() => {
-    const requestItems = JSON.parse(localStorage.getItem("request"));
-    dispatch(addAppointment(requestItems));
-    
-  }, []);
-
-console.log(appointments)
-
   return (
     <main className="w-full bg-background">
-      <Navbar />
-
       <div
         className="relative bg-cover bg-center h-screen"
         style={{
