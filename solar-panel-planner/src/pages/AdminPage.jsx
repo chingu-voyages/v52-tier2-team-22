@@ -6,7 +6,7 @@ function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <div className="w-full h-screen bg-background">
+    <div className="w-full bg-background">
       {isLoggedIn ? (
         <AdminDataTable />
       ) : (
