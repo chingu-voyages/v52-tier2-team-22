@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="bg-navbarBackground py-1 px-8 text-grey-800 shadow-md">
+    <div className="bg-navbarBackground py-1 px-8 text-grey-800 shadow-md z-50 relative">
       <div className="flex items-center justify-between">
         <Link to="/">
           <img
@@ -80,12 +80,17 @@ export default function Navbar() {
       {isOpen && (
         <ul className="flex flex-col items-end mt-4 space-y-4 md:hidden">
           <li>
-            <Link to="/residentpage" className="hover:underline">
+            <Link to="/" className="font-semibold hover:font-bold">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/residentpage" className="font-semibold hover:font-bold">
               Send Request
             </Link>
           </li>
           <li>
-            <Link to="/adminpage" className="hover:underline">
+            <Link to="/adminpage" className="font-semibold hover:font-bold">
               Admin
             </Link>
           </li>
