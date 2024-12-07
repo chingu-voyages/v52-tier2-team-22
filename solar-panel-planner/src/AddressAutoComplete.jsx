@@ -23,6 +23,7 @@ export default function AddressAutoComplete({ setAddress }) {
         .then((res) => res.json())
         .then((json) => {
           const arr = json?.map((record) => {
+            console.log(record.hse_nbr)
             const combinedAddress = `${record.hse_nbr}${
               record.hse_frac_nbr || ""
             } ${record.hse_dir_cd || ""} ${record.str_nm} ${

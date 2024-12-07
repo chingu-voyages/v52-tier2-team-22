@@ -8,6 +8,7 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 import { useSelector } from "react-redux";
+import { DirectionsRenderer } from "@react-google-maps/api";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
@@ -15,6 +16,7 @@ export default function ShowMap() {
   const coordLA = { lat: 34.0549, lng: -118.2426 };
   const [markerID, setMarkerID] = useState(null);
   const userDb = useSelector((state) => state.appointments.appointments)
+  console.log(userDb)
 
   return (
     <>
