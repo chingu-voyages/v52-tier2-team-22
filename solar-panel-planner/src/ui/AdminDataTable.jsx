@@ -2,11 +2,10 @@ import { useSelector } from "react-redux";
 import ShowMap from "../ShowMap";
 import { jsPDF } from "jspdf";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { loadState } from "../utils/localStorageUtils";
 
 function AdminDataTable() {
-  const appointments = useSelector((state) => state.appointments.appointments);
-
   const exportToPDF = (appointment) => {
     const doc = new jsPDF();
     doc.text(`Appointment Details`, 10, 10);
@@ -20,16 +19,17 @@ function AdminDataTable() {
 
   const [showTable, setShowTable] = useState(true);
   const [showMap, setShowMap] = useState(true);
+  const appointments = useSelector((state) => state.appointments.appointments);
   const [appointmentsArr, setAppointmentsArr] = useState(appointments);
+
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const statusState = ["pending", "confirmed", "canceled", "visited"];
 
   useEffect(() => {
-    if (!appointments) return; // Prevent errors if appointments is null or undefined.
+    if (!appointmentsArr.length) return; // Prevent errors if appointments is null or undefined.
 
     let filteredArr = [...appointments];
-
     // Apply date filter if selectedDay is provided.
     if (selectedDay) {
       filteredArr = filteredArr.filter(
@@ -50,7 +50,7 @@ function AdminDataTable() {
     }
 
     setAppointmentsArr(filteredArr);
-  }, [appointments, selectedDay, selectedStatus]);
+  }, [selectedDay, selectedStatus]);
 
   const resetFilter = () => {
     setAppointmentsArr(appointments);
@@ -107,7 +107,7 @@ function AdminDataTable() {
                     value={selectedStatus}
                     onChange={(e) => setSelectedStatus(e.target.value)}
                   >
-                    <option value="">All</option>
+                    <option value="all">All</option>
                     {statusState.map((state) => (
                       <option value={state} key={state}>
                         {state}
@@ -175,7 +175,7 @@ function AdminDataTable() {
           </table>
         )}
 
-        {showMap && <div className="p-6"><ShowMap /></div>}
+        {showMap && <div className="p-6"><ShowMap appointmentsArr={appointmentsArr}/></div>}
       </div>
     </>
   );
