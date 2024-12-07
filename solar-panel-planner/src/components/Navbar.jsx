@@ -9,11 +9,7 @@ export default function Navbar() {
     <div className="bg-navbarBackground py-1 px-8 text-grey-800 shadow-md">
       <div className="flex items-center justify-between">
         <Link to="/">
-          <img
-            src={Logo}
-            alt="logo"
-            className="h-12"
-          />
+          <img src={Logo} alt="logo" className="h-12" />
         </Link>
 
         <button
@@ -38,12 +34,14 @@ export default function Navbar() {
         </button>
 
         <ul className="hidden md:flex flex-row space-x-6 py-4">
-        <li>
+          <li>
             <NavLink
               to="/"
               className={({ isActive }) =>
                 `hover:font-bold hover:text-grey-700 ${
-                  isActive ? "font-bold text-grey-700" : "font-semibold text-grey-500"
+                  isActive
+                    ? "font-bold text-grey-700"
+                    : "font-semibold text-grey-500"
                 }`
               }
             >
@@ -55,7 +53,9 @@ export default function Navbar() {
               to="/residentpage"
               className={({ isActive }) =>
                 `hover:font-bold hover:text-grey-700 ${
-                  isActive ? "font-bold text-grey-700" : "font-semibold text-grey-500"
+                  isActive
+                    ? "font-bold text-grey-700"
+                    : "font-semibold text-grey-500"
                 }`
               }
             >
@@ -64,17 +64,19 @@ export default function Navbar() {
           </li>
           <li>
             <NavLink
-              to="/adminpage"
+              to="/admin"
               className={({ isActive }) =>
                 `hover:font-bold hover:text-grey-700 ${
-                  isActive ? "font-bold text-grey-700" : "font-semibold text-grey-500"
+                  isActive
+                    ? "font-bold text-grey-700"
+                    : "font-semibold text-grey-500"
                 }`
               }
             >
               Admin
             </NavLink>
           </li>
-</ul>
+        </ul>
       </div>
 
       {isOpen && (
@@ -85,7 +87,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/adminpage" className="hover:underline">
+            <Link to="/admin" className="hover:underline">
               Admin
             </Link>
           </li>

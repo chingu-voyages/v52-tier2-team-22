@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import {
   APIProvider,
   Map,
@@ -7,7 +7,6 @@ import {
   useAdvancedMarkerRef,
   Pin,
 } from "@vis.gl/react-google-maps";
-import { useSelector } from "react-redux";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
@@ -27,10 +26,9 @@ export default function ShowMap({ appointmentsArr }) {
           // disableDefaultUI={true}
         >
           {appointmentsArr?.map((user) => (
-
             <PlaceMarker
-              // isOpen={user.id == markerID}
-              // setMarkerID={setMarkerID}
+              isOpen={user.id == markerID}
+              setMarkerID={setMarkerID}
               key={user.id}
               user={user}
             />
@@ -41,20 +39,13 @@ export default function ShowMap({ appointmentsArr }) {
   );
 }
 
-function PlaceMarker({ user}) {
-// function PlaceMarker({ user, isOpen, setMarkerID }) {
+function PlaceMarker({ user, isOpen, setMarkerID }) {
   const [markerRef, marker] = useAdvancedMarkerRef();
-  const [infoWindowShown, setInfoWindowShown] = useState(false);
-  const handleMarkerClick = useCallback(
-    () => setInfoWindowShown((isShown) => !isShown),
-    []
-  );
   return (
     <>
       <AdvancedMarker
         ref={markerRef}
-        // onClick={() => setMarkerID(isOpen ? null : user.id)}
-        onClick={handleMarkerClick}
+        onClick={() => setMarkerID(isOpen ? null : user.id)}
         position={user.address.coord}
         key={user.id}
         title={"AdvancedMarker that opens an Infowindow when clicked."}
@@ -69,12 +60,11 @@ function PlaceMarker({ user}) {
           <Pin background={"purple"} glyphColor={"#000"} borderColor={"#000"} />
         )}
       </AdvancedMarker>
-      {/* {isOpen && ( */}
-      {infoWindowShown && (
+      {isOpen && (
         <InfoWindow
           anchor={marker}
           maxWidth={200}
-          // onCloseClick={() => setMarkerID(null)}
+          onCloseClick={() => setMarkerID(null)}
         >
           {user.name}
           <br />

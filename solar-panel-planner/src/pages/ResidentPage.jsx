@@ -7,7 +7,6 @@ import { deleteAppointment } from "../utils/appointmentsSlice";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 
-
 function ResidentPage() {
   const [request, setRequest] = useState("");
   const [isRequested, setIsRequested] = useState(false);
@@ -15,8 +14,7 @@ function ResidentPage() {
   useEffect(() => {
     setRequest(loadState());
   }, [isRequested]);
-  console.log(request)
-
+  
   const dispatch = useDispatch();
 
   const handleCancelRequest = (id) => {

@@ -5,19 +5,15 @@ import "./index.css";
 const LACITY_APP_TOKEN = import.meta.env.VITE_LACITY_APP_TOKEN;
 
 export default function AddressAutoComplete({ setAddress }) {
-  const [house_number, setHouse_number] = useState("");
   const [datasetLA, setDatasetLA] = useState([]);
 
   useEffect(() => {
-    if (house_number === "") return;
-    if (datasetLA.length > 0) return;
-
-    let url = `https://data.lacity.org/resource/4ca8-mxuh.json?hse_nbr=${house_number}`;
+    let url = `https://data.lacity.org/resource/4ca8-mxuh.json?$limit=50000`;
 
     function fetchDatasetLA(url) {
       fetch(url, {
         headers: {
-          // "X-App-Token": LACITY_APP_TOKEN,
+          "X-App-Token": LACITY_APP_TOKEN,
         },
       })
         .then((res) => res.json())
@@ -27,7 +23,7 @@ export default function AddressAutoComplete({ setAddress }) {
               record.hse_frac_nbr || ""
             } ${record.hse_dir_cd || ""} ${record.str_nm} ${
               record.str_sfx_cd || ""
-            } ${record.zip_cd}`;
+            }`;
 
             return {
               ...record,
@@ -35,20 +31,13 @@ export default function AddressAutoComplete({ setAddress }) {
               combinedAddress: combinedAddress,
             };
           });
-
           setDatasetLA(arr);
         })
         .catch((error) => console.error("Network error", error));
     }
 
     fetchDatasetLA(url);
-  }, [house_number]);
-
-  const handleOnSearch = (string) => {
-    if (string === house_number || string === "") return;
-
-    setHouse_number(string);
-  };
+  }, []);
 
   const handleOnSelect = (item) => {
     setAddress({
@@ -72,13 +61,18 @@ export default function AddressAutoComplete({ setAddress }) {
     <>
       <ReactSearchAutocomplete
         items={datasetLA}
-        onSearch={handleOnSearch}
         onSelect={handleOnSelect}
         onClear={() => {
-          setHouse_number("");
           setDatasetLA([]);
+          setAddress({
+            combinedAddress: "",
+            zipcode: "",
+            coord: { lat: "", lng: "" },
+          });
         }}
         inputDebounce={300}
+        // showNoResults={false}
+        showNoResultsText={"Loading..."}
         formatResult={formatResult}
         placeholder="Input your house number"
         resultStringKeyName="combinedAddress"

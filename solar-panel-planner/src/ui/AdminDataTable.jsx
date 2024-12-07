@@ -19,22 +19,15 @@ function AdminDataTable() {
 
   const appointments = useSelector((state) => state.appointments.appointments);
   const [appointmentsArr, setAppointmentsArr] = useState(appointments);
-  console.log(appointmentsArr)
-
-  useEffect(() => {
-    if (loadState() === undefined) return
-    setAppointmentsArr(prev=>[...appointments, loadState()]);
-  }, []);
 
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const statusState = ["pending", "confirmed", "canceled", "visited"];
 
   useEffect(() => {
-    if (!appointments) return; // Prevent errors if appointments is null or undefined.
+    if (!appointmentsArr.length) return; // Prevent errors if appointments is null or undefined.
 
     let filteredArr = [...appointments];
-
     // Apply date filter if selectedDay is provided.
     if (selectedDay) {
       filteredArr = filteredArr.filter(
@@ -55,7 +48,7 @@ function AdminDataTable() {
     }
 
     setAppointmentsArr(filteredArr);
-  }, [appointments, selectedDay, selectedStatus]);
+  }, [selectedDay, selectedStatus]);
 
   const resetFilter = () => {
     setAppointmentsArr(appointments);
@@ -88,7 +81,7 @@ function AdminDataTable() {
                   value={selectedStatus}
                   onChange={(e) => setSelectedStatus(e.target.value)}
                 >
-                  <option value="">All</option>
+                  <option value="all">All</option>
                   {statusState.map((state) => (
                     <option value={state} key={state}>
                       {state}

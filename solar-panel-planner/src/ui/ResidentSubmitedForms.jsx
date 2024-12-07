@@ -7,11 +7,6 @@ function ResidentSubmitedForms({ request, handleCancelRequest }) {
         key={request.id}
         className="bg-white border-2 border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
       >
-        <div className="mb-4">
-          <h4 className="text-lg font-bold text-primaryGreen">
-            {/* Request #{index + 1} */}
-          </h4>
-        </div>
         <ul className="text-gray-700 space-y-2">
           <li>
             <span className="font-semibold">Name:</span> {request.name}
@@ -35,7 +30,7 @@ function ResidentSubmitedForms({ request, handleCancelRequest }) {
           </li>
         </ul>
         <button
-          onClick={() => handleCancelRequest()}
+          onClick={() => handleCancelRequest(request.id)}
           className="mt-4 bg-white border-[2px] text-black border-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-500 w-full transition"
         >
           Cancel Request
