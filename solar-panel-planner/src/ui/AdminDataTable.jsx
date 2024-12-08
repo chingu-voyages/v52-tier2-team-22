@@ -50,7 +50,6 @@ function AdminDataTable() {
     }
 
     console.log(selectedStatus);
-    
 
     setAppointmentsArr(filteredArr);
   }, [appointments, selectedDay, selectedStatus]);
@@ -78,7 +77,16 @@ function AdminDataTable() {
         </div>
 
         {/* Buttons to toggle between table, map, or both */}
-        <div className="flex justify-between px-6 py-4">
+        <div className="flex justify-start gap-6 px-6 py-4 bg-white">
+          <button
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+            onClick={() => {
+              setShowTable(true);
+              setShowMap(true);
+            }}
+          >
+            Default View
+          </button>
           <button
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
             onClick={() => {
@@ -96,15 +104,6 @@ function AdminDataTable() {
             }}
           >
             Map View
-          </button>
-          <button
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
-            onClick={() => {
-              setShowTable(true);
-              setShowMap(true);
-            }}
-          >
-            Default View
           </button>
         </div>
 

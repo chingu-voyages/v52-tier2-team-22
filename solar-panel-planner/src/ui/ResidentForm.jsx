@@ -42,8 +42,7 @@ function ResidentForm({ setIsRequested }) {
   const handleSubmit = function (e) {
     e.preventDefault();
     if (
-      address.combinedAddress === "" ||
-      address.combinedAddress === undefined ||
+      !address.combinedAddress ||
       residentFormData.requestDate === ""
     ) {
       return (
@@ -91,6 +90,8 @@ function ResidentForm({ setIsRequested }) {
     let ranNum = Math.ceil(Math.random() * 3);
     setResidentFormData(userDb[ranNum]);
   };
+
+  console.log(residentFormData)
 
   return (
     <section className="py-4">
