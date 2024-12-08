@@ -41,10 +41,7 @@ function ResidentForm({ setIsRequested }) {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    if (!address || !residentFormData.requestDate)
-      return alert("You forgot to select a request date or your address");
-
-// toast.error("please select the date")
+    if (address.combinedAddress === "" || address.combinedAddress === undefined || residentFormData.requestDate === "") return alert("You forgot to select a request date or your address");
 
     const serializedData = {
       ...residentFormData,

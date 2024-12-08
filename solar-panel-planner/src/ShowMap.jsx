@@ -7,16 +7,12 @@ import {
   useAdvancedMarkerRef,
   Pin,
 } from "@vis.gl/react-google-maps";
-import { useSelector } from "react-redux";
-import { DirectionsRenderer } from "@react-google-maps/api";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
-export default function ShowMap() {
+export default function ShowMap({ appointmentsArr }) {
   const coordLA = { lat: 34.0549, lng: -118.2426 };
   const [markerID, setMarkerID] = useState(null);
-  const userDb = useSelector((state) => state.appointments.appointments)
-  console.log(userDb)
 
   return (
     <>
@@ -29,7 +25,7 @@ export default function ShowMap() {
           gestureHandling={"greedy"}
           // disableDefaultUI={true}
         >
-          {userDb?.map((user) => (
+          {appointmentsArr?.map((user) => (
             <PlaceMarker
               isOpen={user.id == markerID}
               setMarkerID={setMarkerID}
@@ -45,7 +41,6 @@ export default function ShowMap() {
 
 function PlaceMarker({ user, isOpen, setMarkerID }) {
   const [markerRef, marker] = useAdvancedMarkerRef();
-
   return (
     <>
       <AdvancedMarker
@@ -55,8 +50,16 @@ function PlaceMarker({ user, isOpen, setMarkerID }) {
         key={user.id}
         title={"AdvancedMarker that opens an Infowindow when clicked."}
       >
-        {user.id <= 30 ? <Pin background={'#FBBC04'} glyphColor={'#000'} borderColor={'#000'} /> : <Pin background={'purple'} glyphColor={'#000'} borderColor={'#000'} />}
-      </ AdvancedMarker>
+        {user.id <= 30 ? (
+          <Pin
+            background={"#FBBC04"}
+            glyphColor={"#000"}
+            borderColor={"#000"}
+          />
+        ) : (
+          <Pin background={"purple"} glyphColor={"#000"} borderColor={"#000"} />
+        )}
+      </AdvancedMarker>
       {isOpen && (
         <InfoWindow
           anchor={marker}
@@ -69,7 +72,7 @@ function PlaceMarker({ user, isOpen, setMarkerID }) {
           <br />
           {user.phone}
           <br />
-          {(user.date)}
+          {user.date}
         </InfoWindow>
       )}
     </>

@@ -3,7 +3,7 @@ export const loadState = () => {
     if (localStorage.getItem("request") !== null) {
       const serializedState = localStorage.getItem("request");
       return JSON.parse(serializedState);
-    }
+    } 
   } catch (err) {
     console.error("Error loading state:", err);
     return;

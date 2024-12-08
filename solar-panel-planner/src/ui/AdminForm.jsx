@@ -6,8 +6,8 @@ import { adminEmailDb } from "../adminEmailDb";
 
 function AdminForm({ setIsLoggedIn }) {
   const [adminFormData, setAdminFormData] = useState({
-    name: "",
-    password: "",
+    // name: "",
+    // password: "",
     email: "",
   });
 
@@ -27,26 +27,37 @@ function AdminForm({ setIsLoggedIn }) {
     const isValidEmail = adminEmailDb.includes(adminFormData.email);
 
     if (
-      adminFormData.name === "Admin John Smith" &&
-      adminFormData.password === "admin_678" &&
       isValidEmail
     ) {
       setIsLoggedIn(true);
-      toast.success("Welcome Admin");
+      toast.success("Admin logged in successfully");
     } else {
-      toast.error("Incorrect username or password");
+      toast.error("Invaild email address");
       setAdminFormData({
-        name: "",
-        password: "",
         email: "",
       });
     }
+    // if (
+    //   adminFormData.name === "Admin John Smith" &&
+    //   adminFormData.password === "admin_678" &&
+    //   isValidEmail
+    // ) {
+    //   setIsLoggedIn(true);
+    //   toast.success("Welcome Admin");
+    // } else {
+    //   toast.error("Incorrect username or password");
+    //   setAdminFormData({
+    //     name: "",
+    //     password: "",
+    //     email: "",
+    //   });
+    // }
   };
 
   const handleAutofill = function () {
     setAdminFormData({
-      name: "Admin John Smith",
-      password: "admin_678",
+      // name: "Admin John Smith",
+      // password: "admin_678",
       email: "theoriginald@googl.win",
     });
   };
@@ -60,8 +71,7 @@ function AdminForm({ setIsLoggedIn }) {
         onSubmit={handleSubmit}
         className="bg-white flex flex-col gap-6 shadow-md max-w-md rounded-lg mx-auto px-8 py-8 border border-gray-200"
       >
-        {/* Name */}
-        <article className="flex flex-col gap-1.5">
+        {/* <article className="flex flex-col gap-1.5">
           <label
             htmlFor="name"
             className="block text-gray-800 text-sm font-medium"
@@ -80,7 +90,6 @@ function AdminForm({ setIsLoggedIn }) {
           />
         </article>
 
-        {/* Password */}
         <article className="flex flex-col gap-1.5">
           <label
             htmlFor="password"
@@ -98,7 +107,7 @@ function AdminForm({ setIsLoggedIn }) {
             placeholder="Enter password"
             className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
           />
-        </article>
+        </article> */}
         <article className="flex flex-col gap-1.5">
           <label
             htmlFor="email"

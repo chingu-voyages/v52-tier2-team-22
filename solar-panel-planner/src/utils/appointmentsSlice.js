@@ -1,25 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { userDb } from "../userDb";
-import { deleteState, saveState } from "./localStorageUtils";
+import { deleteState, loadState, saveState } from "./localStorageUtils";
 
-const initialState = { appointments: userDb };
+const initialState = {
+  appointments: loadState() ? [...userDb, loadState()] : [...userDb],
+};
 
 export const appointmentsSlice = createSlice({
   name: "appointments",
   initialState,
   reducers: {
     addAppointment: (state, action) => {
-      // state.appointments.push(action.payload);
+      state.appointments.push(action.payload);
       saveState(action.payload);
-      state.appointments = [...state.appointments, action.payload];
+      // state.appointments = [...state.appointments, action.payload];
     },
     deleteAppointment: (state, action) => {
-      const index = action.payload;
       deleteState();
-      state.appointments = state.appointments.filter((item) => {
-        item.id !== index;
-      });
-      // state.appointments = state.appointments.filter((_, i) => i !== index);
+      state.appointments = state.appointments.filter(
+        (item) => item.id !== action.payload
+      );
     },
   },
 });
