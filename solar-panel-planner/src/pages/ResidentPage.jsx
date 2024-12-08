@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ResidentForm from "../ui/ResidentForm";
 import ResidentSubmitedForms from "../ui/ResidentSubmitedForms";
 import { useDispatch } from "react-redux";
-import { loadState } from "../utils/localStorageUtils";
+// import { loadState } from "../utils/localStorageUtils";
 import { deleteAppointment } from "../utils/appointmentsSlice";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
@@ -12,7 +12,7 @@ function ResidentPage() {
   const [isRequested, setIsRequested] = useState(false);
 
   useEffect(() => {
-    setRequest(loadState());
+    // setRequest(loadState());
   }, [isRequested]);
   
   const dispatch = useDispatch();
