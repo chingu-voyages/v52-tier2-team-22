@@ -64,6 +64,7 @@ function ResidentForm({ setIsRequested }) {
     setIsModalOpen(false);
   };
 
+  // THIS COMMENT IS THE AUTOFILL FOR RESIDENT FORM WHEN FiKey ICON IS PRESSED 
   // ranNUm * 3. this number MUST NOT be higher than the number of objects of fake users in UserDb.js
   const setSampleData = () => {
     let ranNum = Math.ceil(Math.random() * 3);
