@@ -1,14 +1,11 @@
 import { useState } from "react";
-import { FiKey } from "react-icons/fi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { adminEmailDb } from "../adminEmailDb";
 
 function AdminForm({ setIsLoggedIn }) {
   const [adminFormData, setAdminFormData] = useState({
-    // name: "",
-    // password: "",
-    email: "",
+    email: "aarellano5400@dmxs8.com",
   });
 
   const handleInputChange = function (e) {
@@ -18,12 +15,7 @@ function AdminForm({ setIsLoggedIn }) {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    // commented out for testing purposes
 
-    // setAdminFormData({
-    //   name: "",
-    //   password: "",
-    // });
     const isValidEmail = adminEmailDb.includes(adminFormData.email);
 
     if (
@@ -37,30 +29,8 @@ function AdminForm({ setIsLoggedIn }) {
         email: "",
       });
     }
-    // if (
-    //   adminFormData.name === "Admin John Smith" &&
-    //   adminFormData.password === "admin_678" &&
-    //   isValidEmail
-    // ) {
-    //   setIsLoggedIn(true);
-    //   toast.success("Welcome Admin");
-    // } else {
-    //   toast.error("Incorrect username or password");
-    //   setAdminFormData({
-    //     name: "",
-    //     password: "",
-    //     email: "",
-    //   });
-    // }
   };
 
-  const handleAutofill = function () {
-    setAdminFormData({
-      // name: "Admin John Smith",
-      // password: "admin_678",
-      email: "theoriginald@googl.win",
-    });
-  };
 
   return (
     <section style={{ height: 'calc(100vh - 68px)' }}  className="py-8 bg-background">
@@ -71,43 +41,6 @@ function AdminForm({ setIsLoggedIn }) {
         onSubmit={handleSubmit}
         className="bg-white flex flex-col gap-6 shadow-md max-w-md rounded-lg mx-auto px-8 py-8 border border-gray-200"
       >
-        {/* <article className="flex flex-col gap-1.5">
-          <label
-            htmlFor="name"
-            className="block text-gray-800 text-sm font-medium"
-          >
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            value={adminFormData.name}
-            onChange={handleInputChange}
-            placeholder="Enter name"
-            className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
-          />
-        </article>
-
-        <article className="flex flex-col gap-1.5">
-          <label
-            htmlFor="password"
-            className="block text-gray-800 text-sm font-medium"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            required
-            name="password"
-            value={adminFormData.password}
-            onChange={handleInputChange}
-            placeholder="Enter password"
-            className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
-          />
-        </article> */}
         <article className="flex flex-col gap-1.5">
           <label
             htmlFor="email"
@@ -147,13 +80,7 @@ function AdminForm({ setIsLoggedIn }) {
           >
             Cancel
           </button>
-          <button
-            type="button"
-            onClick={handleAutofill}
-            className="bg-primaryGreen hover:bg-secondaryGreen text-white p-2 rounded-full shadow-md transition duration-200 ml-auto flex items-center justify-center"
-          >
-            <FiKey className="size-5" />
-          </button>
+
         </article>
       </form>
     </section>

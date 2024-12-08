@@ -3,8 +3,7 @@ import { userDb } from "../userDb";
 // import { deleteState, loadState, saveState } from "./localStorageUtils";
 
 const initialState = { appointments: userDb };
-  // appointments: loadState() ? [...userDb, loadState()] : [...userDb],
-
+// appointments: loadState() ? [...userDb, loadState()] : [...userDb],
 
 export const appointmentsSlice = createSlice({
   name: "appointments",
@@ -21,8 +20,17 @@ export const appointmentsSlice = createSlice({
         (item) => item.id !== action.payload
       );
     },
+
+    updateAppointmentStatus: (state, action) => {
+      const { id, status } = action.payload;
+      const appointment = state.appointments.find((item) => item.id === id);
+      if (appointment) {
+        appointment.status = status;
+        // saveState(state.appointments);
+      }
+    },
   },
 });
 
-export const { addAppointment, deleteAppointment } = appointmentsSlice.actions;
+export const { addAppointment, deleteAppointment, updateAppointmentStatus } = appointmentsSlice.actions;
 export default appointmentsSlice.reducer;
