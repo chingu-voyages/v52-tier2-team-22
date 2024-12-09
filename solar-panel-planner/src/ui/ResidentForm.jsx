@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Modal from "../utils/Modal";
+import Modal from "./Modal";
 import { useDispatch } from "react-redux";
 import { addAppointment } from "../utils/appointmentsSlice";
 import { v4 as uuid } from "uuid";
-import AddressAutoComplete from "../AddressAutoComplete";
-import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
+import AddressAutoComplete from "../utils/AddressAutoComplete";
+import ShowAvailableTimeSlot from "./ShowAvailableTimeSlot";
 import { RxCheck, RxCross2 } from "react-icons/rx";
 
 function ResidentForm({ setIsRequested }) {
