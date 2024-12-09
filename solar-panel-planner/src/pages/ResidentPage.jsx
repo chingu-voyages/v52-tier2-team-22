@@ -12,7 +12,7 @@ function ResidentPage() {
   const [isRequested, setIsRequested] = useState(false);
 
   useEffect(() => {
-    setRequest(loadState());
+    setRequest(loadState("myRequest"));
   }, [isRequested]);
   
   const dispatch = useDispatch();

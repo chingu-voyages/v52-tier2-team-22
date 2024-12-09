@@ -416,7 +416,7 @@ export const userDb = [
       coord: { lat: 34.2099670025045, lng: -118.41305606853706 },
     },
     requestDate: "2024-12-26T13:30:00.000Z",
-    status: "canceld",
+    status: "canceled",
     sentDate: "2024-11-26T13:30:00.000Z",
   },
 ];

@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ShowMap from "../ShowMap";
 import { jsPDF } from "jspdf";
 import moment from "moment";
-import { useEffect, useState, useCallback } from "react";
-import { loadState } from "../utils/localStorageUtils";
+import { useEffect, useState } from "react";
+import { updateAppointmentStatus } from "../utils/appointmentsSlice";
 
 function AdminDataTable() {
   const exportToPDF = (appointment) => {
@@ -17,14 +17,17 @@ function AdminDataTable() {
     doc.save(`${appointment.name}_appointment.pdf`);
   };
 
+
   const [showTable, setShowTable] = useState(true);
   const [showMap, setShowMap] = useState(true);
   const appointments = useSelector((state) => state.appointments.appointments);
   const [appointmentsArr, setAppointmentsArr] = useState(appointments);
-
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
+
   const statusState = ["pending", "confirmed", "canceled", "visited"];
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!appointmentsArr.length) return; // Prevent errors if appointments is null or undefined.
@@ -50,7 +53,7 @@ function AdminDataTable() {
     }
 
     setAppointmentsArr(filteredArr);
-  }, [selectedDay, selectedStatus]);
+  }, [selectedDay, selectedStatus, appointments]);
 
   const resetFilter = () => {
     setAppointmentsArr(appointments);
@@ -139,9 +142,29 @@ function AdminDataTable() {
                     index % 2 === 0 ? "bg-background" : "bg-white"
                   }`}
                 >
-                  <td className="px-6 py-3 border-t border-gray-200">
+                  {/* <td className="px-6 py-3 border-t border-gray-200">
                     {appointment.status}
-                  </td>
+                  </td> */}
+                  <td className="px-6 py-3 border-t border-gray-200">
+                  <select
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    defaultValue={appointment.status}
+                    onChange={(e) =>
+                      dispatch(
+                        updateAppointmentStatus({
+                          id: appointment.id,
+                          status: e.target.value,
+                        })
+                      )
+                    } 
+                  >
+                    {statusState.map((state) => (
+                      <option value={state} key={state}>
+                        {state}
+                      </option>
+                    ))}
+                  </select>
+                </td>
                   <td className="px-6 py-3 border-t border-gray-200">
                     {appointment.name}
                   </td>

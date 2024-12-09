@@ -1,7 +1,7 @@
-export const loadState = () => {
+export const loadState = (key) => {
   try {
-    if (localStorage.getItem("request") !== null) {
-      const serializedState = localStorage.getItem("request");
+    if (localStorage.getItem(key) !== null) {
+      const serializedState = localStorage.getItem(key);
       return JSON.parse(serializedState);
     } 
   } catch (err) {
@@ -10,10 +10,10 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state) => {
+export const saveState = (state, key) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem("request", serializedState);
+    localStorage.setItem(key, serializedState);
   } catch (err) {
     console.error("Error saving state:", err);
   }
@@ -21,7 +21,7 @@ export const saveState = (state) => {
 
 export const deleteState = () => {
   try {
-    localStorage.removeItem("request");
+    localStorage.removeItem("myRequest");
   } catch (err) {
     console.error("Error saving state:", err);
   }

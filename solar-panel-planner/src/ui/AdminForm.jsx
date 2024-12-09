@@ -1,14 +1,11 @@
 import { useState } from "react";
-import { FiKey } from "react-icons/fi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { adminEmailDb } from "../adminEmailDb";
 
 function AdminForm({ setIsLoggedIn }) {
   const [adminFormData, setAdminFormData] = useState({
-    // name: "",
-    // password: "",
-    email: "",
+    email: "just.Click.Login.Button@sample.com",
   });
 
   const handleInputChange = function (e) {
@@ -18,17 +15,9 @@ function AdminForm({ setIsLoggedIn }) {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    // commented out for testing purposes
-
-    // setAdminFormData({
-    //   name: "",
-    //   password: "",
-    // });
     const isValidEmail = adminEmailDb.includes(adminFormData.email);
 
-    if (
-      isValidEmail
-    ) {
+    if (isValidEmail) {
       setIsLoggedIn(true);
       toast.success("Admin logged in successfully");
     } else {
@@ -37,77 +26,19 @@ function AdminForm({ setIsLoggedIn }) {
         email: "",
       });
     }
-    // if (
-    //   adminFormData.name === "Admin John Smith" &&
-    //   adminFormData.password === "admin_678" &&
-    //   isValidEmail
-    // ) {
-    //   setIsLoggedIn(true);
-    //   toast.success("Welcome Admin");
-    // } else {
-    //   toast.error("Incorrect username or password");
-    //   setAdminFormData({
-    //     name: "",
-    //     password: "",
-    //     email: "",
-    //   });
-    // }
-  };
-
-  const handleAutofill = function () {
-    setAdminFormData({
-      // name: "Admin John Smith",
-      // password: "admin_678",
-      email: "theoriginald@googl.win",
-    });
   };
 
   return (
     <section className="py-8">
       <ToastContainer />
-      <h2 className="my-8 text-center text-3xl font-semibold">Login as Admin</h2>
+      <h2 className="my-8 text-center text-3xl font-semibold">
+        Login as Admin
+      </h2>
 
       <form
         onSubmit={handleSubmit}
         className="bg-white flex flex-col gap-6 shadow-md max-w-md rounded-lg mx-auto px-8 py-8 border border-gray-200"
       >
-        {/* <article className="flex flex-col gap-1.5">
-          <label
-            htmlFor="name"
-            className="block text-gray-800 text-sm font-medium"
-          >
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            value={adminFormData.name}
-            onChange={handleInputChange}
-            placeholder="Enter name"
-            className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
-          />
-        </article>
-
-        <article className="flex flex-col gap-1.5">
-          <label
-            htmlFor="password"
-            className="block text-gray-800 text-sm font-medium"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            required
-            name="password"
-            value={adminFormData.password}
-            onChange={handleInputChange}
-            placeholder="Enter password"
-            className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
-          />
-        </article> */}
         <article className="flex flex-col gap-1.5">
           <label
             htmlFor="email"
@@ -133,26 +64,18 @@ function AdminForm({ setIsLoggedIn }) {
             type="submit"
             className="bg-primaryGreen hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200"
           >
-            Submit
+            Login
           </button>
           <button
             onClick={() =>
               setAdminFormData({
-                name: "",
-                password: "",
+                email: "",
               })
             }
             type="button"
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
           >
             Cancel
-          </button>
-          <button
-            type="button"
-            onClick={handleAutofill}
-            className="bg-primaryGreen hover:bg-secondaryGreen text-white p-2 rounded-full shadow-md transition duration-200 ml-auto flex items-center justify-center"
-          >
-            <FiKey className="size-5" />
           </button>
         </article>
       </form>
