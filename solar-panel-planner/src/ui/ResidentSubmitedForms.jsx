@@ -22,7 +22,7 @@ function ResidentSubmitedForms({ request, handleCancelRequest }) {
             {request.address.combinedAddress + " " + request.address.zipcode}
           </li>
           <li>
-            <span className="font-semibold">Requested Date:</span>{" "}
+            <span className="font-semibold">Request Date:</span>{" "}
             {moment(request.requestDate).format("MMMM Do YYYY, h:mm a")}
           </li>
           <li>
