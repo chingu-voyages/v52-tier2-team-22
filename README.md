@@ -18,8 +18,9 @@ This app is a part of [Chingu platform](https://www.chingu.io/) 6-week coding ex
 3. Technologies & Dependencies used
 4. Prerequisites
 5. Clone & Run locally
-6. Team
-7. Special Thanks
+6. Project Structure
+7. Team
+8. Special Thanks
 
 <br>
 
@@ -160,7 +161,6 @@ dependencies:
 - "@react-google-maps/api": "^2.20.3",
 - "@reduxjs/toolkit": "^2.3.0",
 - "@vis.gl/react-google-maps": "^1.4.0",
-- "axios": "^1.7.9",
 - "esbuild": "^0.24.0",
 - "framer-motion": "^11.12.0",
 - "jspdf": "^2.5.2",
@@ -248,6 +248,27 @@ Ensure you have the following installed on your system:
 
 ---
 
+## Project Structure 📂
+
+    solar-panel-planner/
+    ├── public
+    ├── src
+    │ ├── assets (images)
+    │ ├── pages (3 main pages)
+    │ ├── ui (parts that build the 3 main pages)
+    │ ├── utils (helper functions & features, redux slices, local databases, local storage...)
+    │ ├── App.jsx
+    │ ├── index.css
+    │ ├── Layout.jsx
+    │ ├── main.jsx
+    │ ├── store.js (redux)
+    └── (config files)
+    README.md 
+
+<br>
+
+---
+
 ## Team 🎇
 
 - Anita Boakye-Yiadom - Scrum Master: [GitHub](https://github.com/AnitaBoakye) / [LinkedIn](https://linkedin.com/in/anitaboakyeyiadom/)
@@ -266,7 +287,7 @@ Ensure you have the following installed on your system:
 
 ## Special Thanks 🙏
 
-We as a whole team would like to thank the [Chingu platform](https://www.chingu.io/) for providing us this opportunity to practice our communication and coding skills in this simulated work envoronment.
+We as a whole team would like to thank the [Chingu platform](https://www.chingu.io/) for providing us this opportunity to practice our communication and coding skills, in this simulated work envoronment.
 
 <br>
 
