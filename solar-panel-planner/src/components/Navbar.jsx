@@ -18,7 +18,7 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <svg
-            className="w-6 h-6"
+            className="w-8 h-8 hover:rotate-180 transition-all"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -33,69 +33,49 @@ export default function Navbar() {
           </svg>
         </button>
 
-        <ul className="hidden md:flex flex-row space-x-6 py-4">
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `hover:font-bold hover:text-grey-700 ${
-                  isActive
-                    ? "font-bold text-grey-700"
-                    : "font-semibold text-grey-500"
-                }`
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/residentpage"
-              className={({ isActive }) =>
-                `hover:font-bold hover:text-grey-700 ${
-                  isActive
-                    ? "font-bold text-grey-700"
-                    : "font-semibold text-grey-500"
-                }`
-              }
-            >
-              Send Request
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/admin"
-              className={({ isActive }) =>
-                `hover:font-bold hover:text-grey-700 ${
-                  isActive
-                    ? "font-bold text-grey-700"
-                    : "font-semibold text-grey-500"
-                }`
-              }
-            >
-              Admin
-            </NavLink>
-          </li>
+        <ul className="hidden md:flex flex-row gap-3 p-4">
+          {[
+            { to: "/", label: "Home" },
+            { to: "/residentpage", label: "Send Request" },
+            { to: "/admin", label: "Admin" },
+          ].map(({ to, label }) => (
+            <li key={to}>
+              <NavLink
+                to={to}
+                className={({ isActive }) =>
+                  `transition-colors font-semibold duration-300 px-4 py-2 rounded-lg text-lg ${
+                    isActive
+                      ? " text-gray-900 bg-gray-300" // Active state
+                      : " text-gray-600 hover:text-gray-900 hover:bg-gray-200"
+                  }`
+                }
+              >
+                {label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </div>
 
+      {/* mobile nav */}
       {isOpen && (
-        <ul className="flex flex-col items-end mt-4 space-y-4 md:hidden">
-          <li>
-            <Link to="/" className="font-semibold hover:font-bold">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/residentpage" className="font-semibold hover:font-bold">
-              Send Request
-            </Link>
-          </li>
-          <li>
-            <Link to="/admin" className="font-semibold hover:font-bold">
-              Admin
-            </Link>
-          </li>
+        <ul className="flex flex-col items-end mt-4 space-y-4 p-4 md:hidden">
+          {[
+            { to: "/", label: "Home" },
+            { to: "/residentpage", label: "Send Request" },
+            { to: "/admin", label: "Admin" },
+          ].map(({ to, label }) => (
+            <li key={to}>
+              <Link
+                to={to}
+                className={
+                  "transition-all duration-300 px-4 py-2 rounded-lg text-lg w-full text-right hover:mr-3 hover:font-semibold"
+                }
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
         </ul>
       )}
     </div>
