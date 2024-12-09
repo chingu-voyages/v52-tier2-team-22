@@ -18,7 +18,6 @@ function AdminDataTable() {
     doc.save(`${appointment.name}_appointment.pdf`);
   };
 
-
   const [showTable, setShowTable] = useState(true);
   const [showMap, setShowMap] = useState(true);
   const appointments = useSelector((state) => state.appointments.appointments);
@@ -31,30 +30,41 @@ function AdminDataTable() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!appointments) return; // Prevent errors if appointments is null or undefined.
-
     let filteredArr = [...appointments];
-    // Apply date filter if selectedDay is provided.
-    if (selectedDay) {
-      filteredArr = filteredArr.filter(
-        (req) => moment(req.requestDate).format("YYYY-MM-DD") === selectedDay
-      );
+
+    function filteringStatus(arr, status) {
+      if (status === "all") return [...appointments];
+      return arr
+        .filter((req) => {
+          if (status === "pending") {
+            return req.status === "pending";
+          } else if (status === "confirmed") {
+            return req.status === "confirmed";
+          } else if (status === "canceled") {
+            return req.status === "canceled";
+          } else if (status === "visited") {
+            return req.status === "visited";
+          }
+        })
+        .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
     }
 
-    // Apply status filter if selectedStatus is provided.
-    if (selectedStatus) {
-      filteredArr = filteredArr.filter((req) => req.status === selectedStatus);
+    function filteringDay(arr, day) {
+      return arr
+        .filter((req) => moment(req.requestDate).format("YYYY-MM-DD") === day)
+        .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
     }
 
-    // Sort by date if any filtering is applied.
-    if (selectedDay || selectedStatus) {
-      filteredArr.sort(
-        (a, b) => new Date(a.requestDate) - new Date(b.requestDate)
-      );
+    if (selectedDay) filteredArr = filteringDay(filteredArr, selectedDay);
+
+    if (selectedStatus || selectedDay) {
+      if (selectedDay) filteredArr = filteringDay(filteredArr, selectedDay);
+      if (selectedStatus)
+        filteredArr = filteringStatus(filteredArr, selectedStatus);
     }
 
     setAppointmentsArr(filteredArr);
-  }, [appointments, selectedDay, selectedStatus]);
+  }, [selectedStatus, selectedDay]);
 
   const resetFilter = () => {
     setAppointmentsArr(appointments);
@@ -121,7 +131,7 @@ function AdminDataTable() {
                     value={selectedStatus}
                     onChange={(e) => setSelectedStatus(e.target.value)}
                   >
-                    <option value="">all</option>
+                    <option value="all">All</option>
                     {statusState.map((state) => (
                       <option value={state} key={state}>
                         {state}
@@ -153,12 +163,9 @@ function AdminDataTable() {
                     index % 2 === 0 ? "bg-background" : "bg-white"
                   }`}
                 >
-                  {/* <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.status}
-                  </td> */}
                   <td className="px-6 py-3 border-t border-gray-200">
                     <select
-                      value={appointment.status}
+                      defaultValue={appointment.status}
                       onChange={(e) =>
                         dispatch(
                           updateAppointmentStatus({
@@ -166,8 +173,8 @@ function AdminDataTable() {
                             status: e.target.value,
                           })
                         )
-                      } 
-                       className="px-2 py-1 rounded-md bg-white"
+                      }
+                      className="px-2 py-1 rounded-md bg-white"
                     >
                       {statusState.map((status) => (
                         <option key={status} value={status}>
