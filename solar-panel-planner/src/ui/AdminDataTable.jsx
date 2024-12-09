@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ShowMap from "../ShowMap";
 import { jsPDF } from "jspdf";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { updateAppointmentStatus } from "../utils/appointmentsSlice";
-// import { loadState } from "../utils/localStorageUtils";
-import { useDispatch } from "react-redux";
 
 function AdminDataTable() {
   const exportToPDF = (appointment) => {
@@ -18,16 +16,18 @@ function AdminDataTable() {
     doc.text(`Date: ${appointment.date}`, 10, 60);
     doc.save(`${appointment.name}_appointment.pdf`);
   };
-  const dispatch = useDispatch();
+
 
   const [showTable, setShowTable] = useState(true);
   const [showMap, setShowMap] = useState(true);
   const appointments = useSelector((state) => state.appointments.appointments);
   const [appointmentsArr, setAppointmentsArr] = useState(appointments);
-
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
+
   const statusState = ["pending", "confirmed", "canceled", "visited"];
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!appointments) return; // Prevent errors if appointments is null or undefined.
@@ -51,8 +51,6 @@ function AdminDataTable() {
         (a, b) => new Date(a.requestDate) - new Date(b.requestDate)
       );
     }
-
-    console.log(selectedStatus);
 
     setAppointmentsArr(filteredArr);
   }, [appointments, selectedDay, selectedStatus]);
@@ -153,6 +151,9 @@ function AdminDataTable() {
                     index % 2 === 0 ? "bg-background" : "bg-white"
                   }`}
                 >
+                  {/* <td className="px-6 py-3 border-t border-gray-200">
+                    {appointment.status}
+                  </td> */}
                   <td className="px-6 py-3 border-t border-gray-200">
                     <select
                       value={appointment.status}
@@ -164,7 +165,7 @@ function AdminDataTable() {
                           })
                         )
                       } 
-                      className="px-2 py-1 rounded-md bg-white"
+                       className="px-2 py-1 rounded-md bg-white"
                     >
                       {statusState.map((status) => (
                         <option key={status} value={status}>

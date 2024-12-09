@@ -5,7 +5,7 @@ import { adminEmailDb } from "../adminEmailDb";
 
 function AdminForm({ setIsLoggedIn }) {
   const [adminFormData, setAdminFormData] = useState({
-    email: "aarellano5400@dmxs8.com",
+    email: "just.Click.Login.Button@sample.com",
   });
 
   const handleInputChange = function (e) {
@@ -15,12 +15,9 @@ function AdminForm({ setIsLoggedIn }) {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-
     const isValidEmail = adminEmailDb.includes(adminFormData.email);
 
-    if (
-      isValidEmail
-    ) {
+    if (isValidEmail) {
       setIsLoggedIn(true);
       toast.success("Admin logged in successfully");
     } else {
@@ -31,11 +28,15 @@ function AdminForm({ setIsLoggedIn }) {
     }
   };
 
-
   return (
-    <section style={{ height: 'calc(100vh - 68px)' }}  className="py-8 bg-background">
+    <section
+      style={{ height: "calc(100vh - 68px)" }}
+      className="py-8 bg-background"
+    >
       <ToastContainer />
-      <h2 className="my-8 text-center text-3xl font-semibold">Login as Admin</h2>
+      <h2 className="my-8 text-center text-3xl font-semibold">
+        Login as Admin
+      </h2>
 
       <form
         onSubmit={handleSubmit}
@@ -66,13 +67,12 @@ function AdminForm({ setIsLoggedIn }) {
             type="submit"
             className="bg-primaryGreen hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200"
           >
-            Submit
+            Login
           </button>
           <button
             onClick={() =>
               setAdminFormData({
-                name: "",
-                password: "",
+                email: "",
               })
             }
             type="button"
@@ -80,7 +80,6 @@ function AdminForm({ setIsLoggedIn }) {
           >
             Cancel
           </button>
-
         </article>
       </form>
     </section>

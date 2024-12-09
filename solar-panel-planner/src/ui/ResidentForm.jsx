@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import Modal from "../utils/Modal";
 import { useDispatch } from "react-redux";
 import { addAppointment } from "../utils/appointmentsSlice";
-import { userDb } from "../userDb";
 import { v4 as uuid } from "uuid";
 import AddressAutoComplete from "../AddressAutoComplete";
 import ShowAvailableTimeSlot from "../ShowAvailableTimeSlot";
-import { FiKey } from "react-icons/fi";
 import { RxCheck, RxCross2 } from "react-icons/rx";
 
 function ResidentForm({ setIsRequested }) {
@@ -84,15 +82,6 @@ function ResidentForm({ setIsRequested }) {
     setIsModalOpen(false);
   };
 
-  // THIS COMMENT IS THE AUTOFILL FOR RESIDENT FORM WHEN FiKey ICON IS PRESSED
-  // ranNUm * 3. this number MUST NOT be higher than the number of objects of fake users in UserDb.js
-  const setSampleData = () => {
-    let ranNum = Math.ceil(Math.random() * 3);
-    setResidentFormData(userDb[ranNum]);
-  };
-
-  console.log(residentFormData)
-
   return (
     <section className="py-4">
       <h2 className="mt-8 text-center text-3xl font-semibold">
@@ -163,6 +152,8 @@ function ResidentForm({ setIsRequested }) {
               onChange={handleInputChange}
               placeholder="Enter phone number"
               required
+              minLength="10"
+              maxLength="10"
               className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
@@ -187,18 +178,11 @@ function ResidentForm({ setIsRequested }) {
               Send Request
             </button>
             <button
-              type="button" // prevent form submission
+              type="button" 
               onClick={() => setResidentFormData(defaultValue)}
               className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
             >
               Cancel
-            </button>
-            <button
-              type="button"
-              onClick={() => setSampleData()}
-              className="bg-primaryGreen hover:bg-secondaryGreen text-white p-2 rounded-full shadow-md transition duration-200 ml-auto flex items-center justify-center"
-            >
-              <FiKey className="size-5" />
             </button>
           </article>
         </div>
