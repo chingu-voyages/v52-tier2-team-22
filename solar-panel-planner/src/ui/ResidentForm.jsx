@@ -40,8 +40,7 @@ function ResidentForm({ setIsRequested }) {
   const handleSubmit = function (e) {
     e.preventDefault();
     if (
-      address.combinedAddress === "" ||
-      address.combinedAddress === undefined ||
+      !address.combinedAddress ||
       residentFormData.requestDate === ""
     ) {
       return (
@@ -173,7 +172,7 @@ function ResidentForm({ setIsRequested }) {
           {/* Buttons */}
           <article className="flex items-start gap-4 mt-8 ">
             <button
-              type="submit"
+              type="submit" //submit the form
               className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded "
             >
               Send Request

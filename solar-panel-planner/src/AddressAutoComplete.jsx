@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import "./index.css";
 
-const LACITY_APP_TOKEN = import.meta.env.VITE_LACITY_APP_TOKEN;
+// const LACITY_APP_TOKEN = import.meta.env.VITE_LACITY_APP_TOKEN;
 
 export default function AddressAutoComplete({ setAddress }) {
   const [datasetLA, setDatasetLA] = useState([]);

@@ -29,7 +29,10 @@ function AdminForm({ setIsLoggedIn }) {
   };
 
   return (
-    <section className="py-8">
+    <section
+      style={{ height: "calc(100vh - 68px)" }}
+      className="py-8 bg-background"
+    >
       <ToastContainer />
       <h2 className="my-8 text-center text-3xl font-semibold">
         Login as Admin

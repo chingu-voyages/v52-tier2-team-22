@@ -24,6 +24,8 @@ function ResidentPage() {
     setIsRequested(false);
   };
 
+  
+
   return (
     <div className="w-full bg-background">
       <ToastContainer />
