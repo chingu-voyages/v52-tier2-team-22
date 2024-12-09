@@ -4,8 +4,6 @@ import { jsPDF } from "jspdf";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { updateAppointmentStatus } from "../utils/appointmentsSlice";
-// import { loadState } from "../utils/localStorageUtils";
-import { useDispatch } from "react-redux";
 import VisitExport from "../VisitExport.jsx";
 
 function AdminDataTable() {
