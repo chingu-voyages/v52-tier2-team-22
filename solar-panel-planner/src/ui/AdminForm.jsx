@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { adminEmailDb } from "../adminEmailDb";
+import { adminEmailDb } from "../utils/adminEmailDb";
 
 function AdminForm({ setIsLoggedIn }) {
   const [adminFormData, setAdminFormData] = useState({

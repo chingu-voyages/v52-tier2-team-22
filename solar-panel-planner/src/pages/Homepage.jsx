@@ -1,4 +1,4 @@
-import Footer from "../components/Footer";
+import Footer from "../ui/Footer";
 import Img1 from "../assets/image2.png";
 import Img2 from "../assets/image1.png";
 import Img3 from "../assets/image3.png";
@@ -66,10 +66,13 @@ function Homepage() {
           className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6"
         >
           <div className="text-center md:text-left max-w-md">
-            <h2 className="text-4xl font-semibold text-gray-800 mb-8">Request Your Solar Panel Evaluation</h2>
+            <h2 className="text-4xl font-semibold text-gray-800 mb-8">
+              Request Your Solar Panel Evaluation
+            </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Our team will assess your property to determine the ideal solar panel system that suits your energy needs.
-              Book an evaluation and start your journey toward sustainable energy today.
+              Our team will assess your property to determine the ideal solar
+              panel system that suits your energy needs. Book an evaluation and
+              start your journey toward sustainable energy today.
             </p>
           </div>
           <img
@@ -78,7 +81,7 @@ function Homepage() {
             className="w-full md:w-2/5 rounded-lg shadow-xl"
           />
         </motion.div>
-      
+
         <motion.div
           initial={{
             x: -70,
@@ -101,10 +104,13 @@ function Homepage() {
             className="w-full md:w-2/5 rounded-lg shadow-xl"
           />
           <div className="text-center md:text-left max-w-md">
-            <h2 className="text-4xl font-semibold text-gray-800 mb-4">Solar Panel Evaluation</h2>
+            <h2 className="text-4xl font-semibold text-gray-800 mb-4">
+              Solar Panel Evaluation
+            </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Our expert evaluators will visit your home to examine your roof, assess energy consumption, and explain
-              the best options for your solar panel installation. We’ll guide you every step of the way.
+              Our expert evaluators will visit your home to examine your roof,
+              assess energy consumption, and explain the best options for your
+              solar panel installation. We’ll guide you every step of the way.
             </p>
           </div>
         </motion.div>
@@ -125,10 +131,14 @@ function Homepage() {
           className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 "
         >
           <div className="text-center md:text-left max-w-md">
-            <h2 className="text-4xl font-semibold text-gray-800 mb-4">Solar Panel Installation</h2>
+            <h2 className="text-4xl font-semibold text-gray-800 mb-4">
+              Solar Panel Installation
+            </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Once your evaluation is complete, our certified installation team will install your solar panels with
-              the utmost care and precision, ensuring efficiency and durability. Begin saving on energy bills immediately.
+              Once your evaluation is complete, our certified installation team
+              will install your solar panels with the utmost care and precision,
+              ensuring efficiency and durability. Begin saving on energy bills
+              immediately.
             </p>
           </div>
           <img
