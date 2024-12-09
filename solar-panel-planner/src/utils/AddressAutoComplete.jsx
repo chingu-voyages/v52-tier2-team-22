@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import "./index.css";
+
 
 // const LACITY_APP_TOKEN = import.meta.env.VITE_LACITY_APP_TOKEN;
 
@@ -19,7 +19,7 @@ export default function AddressAutoComplete({ setAddress }) {
         .then((res) => res.json())
         .then((json) => {
           const arr = json?.map((record) => {
-            console.log(record.hse_nbr)
+            // console.log(record.hse_nbr)
             const combinedAddress = `${record.hse_nbr}${
               record.hse_frac_nbr || ""
             } ${record.hse_dir_cd || ""} ${record.str_nm} ${

@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import ShowMap from "../ShowMap";
+import ShowMap from "../ui/ShowMap.jsx";
 import { jsPDF } from "jspdf";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { updateAppointmentStatus } from "../utils/appointmentsSlice";
-import VisitExport from "../VisitExport.jsx";
+import VisitExport from "../utils/VisitExport.jsx";
 
 function AdminDataTable() {
   const exportToPDF = (appointment) => {
@@ -173,8 +173,8 @@ function AdminDataTable() {
                             status: e.target.value,
                           })
                         )
-                      }
-                      className="px-2 py-1 rounded-md bg-white"
+                      } 
+                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 "
                     >
                       {statusState.map((status) => (
                         <option key={status} value={status}>

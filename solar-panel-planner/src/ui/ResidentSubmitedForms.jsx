@@ -2,10 +2,10 @@ import moment from "moment";
 
 function ResidentSubmitedForms({ request, handleCancelRequest }) {
   return (
-    <div className="grid py-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 mt-8 px-6">
+    <div className="flex justify-center p-8">
       <div
         key={request.id}
-        className="bg-white border-2 border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+        className="bg-white border-2 border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-xl  transition-shadow"
       >
         <ul className="text-gray-700 space-y-2">
           <li>
@@ -22,7 +22,7 @@ function ResidentSubmitedForms({ request, handleCancelRequest }) {
             {request.address.combinedAddress + " " + request.address.zipcode}
           </li>
           <li>
-            <span className="font-semibold">Requested Date:</span>{" "}
+            <span className="font-semibold">Request Date:</span>{" "}
             {moment(request.requestDate).format("MMMM Do YYYY, h:mm a")}
           </li>
           <li>

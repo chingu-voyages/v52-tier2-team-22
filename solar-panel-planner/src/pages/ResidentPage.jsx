@@ -30,8 +30,8 @@ function ResidentPage() {
     <div className="w-full bg-background">
       <ToastContainer />
       <ResidentForm setIsRequested={setIsRequested} />
-      <h3 className="mt-6 text-center text-3xl font-semibold">
-        Your Previous Requests
+      <h3 className="text-center text-3xl font-semibold">
+        Your Request
       </h3>
       {request ? (
         <ResidentSubmitedForms
@@ -39,7 +39,7 @@ function ResidentPage() {
           handleCancelRequest={handleCancelRequest}
         />
       ) : (
-        <div>No request yet</div>
+        <p className="text-center pb-10">No request yet</p>
       )}
     </div>
   );

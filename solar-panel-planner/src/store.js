@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import appointmentsReducer from "./utils/appointmentsSlice";
-import { userDb } from "./userDb";
+import { userDb } from "./utils/userDb";
 import { loadState } from "./utils/localStorageUtils";
 
 const requestsLocalStorage = loadState("requests");
