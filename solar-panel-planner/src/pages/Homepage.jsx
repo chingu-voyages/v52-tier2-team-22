@@ -48,7 +48,7 @@ function Homepage() {
         </motion.div>
       </div>
 
-      <div className="flex flex-col gap-16 px-6 py-12 bg-background md: px-20">
+      <div className="flex flex-col gap-16 px-6 py-12 bg-background md:px-20">
         <motion.div
           initial={{
             x: 70,

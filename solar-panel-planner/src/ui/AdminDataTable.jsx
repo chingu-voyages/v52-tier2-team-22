@@ -2,8 +2,10 @@ import { useSelector } from "react-redux";
 import ShowMap from "../ShowMap";
 import { jsPDF } from "jspdf";
 import moment from "moment";
-import { useEffect, useState, useCallback } from "react";
-import { loadState } from "../utils/localStorageUtils";
+import { useEffect, useState } from "react";
+import { updateAppointmentStatus } from "../utils/appointmentsSlice";
+// import { loadState } from "../utils/localStorageUtils";
+import { useDispatch } from "react-redux";
 import VisitExport from "../VisitExport.jsx";
 
 function AdminDataTable() {
@@ -17,6 +19,7 @@ function AdminDataTable() {
     doc.text(`Date: ${appointment.date}`, 10, 60);
     doc.save(`${appointment.name}_appointment.pdf`);
   };
+  const dispatch = useDispatch();
 
   const [showTable, setShowTable] = useState(true);
   const [showMap, setShowMap] = useState(true);
@@ -28,7 +31,7 @@ function AdminDataTable() {
   const statusState = ["pending", "confirmed", "canceled", "visited"];
 
   useEffect(() => {
-    if (!appointmentsArr.length) return; // Prevent errors if appointments is null or undefined.
+    if (!appointments) return; // Prevent errors if appointments is null or undefined.
 
     let filteredArr = [...appointments];
     // Apply date filter if selectedDay is provided.
@@ -50,8 +53,10 @@ function AdminDataTable() {
       );
     }
 
+    console.log(selectedStatus);
+
     setAppointmentsArr(filteredArr);
-  }, [selectedDay, selectedStatus]);
+  }, [appointments, selectedDay, selectedStatus]);
 
   const resetFilter = () => {
     setAppointmentsArr(appointments);
@@ -77,24 +82,33 @@ function AdminDataTable() {
         </div>
 
         {/* Buttons to toggle between table, map, or both */}
-        <div className="flex justify-between px-6 py-4">
+        <div className="flex justify-start gap-6 px-6 py-4 bg-white">
           <button
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
-            onClick={() => { setShowTable(true); setShowMap(false); }}
+            onClick={() => {
+              setShowTable(true);
+              setShowMap(true);
+            }}
+          >
+            Default View
+          </button>
+          <button
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+            onClick={() => {
+              setShowTable(true);
+              setShowMap(false);
+            }}
           >
             Table View
           </button>
           <button
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
-            onClick={() => { setShowTable(false); setShowMap(true); }}
+            onClick={() => {
+              setShowTable(false);
+              setShowMap(true);
+            }}
           >
             Map View
-          </button>
-          <button
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
-            onClick={() => { setShowTable(true); setShowMap(true); }}
-          >
-            Default View
           </button>
         </div>
 
@@ -109,7 +123,7 @@ function AdminDataTable() {
                     value={selectedStatus}
                     onChange={(e) => setSelectedStatus(e.target.value)}
                   >
-                    <option value="all">All</option>
+                    <option value="">all</option>
                     {statusState.map((state) => (
                       <option value={state} key={state}>
                         {state}
@@ -142,7 +156,24 @@ function AdminDataTable() {
                   }`}
                 >
                   <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.status}
+                    <select
+                      value={appointment.status}
+                      onChange={(e) =>
+                        dispatch(
+                          updateAppointmentStatus({
+                            id: appointment.id,
+                            status: e.target.value,
+                          })
+                        )
+                      } 
+                      className="px-2 py-1 rounded-md bg-white"
+                    >
+                      {statusState.map((status) => (
+                        <option key={status} value={status}>
+                          {status}
+                        </option>
+                      ))}
+                    </select>
                   </td>
                   <td className="px-6 py-3 border-t border-gray-200">
                     {appointment.name}
@@ -177,7 +208,11 @@ function AdminDataTable() {
           </table>
         )}
 
-        {showMap && <div className="p-6"><ShowMap appointmentsArr={appointmentsArr}/></div>}
+        {showMap && (
+          <div className="p-6">
+            <ShowMap appointmentsArr={appointmentsArr} />
+          </div>
+        )}
       </div>
     </>
   );
