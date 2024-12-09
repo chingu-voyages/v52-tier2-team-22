@@ -4,7 +4,7 @@ import { jsPDF } from "jspdf";
 import moment from "moment";
 import { useEffect, useState, useCallback } from "react";
 import { loadState } from "../utils/localStorageUtils";
-import VisitList from "../VisitList.jsx"
+import VisitExport from "../VisitExport.jsx";
 
 function AdminDataTable() {
   const exportToPDF = (appointment) => {
@@ -62,7 +62,7 @@ function AdminDataTable() {
   return (
     <>
       <h1 className="ml-8 text-3xl font-semibold pt-8">Welcome Admin</h1>
-      <VisitList />
+      <VisitExport />
       <div className="flex flex-col overflow-auto rounded-lg shadow-md m-8">
         <div className="flex items-center justify-between px-6 py-4 bg-secondaryGreen text-white text-center rounded-t-lg">
           <h2 className="text-lg text-black text-center font-semibold">
