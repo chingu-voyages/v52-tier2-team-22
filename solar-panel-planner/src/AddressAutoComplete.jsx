@@ -36,7 +36,6 @@ export default function AddressAutoComplete({ setAddress }) {
         })
         .catch((error) => console.error("Network error", error));
     }
-
     fetchDatasetLA(url);
   }, []);
 
@@ -64,7 +63,6 @@ export default function AddressAutoComplete({ setAddress }) {
         items={datasetLA}
         onSelect={handleOnSelect}
         onClear={() => {
-          setDatasetLA([]);
           setAddress({
             combinedAddress: "",
             zipcode: "",
@@ -72,7 +70,6 @@ export default function AddressAutoComplete({ setAddress }) {
           });
         }}
         inputDebounce={300}
-        // showNoResults={false}
         showNoResultsText={"Loading..."}
         formatResult={formatResult}
         placeholder="Input your house number"
