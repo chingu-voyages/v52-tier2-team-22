@@ -6,8 +6,8 @@ import { jsPDF } from "jspdf";
 import Download_icon from "../assets/download_icon.png";
 
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-export default function VisitList({ listOfDay, selectedDay }) {
-  const exportList = listOfDay?.map((user) => ({
+export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
+  const exportList = (selectedDay ? listOfDay : listOfToday).map((user) => ({
     coord: user.address.coord,
     name: user.name,
     phone: user.phone,
@@ -15,6 +15,8 @@ export default function VisitList({ listOfDay, selectedDay }) {
     email: user.email,
     date: user.requestDate,
   }));
+
+  const today =  moment().format("YYYY-MM-DD")
 
   const [orderedAddresses, setOrderedAddresses] = useState([]);
   const [error, setError] = useState(null);
@@ -93,7 +95,7 @@ export default function VisitList({ listOfDay, selectedDay }) {
         onClick={getOptimizedRoute}
         className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
       >
-        Export {selectedDay} route
+        Export {selectedDay ? selectedDay : "today's"} route
         <img src={Download_icon} className="h-7 inline align-middle" />
       </button>
     </div>
