@@ -13,8 +13,8 @@ function AdminDataTable() {
     doc.text(`Name: ${appointment.name}`, 10, 20);
     doc.text(`Email: ${appointment.email}`, 10, 30);
     doc.text(`Phone: ${appointment.phone}`, 10, 40);
-    doc.text(`Address: ${appointment.address}`, 10, 50);
-    doc.text(`Date: ${appointment.date}`, 10, 60);
+    doc.text(`Address: ${appointment.address.combinedAddress} ${appointment.address.zipcode}`, 10, 50);
+    doc.text(`Date: ${moment(appointment.requestDate).format("YYYY-MM-DD h:mm a")}`, 10, 60);
     doc.save(`${appointment.name}_appointment.pdf`);
   };
 
