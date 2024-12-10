@@ -25,12 +25,13 @@ export default function ShowMap({ appointmentsArr }) {
           gestureHandling={"greedy"}
           // disableDefaultUI={true}
         >
-          {appointmentsArr?.map((user) => (
+          {appointmentsArr?.map((user, index) => (
             <PlaceMarker
               isOpen={user.id == markerID}
               setMarkerID={setMarkerID}
               key={user.id}
               user={user}
+              index={index}
             />
           ))}
         </Map>
@@ -39,7 +40,7 @@ export default function ShowMap({ appointmentsArr }) {
   );
 }
 
-function PlaceMarker({ user, isOpen, setMarkerID }) {
+function PlaceMarker({ isOpen, setMarkerID, user, index }) {
   const [markerRef, marker] = useAdvancedMarkerRef();
   return (
     <>
@@ -50,7 +51,10 @@ function PlaceMarker({ user, isOpen, setMarkerID }) {
         key={user.id}
         title={"AdvancedMarker that opens an Infowindow when clicked."}
       >
-        {user.id <= 30 ? (
+        <Pin background={"#FBBC04"} glyphColor={"#000"} borderColor={"#000"}>
+          {index + 1}
+        </Pin>
+        {/* {user.id <= 30 ? (
           <Pin
             background={"#FBBC04"}
             glyphColor={"#000"}
@@ -58,7 +62,7 @@ function PlaceMarker({ user, isOpen, setMarkerID }) {
           />
         ) : (
           <Pin background={"purple"} glyphColor={"#000"} borderColor={"#000"} />
-        )}
+        )} */}
       </AdvancedMarker>
       {isOpen && (
         <InfoWindow
