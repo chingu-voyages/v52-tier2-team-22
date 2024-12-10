@@ -13,8 +13,8 @@ function AdminDataTable() {
     doc.text(`Name: ${appointment.name}`, 10, 20);
     doc.text(`Email: ${appointment.email}`, 10, 30);
     doc.text(`Phone: ${appointment.phone}`, 10, 40);
-    doc.text(`Address: ${appointment.address}`, 10, 50);
-    doc.text(`Date: ${appointment.date}`, 10, 60);
+    doc.text(`Address: ${appointment.address.combinedAddress} ${appointment.address.zipcode}`, 10, 50);
+    doc.text(`Date: ${moment(appointment.requestDate).format("YYYY-MM-DD h:mm a")}`, 10, 60);
     doc.save(`${appointment.name}_appointment.pdf`);
   };
 
@@ -22,12 +22,25 @@ function AdminDataTable() {
   const [showMap, setShowMap] = useState(true);
   const appointments = useSelector((state) => state.appointments.appointments);
   const [appointmentsArr, setAppointmentsArr] = useState(appointments);
+  const [listOfToday, setListOfToday] = useState([]);
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
 
   const statusState = ["pending", "confirmed", "canceled", "visited"];
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const today =  moment().format("YYYY-MM-DD")
+    const todayArr = filteringDay(appointmentsArr, today)
+    setListOfToday(todayArr)
+  }, []);
+
+  function filteringDay(arr, day) {
+    return arr
+      .filter((req) => moment(req.requestDate).format("YYYY-MM-DD") === day)
+      .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
+  }
 
   useEffect(() => {
     let filteredArr = [...appointments];
@@ -49,11 +62,11 @@ function AdminDataTable() {
         .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
     }
 
-    function filteringDay(arr, day) {
-      return arr
-        .filter((req) => moment(req.requestDate).format("YYYY-MM-DD") === day)
-        .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
-    }
+    // function filteringDay(arr, day) {
+    //   return arr
+    //     .filter((req) => moment(req.requestDate).format("YYYY-MM-DD") === day)
+    //     .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
+    // }
 
     if (selectedDay) filteredArr = filteringDay(filteredArr, selectedDay);
 
@@ -66,12 +79,13 @@ function AdminDataTable() {
     setAppointmentsArr(filteredArr);
   }, [selectedStatus, selectedDay]);
 
+
+
   const resetFilter = () => {
     setAppointmentsArr(appointments);
     setSelectedDay("");
     setSelectedStatus("");
   };
-  console.log(selectedDay);
   return (
     <>
       <h1 className="ml-8 text-3xl font-semibold pt-8">Welcome Admin</h1>

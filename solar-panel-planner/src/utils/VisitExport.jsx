@@ -3,6 +3,7 @@ import moment from "moment";
 import { jsPDF } from "jspdf";
 import DownloadIcon from "../assets/download-icon.png";
 
+
 export default function VisitList({ listOfDay, selectedDay }) {
   const exportList = listOfDay?.map((user) => ({
     coord: user.address.coord,
@@ -12,6 +13,7 @@ export default function VisitList({ listOfDay, selectedDay }) {
     email: user.email,
     date: user.requestDate,
   }));
+
   const startPoint = ({
     name: "Los Angeles City Hall",
     address:  "200 North Spring St",
