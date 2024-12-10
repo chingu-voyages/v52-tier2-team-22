@@ -15,15 +15,18 @@ export default function VisitList({ listOfDay, selectedDay }) {
     email: user.email,
     date: user.requestDate,
   }));
-
-  const [orderedAddresses, setOrderedAddresses] = useState([]);
-  const [error, setError] = useState(null);
+  const startPoint = ({
+    name: "Los Angeles City Hall",
+    address:  "200 North Spring St",
+    coord: {lat: 34.05396246411889,
+   lng: -118.24267476192357}
+    })
 
   const getOptimizedRoute = async () => {
     const directionsService = new window.google.maps.DirectionsService();
-    const origin = exportList[0].coord;
+    const origin = startPoint.coord;
     const destination = exportList[exportList.length - 1].coord;
-    const waypoints = exportList.slice(1, -1).map((address) => ({
+    const waypoints = exportList.slice(0, -1).map((address) => ({
       location: `${address.coord.lat},${address.coord.lng}`,
       stopover: true,
     }));
@@ -45,7 +48,7 @@ export default function VisitList({ listOfDay, selectedDay }) {
 
           // Rearrange addresses based on the optimized order
           const ordered = [
-            exportList[0], // Add the starting point
+            startPoint, // Add the starting point
             ...optimizedOrder.map((index) => exportList[index + 1]), // Adjust for slice(1, -1)
             exportList[exportList.length - 1], // Add the endpoint
           ];
@@ -63,14 +66,16 @@ export default function VisitList({ listOfDay, selectedDay }) {
     let y = 16;
     const lineHeight = 5;
     const pageWidth = doc.internal.pageSize.getWidth();
-    const maxLinesPerPage = 40;
 
     doc.setFontSize(14);
     doc.text(`Optimized Route Addresses for ${selectedDay}`, 10, y);
     y += 10;
 
     doc.setFontSize(10);
+    doc.text("1. Los Angeles City Hall", 10, y);
+    y += 10;
     orderedAddresses.forEach((address, index) => {
+      if (index != 0){
       const details = `${index + 1}. ${address.name}, 
       Time: ${moment(address.date).format("h:mm a")}, 
       Address: ${address.address}, 
@@ -82,7 +87,7 @@ export default function VisitList({ listOfDay, selectedDay }) {
         y += lineHeight;
       });
       y += 4;
-    });
+    }});
 
     doc.save("optimized_route.pdf");
   };
@@ -101,9 +106,3 @@ export default function VisitList({ listOfDay, selectedDay }) {
 }
 
 
-// {
-//   Los Angeles City Hall
-//   200 North Spring St.
-//   Los Angeles, CA 90012
-//   coords: 34.05396246411889, -118.24267476192357
-//   }
