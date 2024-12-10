@@ -39,10 +39,7 @@ function ResidentForm({ setIsRequested }) {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    if (
-      !address.combinedAddress ||
-      residentFormData.requestDate === ""
-    ) {
+    if (!address.combinedAddress || residentFormData.requestDate === "") {
       return (
         setModalContent({
           icon: RxCross2,
@@ -85,7 +82,7 @@ function ResidentForm({ setIsRequested }) {
   return (
     <section className="py-4">
       <h2 className="mt-8 text-center text-3xl font-semibold">
-        Book an Appointment
+        Send a Request
       </h2>
 
       <form
@@ -178,7 +175,7 @@ function ResidentForm({ setIsRequested }) {
               Send Request
             </button>
             <button
-              type="button" 
+              type="button"
               onClick={() => setResidentFormData(defaultValue)}
               className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
             >

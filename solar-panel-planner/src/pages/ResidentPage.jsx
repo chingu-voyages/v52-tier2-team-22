@@ -31,7 +31,7 @@ function ResidentPage() {
       <ToastContainer />
       <ResidentForm setIsRequested={setIsRequested} />
       <h3 className="text-center text-3xl font-semibold">
-        Your Previous Requests
+        Your Request
       </h3>
       {request ? (
         <ResidentSubmitedForms
