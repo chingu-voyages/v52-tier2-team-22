@@ -10,7 +10,7 @@ export const userDb = [
       coord: { lat: 34.07878527307496, lng: -118.36455264458236 },
     },
     requestDate: "2024-12-25T11:30:00.000Z",
-    status: "visited",
+    status: "confirmed",
     sentDate: "2024-11-25T17:55:00.000Z",
   },
   {
@@ -39,7 +39,7 @@ export const userDb = [
     },
     requestDate: "2024-12-23T16:30:00.000Z",
     status: "canceled",
-    sentDate: "2024-11-27T16:30:00.000Z",
+    sentDate: "2024-11-25T16:30:00.000Z",
   },
   {
     id: "4",
@@ -206,7 +206,7 @@ export const userDb = [
       coord: { lat: 34.050067800176244, lng: -118.46499759922602 },
     },
     requestDate: "2024-12-25T15:30:00.000Z",
-    status: "pending",
+    status: "confirmed",
     sentDate: "2024-11-29T15:30:00.000Z",
   },
   {
@@ -248,7 +248,7 @@ export const userDb = [
       coord: { lat: 34.125963107138645, lng: -118.20541631087065 },
     },
     requestDate: "2024-12-30T16:00:00.000Z",
-    status: "pending",
+    status: "visited",
     sentDate: "2024-11-24T16:00:00.000Z",
   },
   {
@@ -276,7 +276,7 @@ export const userDb = [
       coord: { lat: 34.299884350599235, lng: -118.46555330411536 },
     },
     requestDate: "2024-12-25T11:00:00.000Z",
-    status: "pending",
+    status: "confirmed",
     sentDate: "2024-11-30T11:00:00.000Z",
   },
   {
@@ -290,7 +290,7 @@ export const userDb = [
       coord: { lat: 34.25499309760878, lng: -118.45811131945818 },
     },
     requestDate: "2024-12-23T16:30:00.000Z",
-    status: "pending",
+    status: "visited",
     sentDate: "2024-11-27T16:30:00.000Z",
   },
   {
@@ -318,7 +318,7 @@ export const userDb = [
       coord: { lat: 34.03902926266814, lng: -118.44944022252272 },
     },
     requestDate: "2024-12-23T11:30:00.000Z",
-    status: "pending",
+    status: "visited",
     sentDate: "2024-11-30T11:30:00.000Z",
   },
   {
@@ -332,7 +332,7 @@ export const userDb = [
       coord: { lat: 33.93739569665949, lng: -118.24813987529689 },
     },
     requestDate: "2024-12-25T12:00:00.000Z",
-    status: "pending",
+    status: "confirmed",
     sentDate: "2024-11-25T12:00:00.000Z",
   },
   {

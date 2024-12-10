@@ -124,6 +124,8 @@ function AdminDataTable() {
           <table className="w-full border-collapse bg-background rounded-b-lg">
             <thead>
               <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
+                <th className="px-6 py-3">No.</th>
+
                 <th className="px-6 py-3 flex w-fit items-center">
                   Status
                   <select
@@ -164,6 +166,9 @@ function AdminDataTable() {
                   }`}
                 >
                   <td className="px-6 py-3 border-t border-gray-200">
+                    {index + 1}
+                  </td>
+                  <td className="px-6 py-3 border-t border-gray-200">
                     <select
                       defaultValue={appointment.status}
                       onChange={(e) =>
@@ -173,8 +178,8 @@ function AdminDataTable() {
                             status: e.target.value,
                           })
                         )
-                      } 
-                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 "
+                      }
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 "
                     >
                       {statusState.map((status) => (
                         <option key={status} value={status}>
