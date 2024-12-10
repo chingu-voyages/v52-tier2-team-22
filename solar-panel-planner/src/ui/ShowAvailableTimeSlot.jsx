@@ -60,10 +60,10 @@ export default function ShowAvailableTimeSlot({ setResidentFormData }) {
     <>
       <ScheduleMeeting
         borderRadius={50}
-        primaryColor="#3f5b85"
+        primaryColor="#7bc86a"
         eventDurationInMinutes={60}
         availableTimeslots={availableTimeslots}
-        className=""
+        className={{ boxShadow: 'none' }}
         onStartTimeSelect={handleDateChange}
         format_selectedDateDayTitleFormatString="ccc, LLLL do"
       />

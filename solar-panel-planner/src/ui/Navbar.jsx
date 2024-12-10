@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="bg-navbarBackground py-1 px-8 text-grey-800 shadow-md z-50 relative">
+    <div className="bg-navbarBackground py-1 px-8 text-grey-800 shadow-sm z-50 relative">
       <div className="flex items-center justify-between">
         <Link to="/">
           <img src={Logo} alt="logo" className="h-12" />

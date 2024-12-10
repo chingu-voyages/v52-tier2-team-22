@@ -89,22 +89,8 @@ function AdminDataTable() {
   return (
     <>
       <h1 className="ml-8 text-3xl font-semibold pt-8">Welcome Admin</h1>
-      <VisitExport listOfDay={appointmentsArr} selectedDay={selectedDay} listOfToday={listOfToday}/>
-      <div className="flex flex-col overflow-auto rounded-lg shadow-md m-4">
-        <div className="flex items-center justify-between px-6 py-4 bg-secondaryGreen text-white text-center rounded-t-lg">
-          <h2 className="text-lg text-black text-center font-semibold">
-            All Appointment Requests
-          </h2>
-          <button
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
-            onClick={resetFilter}
-          >
-            Reset filters
-          </button>
-        </div>
-
-        {/* Buttons to toggle between table, map, or both */}
-        <div className="flex justify-start gap-6 px-6 py-4 bg-white">
+      <div className="flex justify-between px-8 py-4">
+      <div className="flex justify-start gap-6">
           <button
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
             onClick={() => {
@@ -133,8 +119,26 @@ function AdminDataTable() {
             Map View
           </button>
         </div>
+        <VisitExport listOfDay={appointmentsArr} selectedDay={selectedDay} />
+        </div>
 
         {showTable && (
+      <div className="flex flex-col overflow-auto rounded-lg shadow-md m-4">
+        <div className="flex items-center justify-between px-6 py-4 bg-primaryGreen text-white text-center rounded-t-lg">
+          <h2 className="text-lg text-white text-center font-semibold">
+            All Appointment Requests
+          </h2>
+          <button
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+            onClick={resetFilter}
+          >
+            Reset filters
+          </button>
+        </div>
+
+        
+
+        
           <table className="w-full border-collapse bg-background rounded-b-lg">
             <thead>
               <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
@@ -233,6 +237,7 @@ function AdminDataTable() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
 
         {showMap && (
@@ -240,7 +245,7 @@ function AdminDataTable() {
             <ShowMap appointmentsArr={appointmentsArr} />
           </div>
         )}
-      </div>
+      
     </>
   );
 }
