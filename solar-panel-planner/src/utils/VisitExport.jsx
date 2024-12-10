@@ -88,7 +88,7 @@ export default function VisitList({ listOfDay, selectedDay }) {
   };
 
   return (
-    <div className="p-8">
+    <div className="">
       <button
         onClick={getOptimizedRoute}
         className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
@@ -99,3 +99,11 @@ export default function VisitList({ listOfDay, selectedDay }) {
     </div>
   );
 }
+
+
+// {
+//   Los Angeles City Hall
+//   200 North Spring St.
+//   Los Angeles, CA 90012
+//   coords: 34.05396246411889, -118.24267476192357
+//   }
