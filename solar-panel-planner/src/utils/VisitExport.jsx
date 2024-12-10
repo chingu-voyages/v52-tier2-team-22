@@ -1,11 +1,8 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-// import { useJsApiLoader } from "@react-google-maps/api";
 import moment from "moment";
 import { jsPDF } from "jspdf";
-import Download_icon from "../assets/download_icon.png";
+import DownloadIcon from "../assets/download-icon.png";
 
-const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 export default function VisitList({ listOfDay, selectedDay }) {
   const exportList = listOfDay?.map((user) => ({
     coord: user.address.coord,
@@ -76,11 +73,7 @@ export default function VisitList({ listOfDay, selectedDay }) {
     y += 10;
     orderedAddresses.forEach((address, index) => {
       if (index != 0){
-      const details = `${index + 1}. ${address.name}, 
-      Time: ${moment(address.date).format("h:mm a")}, 
-      Address: ${address.address}, 
-      Phone: ${address.phone}, 
-      Email: ${address.email}`;
+      const details = `${index + 1}. ${address.name}, Time: ${moment(address.date).format("h:mm a")}, Address: ${address.address}, Phone: ${address.phone}, Email: ${address.email}`;
       const splitText = doc.splitTextToSize(details, pageWidth - 10);
       splitText.forEach((line) => {
         doc.text(line, 10, y);
@@ -98,8 +91,8 @@ export default function VisitList({ listOfDay, selectedDay }) {
         onClick={getOptimizedRoute}
         className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
       >
-        Export {selectedDay} route
-        <img src={Download_icon} className="h-7 inline align-middle" />
+        Export {selectedDay} route 
+        <img src={DownloadIcon} className="h-5 pl-2 inline mb-1" />
       </button>
     </div>
   );

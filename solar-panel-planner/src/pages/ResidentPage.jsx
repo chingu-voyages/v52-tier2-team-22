@@ -39,7 +39,7 @@ function ResidentPage() {
           handleCancelRequest={handleCancelRequest}
         />
       ) : (
-        <p className="text-center pb-10">No request yet</p>
+        <p className="text-center p-20">No request yet</p>
       )}
     </div>
   );

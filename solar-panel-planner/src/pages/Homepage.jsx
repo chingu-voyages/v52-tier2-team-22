@@ -48,7 +48,7 @@ function Homepage() {
         </motion.div>
       </div>
 
-      <div className="flex flex-col gap-16 px-6 py-12 bg-background md:px-20">
+      <div className="flex flex-col gap-[120px] px-8 lg: py-[120px] bg-background md:px-[50px] lg:px-[100px]">
         <motion.div
           initial={{
             x: 70,
@@ -65,7 +65,7 @@ function Homepage() {
           viewport={{ once: true }}
           className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6"
         >
-          <div className="text-center md:text-left max-w-md">
+          <div className="text-center w-full lg:w-[590px] md:w-[400px] md:text-left">
             <h2 className="text-4xl font-semibold text-gray-800 mb-8">
               Request Your Solar Panel Evaluation
             </h2>
@@ -78,7 +78,7 @@ function Homepage() {
           <img
             src={Img1}
             alt="Send a Request"
-            className="w-full md:w-2/5 rounded-lg shadow-xl"
+            className="w-full md:w-[320px] lg:w-[450px] rounded-lg shadow-xl"
           />
         </motion.div>
 
@@ -101,10 +101,10 @@ function Homepage() {
           <img
             src={Img2}
             alt="Evaluation"
-            className="w-full md:w-2/5 rounded-lg shadow-xl"
+            className="w-full md:w-[320px] lg:w-[450px] rounded-lg shadow-xl"
           />
-          <div className="text-center md:text-left max-w-md">
-            <h2 className="text-4xl font-semibold text-gray-800 mb-4">
+          <div className="text-center w-full lg:w-[590px] md:w-[400px] md:text-left">
+            <h2 className="text-4xl font-semibold text-gray-800 mb-8">
               Solar Panel Evaluation
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
@@ -130,8 +130,8 @@ function Homepage() {
           viewport={{ once: true }}
           className="flex flex-col-reverse md:flex-row items-center md:justify-between gap-6 "
         >
-          <div className="text-center md:text-left max-w-md">
-            <h2 className="text-4xl font-semibold text-gray-800 mb-4">
+          <div className="text-center w-full lg:w-[590px] md:w-[400px] md:text-left">
+            <h2 className="text-4xl font-semibold text-gray-800 mb-8">
               Solar Panel Installation
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
@@ -144,10 +144,14 @@ function Homepage() {
           <img
             src={Img3}
             alt="Installation"
-            className="w-full md:w-2/5 rounded-lg shadow-xl"
+            className="w-full md:w-[320px] lg:w-[450px] rounded-lg shadow-xl"
           />
         </motion.div>
       </div>
+      <h2 className="text-4xl font-semibold text-center text-gray-800">
+              Make an appointment now
+            </h2>
+
       <div className="flex justify-center py-12">
         <Link
           to="/residentpage"
