@@ -71,11 +71,11 @@ function AdminDataTable() {
     setSelectedDay("");
     setSelectedStatus("");
   };
-
+  console.log(selectedDay);
   return (
     <>
       <h1 className="ml-8 text-3xl font-semibold pt-8">Welcome Admin</h1>
-      <VisitExport />
+      <VisitExport listOfDay={appointmentsArr} selectedDay={selectedDay} />
       <div className="flex flex-col overflow-auto rounded-lg shadow-md m-4">
         <div className="flex items-center justify-between px-6 py-4 bg-secondaryGreen text-white text-center rounded-t-lg">
           <h2 className="text-lg text-black text-center font-semibold">
