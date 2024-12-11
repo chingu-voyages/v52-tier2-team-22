@@ -1,23 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import ShowMap from "../ui/ShowMap.jsx";
-import { jsPDF } from "jspdf";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { updateAppointmentStatus } from "../utils/appointmentsSlice";
 import VisitExport from "../utils/VisitExport.jsx";
+import { exportIndividualPDF } from "../helperFunction/exportingPDF.jsx";
+import DownloadIcon from "../assets/download-icon.png";
 
 function AdminDataTable() {
-  const exportToPDF = (appointment) => {
-    const doc = new jsPDF();
-    doc.text(`Appointment Details`, 10, 10);
-    doc.text(`Name: ${appointment.name}`, 10, 20);
-    doc.text(`Email: ${appointment.email}`, 10, 30);
-    doc.text(`Phone: ${appointment.phone}`, 10, 40);
-    doc.text(`Address: ${appointment.address.combinedAddress} ${appointment.address.zipcode}`, 10, 50);
-    doc.text(`Date: ${moment(appointment.requestDate).format("YYYY-MM-DD h:mm a")}`, 10, 60);
-    doc.save(`${appointment.name}_appointment.pdf`);
-  };
-
   const [showTable, setShowTable] = useState(true);
   const [showMap, setShowMap] = useState(true);
   const appointments = useSelector((state) => state.appointments.appointments);
@@ -31,9 +21,9 @@ function AdminDataTable() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const today =  moment().format("YYYY-MM-DD")
-    const todayArr = filteringDay(appointmentsArr, today)
-    setListOfToday(todayArr)
+    const today = moment().format("YYYY-MM-DD");
+    const todayArr = filteringDay(appointmentsArr, today);
+    setListOfToday(todayArr);
   }, []);
 
   function filteringDay(arr, day) {
@@ -62,12 +52,6 @@ function AdminDataTable() {
         .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
     }
 
-    // function filteringDay(arr, day) {
-    //   return arr
-    //     .filter((req) => moment(req.requestDate).format("YYYY-MM-DD") === day)
-    //     .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
-    // }
-
     if (selectedDay) filteredArr = filteringDay(filteredArr, selectedDay);
 
     if (selectedStatus || selectedDay) {
@@ -79,18 +63,17 @@ function AdminDataTable() {
     setAppointmentsArr(filteredArr);
   }, [selectedStatus, selectedDay]);
 
-
-
   const resetFilter = () => {
     setAppointmentsArr(appointments);
     setSelectedDay("");
     setSelectedStatus("");
   };
+
   return (
     <>
       <h1 className="ml-8 text-3xl font-semibold pt-8">Welcome Admin</h1>
       <div className="flex justify-between px-8 py-4">
-      <div className="flex justify-start gap-6">
+        <div className="flex justify-start gap-6">
           <button
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
             onClick={() => {
@@ -119,26 +102,27 @@ function AdminDataTable() {
             Map View
           </button>
         </div>
-        <VisitExport listOfDay={appointmentsArr} selectedDay={selectedDay} />
-        </div>
+        <VisitExport
+          listOfDay={appointmentsArr}
+          selectedDay={selectedDay}
+          listOfToday={listOfToday}
+        />
+      </div>
 
-        {showTable && (
-      <div className="flex flex-col overflow-auto rounded-lg shadow-md m-4">
-        <div className="flex items-center justify-between px-6 py-4 bg-primaryGreen text-white text-center rounded-t-lg">
-          <h2 className="text-lg text-white text-center font-semibold">
-            All Appointment Requests
-          </h2>
-          <button
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
-            onClick={resetFilter}
-          >
-            Reset filters
-          </button>
-        </div>
+      {showTable && (
+        <div className="flex flex-col overflow-auto rounded-lg shadow-md m-4">
+          <div className="flex items-center justify-between px-6 py-4 bg-primaryGreen text-white text-center rounded-t-lg">
+            <h2 className="text-lg text-white text-center font-semibold">
+              All Appointment Requests
+            </h2>
+            <button
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+              onClick={resetFilter}
+            >
+              Reset filters
+            </button>
+          </div>
 
-        
-
-        
           <table className="w-full border-collapse bg-background rounded-b-lg">
             <thead>
               <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
@@ -227,25 +211,25 @@ function AdminDataTable() {
                   </td>
                   <td className="px-6 py-3 border-t border-gray-200">
                     <button
-                      onClick={() => exportToPDF(appointment)}
+                      onClick={() => exportIndividualPDF(appointment)}
                       className="px-4 py-2 bg-primaryYellow transition rounded-md hover:bg-secondaryYellow"
                     >
-                      Export PDF
+                      PDF
+                      <img src={DownloadIcon} className="h-4 inline" />
                     </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          </div>
-        )}
+        </div>
+      )}
 
-        {showMap && (
-          <div className="p-6">
-            <ShowMap appointmentsArr={appointmentsArr} />
-          </div>
-        )}
-      
+      {showMap && (
+        <div className="p-6">
+          <ShowMap appointmentsArr={appointmentsArr} />
+        </div>
+      )}
     </>
   );
 }

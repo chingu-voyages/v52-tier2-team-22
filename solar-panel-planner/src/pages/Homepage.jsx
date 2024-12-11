@@ -149,8 +149,8 @@ function Homepage() {
         </motion.div>
       </div>
       <h2 className="text-4xl font-semibold text-center text-gray-800">
-              Make an appointment now
-            </h2>
+        Make an appointment now
+      </h2>
 
       <div className="flex justify-center py-12">
         <Link

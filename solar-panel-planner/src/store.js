@@ -6,6 +6,7 @@ import { loadState } from "./utils/localStorageUtils";
 const requestsLocalStorage = loadState("requests");
 const myRequestsLocalStorage = loadState("myRequest");
 const persistedState = setPersistedState();
+
 function setPersistedState() {
   if (requestsLocalStorage) return requestsLocalStorage;
   if (myRequestsLocalStorage && !requestsLocalStorage)

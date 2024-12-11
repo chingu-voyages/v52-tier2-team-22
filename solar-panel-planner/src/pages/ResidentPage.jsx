@@ -13,7 +13,7 @@ function ResidentPage() {
   useEffect(() => {
     setRequest(loadState("myRequest"));
   }, [isRequested]);
-  
+
   const dispatch = useDispatch();
 
   const handleCancelRequest = (id) => {
@@ -23,15 +23,11 @@ function ResidentPage() {
     setIsRequested(false);
   };
 
-  
-
   return (
     <div className="w-full bg-background">
       <ToastContainer />
       <ResidentForm setIsRequested={setIsRequested} />
-      <h3 className="text-center text-3xl font-semibold">
-        Your Request
-      </h3>
+      <h3 className="text-center text-3xl font-semibold">Your Request</h3>
       {request ? (
         <ResidentSubmitedForms
           request={request}
