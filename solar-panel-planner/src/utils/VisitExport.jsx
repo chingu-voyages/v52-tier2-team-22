@@ -24,7 +24,7 @@ export default function VisitList({ listOfDay, selectedDay }) {
     const directionsService = new window.google.maps.DirectionsService();
     const origin = startPoint.coord;
     const destination = exportList[exportList.length - 1].coord;
-    const waypoints = exportList.slice(8, -1).map((address) => ({
+    const waypoints = exportList.slice(0, -1).map((address) => ({
       location: `${address.coord.lat},${address.coord.lng}`,
       stopover: true,
     }));
