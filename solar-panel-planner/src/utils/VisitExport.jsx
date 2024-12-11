@@ -1,4 +1,3 @@
-import { useState } from "react";
 import moment from "moment";
 import { jsPDF } from "jspdf";
 import DownloadIcon from "../assets/download-icon.png";
@@ -25,7 +24,7 @@ export default function VisitList({ listOfDay, selectedDay }) {
     const directionsService = new window.google.maps.DirectionsService();
     const origin = startPoint.coord;
     const destination = exportList[exportList.length - 1].coord;
-    const waypoints = exportList.slice(0, -1).map((address) => ({
+    const waypoints = exportList.slice(8, -1).map((address) => ({
       location: `${address.coord.lat},${address.coord.lng}`,
       stopover: true,
     }));
@@ -62,27 +61,42 @@ export default function VisitList({ listOfDay, selectedDay }) {
 
   const exportToPDF = (orderedAddresses) => {
     const doc = new jsPDF();
-    let y = 16;
-    const lineHeight = 5;
+    const pageHeight = doc.internal.pageSize.getHeight(); 
     const pageWidth = doc.internal.pageSize.getWidth();
+    const lineHeight = 5;
+    const margin = 10;
+    const contentWidth = pageWidth - 2 * margin;
 
+    let y = 16; 
     doc.setFontSize(14);
-    doc.text(`Optimized Route Addresses for ${selectedDay}`, 10, y);
+    doc.text(`Optimized Route Addresses for ${selectedDay}`, margin, y);
     y += 10;
 
     doc.setFontSize(10);
-    doc.text("1. Los Angeles City Hall", 10, y);
+    doc.text("1. Los Angeles City Hall", margin, y);
     y += 10;
+
     orderedAddresses.forEach((address, index) => {
-      if (index != 0){
-      const details = `${index + 1}. ${address.name}, Time: ${moment(address.date).format("h:mm a")}, Address: ${address.address}, Phone: ${address.phone}, Email: ${address.email}`;
-      const splitText = doc.splitTextToSize(details, pageWidth - 10);
-      splitText.forEach((line) => {
-        doc.text(line, 10, y);
-        y += lineHeight;
-      });
-      y += 4;
-    }});
+        if (index !== 0) {
+            const details = `${index + 1}. ${address.name}, 
+            Time: ${moment(address.date).format("h:mm a")}, 
+            Address: ${address.address}, 
+            Phone: ${address.phone}, 
+            Email: ${address.email}`;
+            const splitText = doc.splitTextToSize(details, contentWidth);
+
+            splitText.forEach((line) => {
+                if (y + lineHeight > pageHeight - margin) {
+                    doc.addPage(); 
+                    y = margin;
+                }
+                doc.text(line, margin, y);
+                y += lineHeight;
+            });
+
+            y += 4;
+        }
+    });
 
     doc.save("optimized_route.pdf");
   };
