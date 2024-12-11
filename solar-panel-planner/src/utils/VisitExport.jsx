@@ -16,8 +16,6 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
     date: user.requestDate,
   }));
 
-  const today =  moment().format("YYYY-MM-DD")
-
   const [orderedAddresses, setOrderedAddresses] = useState([]);
   const [error, setError] = useState(null);
 
