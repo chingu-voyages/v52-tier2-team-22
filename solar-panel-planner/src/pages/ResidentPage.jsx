@@ -4,8 +4,7 @@ import ResidentSubmitedForms from "../ui/ResidentSubmitedForms";
 import { useDispatch } from "react-redux";
 import { loadState } from "../utils/localStorageUtils";
 import { deleteAppointment } from "../utils/appointmentsSlice";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 function ResidentPage() {
   const [request, setRequest] = useState("");
@@ -39,7 +38,7 @@ function ResidentPage() {
           handleCancelRequest={handleCancelRequest}
         />
       ) : (
-        <p className="text-center pb-10">No request yet</p>
+        <p className="text-center p-20">No request yet</p>
       )}
     </div>
   );
