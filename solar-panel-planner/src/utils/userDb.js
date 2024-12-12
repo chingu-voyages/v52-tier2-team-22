@@ -1,6 +1,6 @@
 export const userDb = [
   {
-    id: "1",
+    id: 1,
     name: "Raza Mcgee",
     email: "raza.mcgee@comcast.net",
     phone: "2130983849",
@@ -14,7 +14,7 @@ export const userDb = [
     sentDate: "2024-11-25T17:55:00.000Z",
   },
   {
-    id: "2",
+    id: 2,
     name: "Aaliyah Lee",
     email: "fupy7uoncq77@msn.com",
     phone: "2134850294",
@@ -28,7 +28,7 @@ export const userDb = [
     sentDate: "2024-11-26T10:30:00.000Z",
   },
   {
-    id: "3",
+    id: 3,
     name: "Saif Barron",
     email: "saif.barron@rediffmail.com",
     phone: "2135937549",
@@ -42,7 +42,7 @@ export const userDb = [
     sentDate: "2024-11-25T16:30:00.000Z",
   },
   {
-    id: "4",
+    id: 4,
     name: "Sophie Williams",
     email: "5be52f8iuspfo@googlemail.com",
     phone: "3230459385",
@@ -56,7 +56,7 @@ export const userDb = [
     sentDate: "2024-11-25T10:00:00.000Z",
   },
   {
-    id: "5",
+    id: 5,
     name: "Ryszard Terrell",
     email: "ryszard.terrell@outlook.com",
     phone: "2137597049",
@@ -70,7 +70,7 @@ export const userDb = [
     sentDate: "2024-11-26T12:30:00.000Z",
   },
   {
-    id: "6",
+    id: 6,
     name: "Emery Miller",
     email: "5u1t9f092rq7xuud8z@aol.com",
     phone: "3230569847",
@@ -84,7 +84,7 @@ export const userDb = [
     sentDate: "2024-11-27T11:30:00.000Z",
   },
   {
-    id: "7",
+    id: 7,
     name: "Bharath Lewis",
     email: "bharath.lewis@outlook.com",
     phone: "2130958620",
@@ -98,7 +98,7 @@ export const userDb = [
     sentDate: "2024-11-28T15:30:00.000Z",
   },
   {
-    id: "8",
+    id: 8,
     name: "Ariana Sanders",
     email: "7qzp6tpfj8s@yahoo.com",
     phone: "2130694857",
@@ -112,7 +112,7 @@ export const userDb = [
     sentDate: "2024-11-28T16:00:00.000Z",
   },
   {
-    id: "9",
+    id: 9,
     name: "Morris Brennan",
     email: "morris.brennan@gmail.com",
     phone: "3230961057",
@@ -126,7 +126,7 @@ export const userDb = [
     sentDate: "2024-11-29T09:00:00.000Z",
   },
   {
-    id: "10",
+    id: 10,
     name: "Sofia Walker",
     email: "scnqdhrjuoq4rhrfvsn5@ymail.com",
     phone: "2130595629",
@@ -140,7 +140,7 @@ export const userDb = [
     sentDate: "2024-11-29T14:00:00.000Z",
   },
   {
-    id: "11",
+    id: 11,
     name: "Tyrnan Richards",
     email: "tyrnan.richards@hotmail.com",
     phone: "3239586072",
@@ -154,7 +154,7 @@ export const userDb = [
     sentDate: "2024-11-25T12:30:00.000Z",
   },
   {
-    id: "12",
+    id: 12,
     name: "Emma Brown",
     email: "o825c7a794hbe91k4@googlemail.com",
     phone: "2134069486",
@@ -168,7 +168,7 @@ export const userDb = [
     sentDate: "2024-11-30T10:00:00.000Z",
   },
   {
-    id: "13",
+    id: 13,
     name: "Raza Dickerson",
     email: "raza.dickerson@gmail.com",
     phone: "2132546509",
@@ -182,7 +182,7 @@ export const userDb = [
     sentDate: "2024-11-27T08:30:00.000Z",
   },
   {
-    id: "14",
+    id: 14,
     name: "Ayla Campbell",
     email: "g1rjwqdh6u2r9cst@outlook.com",
     phone: "3230596827",
@@ -196,7 +196,7 @@ export const userDb = [
     sentDate: "2024-11-26T09:00:00.000Z",
   },
   {
-    id: "15",
+    id: 15,
     name: "Giancarlo Valencia",
     email: "giancarlo.valencia@ymail.com",
     phone: "2130596837",
@@ -210,7 +210,7 @@ export const userDb = [
     sentDate: "2024-11-29T15:30:00.000Z",
   },
   {
-    id: "16",
+    id: 16,
     name: "Ricco Wiley",
     email: "ricco.wiley@googlemail.com",
     phone: "2130593849",
@@ -224,7 +224,7 @@ export const userDb = [
     sentDate: "2024-11-30T16:30:00.000Z",
   },
   {
-    id: "17",
+    id: 17,
     name: "Isaac Kim",
     email: "lmin8tuqcu1fyzy@hotmail.com",
     phone: "2130950296",
@@ -238,7 +238,7 @@ export const userDb = [
     sentDate: "2024-11-28T11:30:00.000Z",
   },
   {
-    id: "18",
+    id: 18,
     name: "William Castillo",
     email: "abv6w82mvqud1oqfmp9@outlook.com",
     phone: "3234650691",
@@ -252,7 +252,7 @@ export const userDb = [
     sentDate: "2024-11-24T16:00:00.000Z",
   },
   {
-    id: "19",
+    id: 19,
     name: "Taegan Stephens",
     email: "taegan.stephens@googlemail.com",
     phone: "2130693849",
@@ -266,7 +266,7 @@ export const userDb = [
     sentDate: "2024-11-27T08:00:00.000Z",
   },
   {
-    id: "20",
+    id: 20,
     name: "Conrad Long",
     email: "conrad.long@aol.com",
     phone: "2130596820",
@@ -280,7 +280,7 @@ export const userDb = [
     sentDate: "2024-11-30T11:00:00.000Z",
   },
   {
-    id: "21",
+    id: 21,
     name: "Connell Craft",
     email: "connell.craft@rediffmail.com",
     phone: "2130596847",
@@ -294,7 +294,7 @@ export const userDb = [
     sentDate: "2024-11-27T16:30:00.000Z",
   },
   {
-    id: "22",
+    id: 22,
     name: "Alexander Marks",
     email: "alexander.marks@comcast.net",
     phone: "2134706798",
@@ -308,7 +308,7 @@ export const userDb = [
     sentDate: "2024-11-28T15:30:00.000Z",
   },
   {
-    id: "23",
+    id: 23,
     name: "Timothy Boyle",
     email: "timothy.boyle@ymail.com",
     phone: "3230693846",
@@ -322,7 +322,7 @@ export const userDb = [
     sentDate: "2024-11-30T11:30:00.000Z",
   },
   {
-    id: "24",
+    id: 24,
     name: "Alfie Frost",
     email: "alfie.frost@hotmail.com",
     phone: "2130968472",
@@ -336,7 +336,7 @@ export const userDb = [
     sentDate: "2024-11-25T12:00:00.000Z",
   },
   {
-    id: "25",
+    id: 25,
     name: "Joss Macdonald",
     email: "joss.macdonald@msn.com",
     phone: "2130691204",
@@ -350,7 +350,7 @@ export const userDb = [
     sentDate: "2024-11-26T15:00:00.000Z",
   },
   {
-    id: "26",
+    id: 26,
     name: "Maria Morris",
     email: "k05scxtdcamyo@msn.com",
     phone: "2130963842",
@@ -364,7 +364,7 @@ export const userDb = [
     sentDate: "2024-11-28T11:00:00.000Z",
   },
   {
-    id: "27",
+    id: 27,
     name: "Nova Jones",
     email: "vyb5izaksce@yahoo.com",
     phone: "2130958263",
@@ -378,7 +378,7 @@ export const userDb = [
     sentDate: "2024-11-24T16:00:00.000Z",
   },
   {
-    id: "28",
+    id: 28,
     name: "Ivy Chavez",
     email: "i9x15z3lrsu6o@comcast.net",
     phone: "3230586934",
@@ -392,7 +392,7 @@ export const userDb = [
     sentDate: "2024-11-24T09:30:00.000Z",
   },
   {
-    id: "29",
+    id: 29,
     name: "Autumn Long",
     email: "zwyg9n545lblp@gmail.com",
     phone: "3230593816",
@@ -406,7 +406,7 @@ export const userDb = [
     sentDate: "2024-11-29T13:00:00.000Z",
   },
   {
-    id: "30",
+    id: 30,
     name: "Naomi Anderson",
     email: "hj7rsi00xwf46ox@ymail.com",
     phone: "2130593855",
