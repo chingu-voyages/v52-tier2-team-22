@@ -54,15 +54,6 @@ function PlaceMarker({ isOpen, setMarkerID, user, index }) {
         <Pin background={"#FBBC04"} glyphColor={"#000"} borderColor={"#000"}>
           {index + 1}
         </Pin>
-        {/* {user.id <= 30 ? (
-          <Pin
-            background={"#FBBC04"}
-            glyphColor={"#000"}
-            borderColor={"#000"}
-          />
-        ) : (
-          <Pin background={"purple"} glyphColor={"#000"} borderColor={"#000"} />
-        )} */}
       </AdvancedMarker>
       {isOpen && (
         <InfoWindow

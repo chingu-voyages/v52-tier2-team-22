@@ -62,10 +62,10 @@ function AdminForm({ setIsLoggedIn }) {
         </article>
 
         {/* Buttons */}
-        <article className="flex gap-4 mt-4 items-center">
+        <article className="flex gap-4 mt-4 items-center justify-between">
           <button
             type="submit"
-            className="bg-primaryGreen hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200"
+            className="bg-primaryGreen hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-200 w-2/3"
           >
             Login
           </button>
@@ -76,9 +76,9 @@ function AdminForm({ setIsLoggedIn }) {
               })
             }
             type="button"
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 w-1/4"
           >
-            Cancel
+            Clear
           </button>
         </article>
       </form>

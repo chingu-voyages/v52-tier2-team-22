@@ -161,25 +161,25 @@ function ResidentForm({ setIsRequested }) {
               htmlFor="street_address"
               className="block text-gray-700 text-sm font-bold"
             >
-              Street Address
+              Address
             </label>
             <AddressAutoComplete setAddress={setAddress} />
           </article>
 
           {/* Buttons */}
-          <article className="flex items-start gap-4 mt-8 ">
+          <article className="flex items-start gap-4 mt-8 justify-between">
             <button
               type="submit" //submit the form
-              className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded "
+              className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded w-2/3"
             >
               Send Request
             </button>
             <button
               type="button"
               onClick={() => setResidentFormData(defaultValue)}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 w-1/4"
             >
-              Cancel
+              Clear
             </button>
           </article>
         </div>
