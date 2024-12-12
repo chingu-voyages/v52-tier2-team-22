@@ -22,7 +22,12 @@ export const appointmentsSlice = createSlice({
     updateAppointmentStatus: (state, action) => {
       const { id, status } = action.payload;
       state.appointments = state.appointments.map((req) => {
-        if (req.id === id) return { ...req, status: status };
+        if (id <= 30 && req.id === id) return { ...req, status: status };
+
+        if (!id <= 30 && req.id === id) {
+          saveState({ ...req, status: status }, "myRequest");
+          return { ...req, status: status };
+        }
         return { ...req };
       });
       saveState(
