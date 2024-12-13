@@ -13,7 +13,7 @@ function AdminDataTable() {
   const appointments = useSelector((state) => state.appointments.appointments);
   const [appointmentsArr, setAppointmentsArr] = useState(appointments);
   const [listOfToday, setListOfToday] = useState([]);
-  const [selectedDay, setSelectedDay] = useState();
+  const [selectedDay, setSelectedDay] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
 
   const statusState = ["pending", "confirmed", "canceled", "visited"];
