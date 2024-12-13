@@ -75,7 +75,7 @@ function AdminDataTable() {
       <div className="flex justify-between px-8 py-4">
         <div className="flex justify-start gap-6">
           <button
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 h-10"
             onClick={() => {
               setShowTable(true);
               setShowMap(true);
@@ -84,7 +84,7 @@ function AdminDataTable() {
             Default View
           </button>
           <button
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 h-10"
             onClick={() => {
               setShowTable(true);
               setShowMap(false);
@@ -93,7 +93,7 @@ function AdminDataTable() {
             Table View
           </button>
           <button
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 h-10"
             onClick={() => {
               setShowTable(false);
               setShowMap(true);
