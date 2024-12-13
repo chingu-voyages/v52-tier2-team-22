@@ -19,12 +19,12 @@ function AdminDataTable() {
   const statusState = ["pending", "confirmed", "canceled", "visited"];
 
   const dispatch = useDispatch();
-
   useEffect(() => {
     const today = moment().format("YYYY-MM-DD");
     const todayArr = filteringDay(appointmentsArr, today);
     setListOfToday(todayArr);
-  }, [appointmentsArr]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function filteringDay(arr, day) {
     return arr
