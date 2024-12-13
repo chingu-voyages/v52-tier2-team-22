@@ -4,8 +4,8 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { updateAppointmentStatus } from "../utils/appointmentsSlice";
 import VisitExport from "../utils/VisitExport.jsx";
-import { exportIndividualPDF } from "../helperFunction/exportingPDF.jsx";
-import DownloadIcon from "../assets/download-icon.png";
+import { exportIndividualPDF } from "../utils/exportingPDF.jsx";
+import DownloadIcon from "../assets/download_icon.png";
 
 function AdminDataTable() {
   const [showTable, setShowTable] = useState(true);
@@ -24,6 +24,7 @@ function AdminDataTable() {
     const today = moment().format("YYYY-MM-DD");
     const todayArr = filteringDay(appointmentsArr, today);
     setListOfToday(todayArr);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function filteringDay(arr, day) {
@@ -61,7 +62,7 @@ function AdminDataTable() {
     }
 
     setAppointmentsArr(filteredArr);
-  }, [selectedStatus, selectedDay]);
+  }, [selectedStatus, selectedDay, appointments]);
 
   const resetFilter = () => {
     setAppointmentsArr(appointments);
@@ -110,7 +111,7 @@ function AdminDataTable() {
       </div>
 
       {showTable && (
-        <div className="flex flex-col overflow-auto rounded-lg shadow-md m-4">
+        <div className="flex flex-col overflow-auto rounded-lg shadow-md m-6">
           <div className="flex items-center justify-between px-6 py-4 bg-primaryGreen text-white text-center rounded-t-lg">
             <h2 className="text-lg text-white text-center font-semibold">
               All Appointment Requests
@@ -135,7 +136,7 @@ function AdminDataTable() {
                     value={selectedStatus}
                     onChange={(e) => setSelectedStatus(e.target.value)}
                   >
-                    <option value="all">All</option>
+                    <option value="all">all</option>
                     {statusState.map((state) => (
                       <option value={state} key={state}>
                         {state}
@@ -214,8 +215,11 @@ function AdminDataTable() {
                       onClick={() => exportIndividualPDF(appointment)}
                       className="px-4 py-2 bg-primaryYellow transition rounded-md hover:bg-secondaryYellow"
                     >
-                      PDF
-                      <img src={DownloadIcon} className="h-4 inline" />
+                      Export
+                      <img
+                        src={DownloadIcon}
+                        className=" font-black h-4  px-3"
+                      />
                     </button>
                   </td>
                 </tr>

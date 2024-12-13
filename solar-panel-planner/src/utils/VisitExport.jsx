@@ -1,10 +1,10 @@
-import DownloadIcon from "../assets/download-icon.png";
-import { useState } from "react";
-import { exportListPDF } from "../helperFunction/exportingPDF";
+import DownloadIcon from "../assets/download_icon.png";
+// import { useState } from "react";
+import { exportListPDF } from "./exportingPDF";
 
 export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
-  const [error, setError] = useState(null);
-  const exportList = (selectedDay ? listOfDay : listOfToday).map((user) => ({
+  // const [error, setError] = useState(null);
+  const exportList = (selectedDay ? listOfDay : listOfToday).filter(user =>  user.status === "confirmed").map((user) => ({
     coord: user.address.coord,
     name: user.name,
     phone: user.phone,
@@ -15,10 +15,9 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
 
   const startPoint = {
     name: "Los Angeles City Hall",
-    address:  "200 North Spring St",
-    coord: {lat: 34.05396246411889,
-   lng: -118.24267476192357}
-    }
+    address: "200 North Spring St",
+    coord: { lat: 34.05396246411889, lng: -118.24267476192357 },
+  };
 
   const getOptimizedRoute = async () => {
     const directionsService = new window.google.maps.DirectionsService();
@@ -53,7 +52,7 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
           const orderedAddresses = ordered;
           exportListPDF(orderedAddresses, selectedDay);
         } else {
-          setError("Failed to retrieve directions: " + status);
+          alert("Failed to retrieve directions: " + status);
         }
       }
     );
@@ -65,11 +64,9 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
         onClick={getOptimizedRoute}
         className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
       >
-        Export {selectedDay ? selectedDay : "today's"} route 
+        Export {selectedDay ? selectedDay : "today's"} route
         <img src={DownloadIcon} className="h-5 pl-2 inline mb-1" />
       </button>
     </div>
   );
 }
-
-
