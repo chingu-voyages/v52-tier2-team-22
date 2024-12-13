@@ -3,9 +3,10 @@ import ShowMap from "../ui/ShowMap.jsx";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { updateAppointmentStatus } from "../utils/appointmentsSlice";
-import VisitExport from "../utils/VisitExport.jsx";
+// import VisitExport from "../utils/VisitExport.jsx";
 import { exportIndividualPDF } from "../utils/exportingPDF.jsx";
 import DownloadIcon from "../assets/download_icon.png";
+import { Link } from "react-router-dom";
 
 function AdminDataTable() {
   const today = moment().format("YYYY-MM-DD");
@@ -102,11 +103,22 @@ function AdminDataTable() {
             Map View
           </button>
         </div>
-        <VisitExport
+        {/* <VisitExport
           listOfDay={appointmentsArr}
           selectedDay={selectedDay ? selectedDay : today}
           listOfToday={listOfToday}
-        />
+        /> */}
+        <Link
+          to="/admin/visiting_route"
+          className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
+          state={{
+            listOfDay: appointmentsArr,
+            selectedDay: selectedDay ? selectedDay : today,
+            listOfToday: listOfToday,
+          }}
+        >
+          Show {selectedDay ? selectedDay : "today's"} route
+        </Link>
       </div>
 
       {showTable && (
