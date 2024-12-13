@@ -1,17 +1,23 @@
 import DownloadIcon from "../assets/download_icon.png";
 // import { useState } from "react";
 import { exportListPDF } from "./exportingPDF";
+import moment from "moment";
+
 
 export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
   // const [error, setError] = useState(null);
-  const exportList = (selectedDay ? listOfDay : listOfToday).filter(user =>  user.status === "confirmed").map((user) => ({
-    coord: user.address.coord,
-    name: user.name,
-    phone: user.phone,
-    address: user.address.combinedAddress,
-    email: user.email,
-    date: user.requestDate,
-  }));
+  const today = moment().format("YYYY-MM-DD");
+
+  const exportList = (selectedDay ? listOfDay : listOfToday)
+    .filter((user) => user.status === "confirmed")
+    .map((user) => ({
+      coord: user.address.coord,
+      name: user.name,
+      phone: user.phone,
+      address: user.address.combinedAddress,
+      email: user.email,
+      date: user.requestDate,
+    }));
 
   const startPoint = {
     name: "Los Angeles City Hall",
@@ -50,7 +56,7 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
             exportList[exportList.length - 1], // Add the endpoint
           ];
           const orderedAddresses = ordered;
-          exportListPDF(orderedAddresses, selectedDay);
+          exportListPDF(orderedAddresses, selectedDay=today);
         } else {
           alert("Failed to retrieve directions: " + status);
         }
