@@ -1,8 +1,24 @@
-## Solar Panel Planner - Voyage 52 team 22 
+## Solar Panel Planner - Voyage 52 team 22
 
 ## 🔗 [LIVE APP LINK]()
 
-## About Project 👋
+## Table of content 📝
+
+1. [About Project](#1-about-project)
+2. [Requirements & Specifications](#2-requirements--specifications)
+3. [How it works / Features](#3-how-it-works--features)
+4. [Technologies & Dependencies used](#4-technologies--dependencies-used)
+5. [Prerequisites](#5-prerequisites)
+6. [Clone & Run locally](#6-clone--run-locally)
+7. [Project Structure](#7-project-structure)
+8. [Team](#8-team)
+9. [Special Thanks](#9-special-thanks)
+
+<br>
+
+---
+
+## 1. About Project
 
 This app is a part of [Chingu platform](https://www.chingu.io/) 6-week coding experience called Voyage. The team of multiple developers, scrum masters and designers is assembled randomly and given a deadline and requirements of an app they need to build. This app is **front-end only**, you can read more about how it works in the section _"How it works / Features"_. This was Voyage52 and it happened in November and December 2024. The app is created using Vite, React, Redux toolkit and Tailwind css as primary languages.
 
@@ -10,23 +26,7 @@ This app is a part of [Chingu platform](https://www.chingu.io/) 6-week coding ex
 
 ---
 
-## Table of content 📝
-
-0. About Project
-1. Requirements & Specifications
-2. How it works / Features
-3. Technologies & Dependencies used
-4. Prerequisites
-5. Clone & Run locally
-6. Project Structure
-7. Team
-8. Special Thanks
-
-<br>
-
----
-
-## Requirements & Specifications ❗
+## 2. Requirements & Specifications
 
 The following define the minimum requirements and ideas for features you may implement to enhance this app, if time permits.
 
@@ -114,7 +114,7 @@ The following define the minimum requirements and ideas for features you may imp
 
 ---
 
-## How it works / Features ⚙️
+## 3. How it works / Features
 
 Because of the app's complexicity, I will explain only the main components. There are 3 main pages. All the other components either live inside them or, are highly interconnected with them. There is also a navbar that is a part of all 3 pages.
 
@@ -134,7 +134,7 @@ Because of the app's complexicity, I will explain only the main components. Ther
 
 <br>
 
-## Technologies & Dependencies used 📦
+## 4. Technologies & Dependencies used
 
 - **Google maps api:** necessary for a map to show location pins of all the people who submited requests.
 
@@ -195,7 +195,7 @@ devDependencies:
 
 ---
 
-## Prerequisites 📚
+## 5. Prerequisites
 
 Ensure you have the following installed on your system:
 
@@ -206,7 +206,7 @@ Ensure you have the following installed on your system:
 
 ---
 
-## Clone & Run locally 🏃‍♂️
+## 6. Clone & Run locally
 
 1. **Clone the Repository:**
 
@@ -248,7 +248,7 @@ Ensure you have the following installed on your system:
 
 ---
 
-## Project Structure 📂
+## 7. Project Structure
 
     solar-panel-planner/
     ├── public
@@ -263,13 +263,13 @@ Ensure you have the following installed on your system:
     │ ├── main.jsx
     │ ├── store.js (redux)
     └── (config files)
-    README.md 
+    README.md
 
 <br>
 
 ---
 
-## Team 🎇
+## 8. Team
 
 - Anita Boakye-Yiadom - Scrum Master: [GitHub](https://github.com/AnitaBoakye) / [LinkedIn](https://linkedin.com/in/anitaboakyeyiadom/)
 
@@ -285,9 +285,9 @@ Ensure you have the following installed on your system:
 
 ---
 
-## Special Thanks 🙏
+## 9. Special Thanks
 
-We as a whole team would like to thank the [Chingu platform](https://www.chingu.io/) for providing us this opportunity to practice our communication and coding skills, in this simulated work envoronment.
+We as a whole team would like to thank the [Chingu platform](https://www.chingu.io/) for providing us this opportunity to practice our communication and coding skills, in this simulated work environment.
 
 <br>
 
