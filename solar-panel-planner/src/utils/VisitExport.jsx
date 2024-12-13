@@ -1,9 +1,9 @@
-import DownloadIcon from "../assets/download-icon.png";
+import DownloadIcon from "../assets/download_icon.png";
 import { useState } from "react";
-import { exportListPDF } from "../helperFunction/exportingPDF";
+import { exportListPDF } from "./exportingPDF";
 
 export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const exportList = (selectedDay ? listOfDay : listOfToday).map((user) => ({
     coord: user.address.coord,
@@ -14,12 +14,12 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
     date: user.requestDate,
   }));
 
-  const startPoint = ({
+  const startPoint = {
     name: "Los Angeles City Hall",
     address:  "200 North Spring St",
     coord: {lat: 34.05396246411889,
    lng: -118.24267476192357}
-    })
+    }
     
   const getRoute= async () =>{
     if (exportList.length > 2){
@@ -57,7 +57,7 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
               const orderedAddresses = ordered;
               exportListPDF(orderedAddresses, selectedDay);
             } else {
-              setError("Failed to retrieve directions: " + status);
+              alert("Failed to retrieve directions: " + status);
             }
           }
         );
@@ -73,7 +73,7 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
         onClick={getRoute}
         className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
       >
-        Export {selectedDay ? selectedDay : "today's"} route 
+        Export {selectedDay ? selectedDay : "today's"} route
         <img src={DownloadIcon} className="h-5 pl-2 inline mb-1" />
       </button>
       {isAlertVisible && (
@@ -84,5 +84,3 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
     </div>
   );
 }
-
-
