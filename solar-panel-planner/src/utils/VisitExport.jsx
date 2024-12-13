@@ -13,12 +13,12 @@ export default function VisitList({ listOfDay, selectedDay, listOfToday }) {
     date: user.requestDate,
   }));
 
-  const startPoint = ({
+  const startPoint = {
     name: "Los Angeles City Hall",
     address:  "200 North Spring St",
     coord: {lat: 34.05396246411889,
    lng: -118.24267476192357}
-    })
+    }
 
   const getOptimizedRoute = async () => {
     const directionsService = new window.google.maps.DirectionsService();
