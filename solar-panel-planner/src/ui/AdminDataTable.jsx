@@ -8,6 +8,7 @@ import { exportIndividualPDF } from "../utils/exportingPDF.jsx";
 import DownloadIcon from "../assets/download_icon.png";
 
 function AdminDataTable() {
+  const today = moment().format("YYYY-MM-DD");
   const [showTable, setShowTable] = useState(true);
   const [showMap, setShowMap] = useState(true);
   const appointments = useSelector((state) => state.appointments.appointments);
@@ -20,7 +21,6 @@ function AdminDataTable() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    const today = moment().format("YYYY-MM-DD");
     const todayArr = filteringDay(appointmentsArr, today);
     setListOfToday(todayArr);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,7 +104,7 @@ function AdminDataTable() {
         </div>
         <VisitExport
           listOfDay={appointmentsArr}
-          selectedDay={selectedDay}
+          selectedDay={selectedDay ? selectedDay : today}
           listOfToday={listOfToday}
         />
       </div>
