@@ -2,7 +2,7 @@ import Footer from "../ui/Footer";
 import Img1 from "../assets/image2.png";
 import Img2 from "../assets/image1.png";
 import Img3 from "../assets/image3.png";
-import Img4 from "../assets/hero-back.jpg";
+import Img4 from "../assets/hero-back.png";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -30,9 +30,9 @@ function Homepage() {
             delay: 0.2,
           }}
           viewport={{ once: true }}
-          className="relative z-10 flex flex-col items-center justify-center text-center h-full px-4"
+          className="relative z-10 flex flex-col items-center justify-center text-center h-full px-4 gap-2"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+          <h1 className="text-4xl mb-6 md:text-5xl lg:text-6xl font-bold text-white">
             SolarSync LA
           </h1>
           <h2 className="text-2xl md:text-2xl lg:text-4xl font-semibold text-white mt-2">
