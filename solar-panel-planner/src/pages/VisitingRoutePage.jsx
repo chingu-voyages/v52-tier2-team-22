@@ -2,6 +2,7 @@ import { useLocation, Link } from "react-router-dom";
 import moment from "moment";
 import VisitExport from "../utils/VisitExport.jsx";
 import ShowMap from "../ui/ShowMap.jsx";
+import DirectionsMap from "../ui/DirectionsMap.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -11,6 +12,7 @@ export default function VisitingRoutePage() {
   const today = moment().format("YYYY-MM-DD");
   const [orderedList, setOrderedList] = useState([]);
   const [isAlertVisible, setIsAlertVisible] = useState(false);
+  const [directionsResult, setDirectionsResult] = useState({});
 
   const exportList = (selectedDay === today ? listOfToday : listOfDay).map(
     (user) => ({
@@ -42,6 +44,7 @@ export default function VisitingRoutePage() {
       setIsAlertVisible(false);
       const getOptimizedRoute = async () => {
         const directionsService = new window.google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer;
         const origin = startPoint.address.coord;
         const destination = exportList[exportList.length - 1].address.coord;
         const waypoints = exportList.slice(0, -1).map((user) => ({
@@ -64,6 +67,7 @@ export default function VisitingRoutePage() {
           (result, status) => {
             if (status === "OK") {
               const optimizedOrder = result.routes[0].waypoint_order;
+              setDirectionsResult(result);
 
               // Rearrange addresses based on the optimized order
               const ordered = [
@@ -159,9 +163,10 @@ export default function VisitingRoutePage() {
       </div>
 
       <div className="p-6">
-        <ShowMap
+      <DirectionsMap orderedList={orderedList} directionsResult={directionsResult} />
+        {/* <ShowMap
           appointmentsArr={orderedList}
-        />
+        /> */}
       </div>
     </div>
   );
