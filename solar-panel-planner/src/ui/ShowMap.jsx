@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  APIProvider,
   Map,
   AdvancedMarker,
   InfoWindow,
@@ -8,15 +7,12 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 
-const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-
 export default function ShowMap({ appointmentsArr }) {
   const coordLA = { lat: 34.0549, lng: -118.2426 };
   const [markerID, setMarkerID] = useState(null);
 
   return (
     <>
-      <APIProvider apiKey={API_KEY} libraries={["marker"]}>
         <Map
           mapId={import.meta.env.VITE_GOOGLE_MAPS_ID}
           style={{ width: "80vw", height: "80vh", margin: "0 auto" }}
@@ -35,7 +31,6 @@ export default function ShowMap({ appointmentsArr }) {
             />
           ))}
         </Map>
-      </APIProvider>
     </>
   );
 }

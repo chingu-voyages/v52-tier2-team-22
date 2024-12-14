@@ -1,7 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import moment from "moment";
 import VisitExport from "../utils/VisitExport.jsx";
-import ShowMap from "../ui/ShowMap.jsx";
 import DirectionsMap from "../ui/DirectionsMap.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -44,18 +43,42 @@ export default function VisitingRoutePage() {
       setIsAlertVisible(false);
       const getOptimizedRoute = async () => {
         const directionsService = new window.google.maps.DirectionsService();
-        var directionsDisplay = new google.maps.DirectionsRenderer();
-        const origin = startPoint.address.coord;
-        const destination = exportList[exportList.length - 1].address.coord;
-        const waypoints = exportList.slice(0, -1).map((user) => ({
-          location: `${user.address.coord.lat},${user.address.coord.lng}`,
-          stopover: true,
-        }));
-        console.log(exportList.slice(0, -1));
+
+        const startLatLng = new window.google.maps.LatLng(
+          startPoint.address.coord.lat,
+          startPoint.address.coord.lng
+        );
+        // Find the farthest address from the start point
+        let maxDistance = -1;
+        let farthestAddress = null;
+        exportList.forEach((user) => {
+          const userLatLng = new window.google.maps.LatLng(
+            user.address.coord.lat,
+            user.address.coord.lng
+          );
+          const distance =
+            window.google.maps.geometry.spherical.computeDistanceBetween(
+              startLatLng,
+              userLatLng
+            );
+          if (distance > maxDistance) {
+            maxDistance = distance;
+            farthestAddress = user;
+          }
+        });
+        const destination = farthestAddress.address.coord;
+
+        // Filter the waypoints to exclude the destination
+        const waypoints = exportList
+          .filter((user) => user !== farthestAddress)
+          .map((user) => ({
+            location: `${user.address.coord.lat},${user.address.coord.lng}`,
+            stopover: true,
+          }));
 
         await directionsService?.route(
           {
-            origin: new window.google.maps.LatLng(origin.lat, origin.lng),
+            origin: startLatLng,
             destination: new window.google.maps.LatLng(
               destination.lat,
               destination.lng
@@ -69,14 +92,15 @@ export default function VisitingRoutePage() {
               const optimizedOrder = result.routes[0].waypoint_order;
               setDirectionsResult(result);
 
-              // Rearrange addresses based on the optimized order
               const ordered = [
-                startPoint, // Add the starting point
-                ...optimizedOrder.map((index) => exportList[index]), // Adjust for slice(1, -1)
-                exportList[exportList.length - 1], // Add the endpoint
+                startPoint,
+                ...optimizedOrder.map(
+                  (index) =>
+                    exportList.filter((user) => user !== farthestAddress)[index]
+                ),
+                farthestAddress,
               ];
-              const orderedAddresses = ordered;
-              setOrderedList(orderedAddresses);
+              setOrderedList(ordered);
             } else {
               alert("Failed to retrieve directions: " + status);
             }
@@ -169,9 +193,6 @@ export default function VisitingRoutePage() {
           orderedList={orderedList}
           directionsResult={directionsResult}
         />
-        {/* <ShowMap
-          appointmentsArr={orderedList}
-        /> */}
       </div>
     </div>
   );
