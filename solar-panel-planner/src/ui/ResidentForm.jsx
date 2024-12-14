@@ -65,6 +65,7 @@ function ResidentForm({ setIsRequested }) {
     dispatch(addAppointment(serializedData));
     setResidentFormData(defaultValue);
     setIsModalOpen(true);
+    // setAddress({})
     setModalContent({
       icon: RxCheck,
       title: "Form submitted succesfully !",
@@ -161,7 +162,7 @@ function ResidentForm({ setIsRequested }) {
               htmlFor="street_address"
               className="block text-gray-700 text-sm font-bold"
             >
-              Address - <span className="font-normal italic text-red-600">must start with a number</span> 
+              Address - <span className="italic text-red-500 font-semibold">must start with a number</span> 
             </label>
             <AddressAutoComplete setAddress={setAddress} />
           </article>

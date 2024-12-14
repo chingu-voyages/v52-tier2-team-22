@@ -72,8 +72,8 @@ function AdminDataTable() {
   return (
     <>
       <h1 className="ml-8 text-3xl font-semibold pt-8">Welcome Admin</h1>
-      <div className="flex justify-between px-8 py-4">
-        <div className="flex justify-start gap-6">
+      <div className="flex justify-between px-8 pt-4 h-24">
+        <div className="flex justify-start gap-6 ">
           <button
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 h-10"
             onClick={() => {

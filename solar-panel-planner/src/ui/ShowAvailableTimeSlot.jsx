@@ -63,7 +63,7 @@ export default function ShowAvailableTimeSlot({ setResidentFormData }) {
         primaryColor="#7bc86a"
         eventDurationInMinutes={60}
         availableTimeslots={availableTimeslots}
-        className={{ boxShadow: 'none' }}
+        className={{ boxShadow: "none" }}
         onStartTimeSelect={handleDateChange}
         format_selectedDateDayTitleFormatString="ccc, LLLL do"
       />
