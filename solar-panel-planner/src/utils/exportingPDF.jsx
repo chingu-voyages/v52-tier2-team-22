@@ -40,7 +40,7 @@ export const exportListPDF = (list, day) => {
   list.forEach((user, index) => {
     if (index !== 0) {
       const details = `${index + 1}. ${user.name}, 
-          Time: ${moment(user.date).format("h:mm a")}, 
+          Time: ${moment(user.requestDate).format("h:mm a")}, 
           Address: ${user.address.combinedAddress} ${user.address. zipcode}, 
           Phone: ${user.phone}, 
           Email: ${user.email}`;

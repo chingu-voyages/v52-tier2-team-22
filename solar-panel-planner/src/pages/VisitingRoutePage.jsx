@@ -1,7 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import moment from "moment";
 import VisitExport from "../utils/VisitExport.jsx";
-// import ShowMap from "../ui/ShowMap.jsx";
 import DirectionsMap from "../ui/DirectionsMap.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -34,7 +33,7 @@ export default function VisitingRoutePage() {
       zipcode: "90012",
       coord: { lat: 34.05396246411889, lng: -118.24267476192357 },
     },
-    date: ""
+    date: "",
   };
 
   useEffect(() => {
@@ -44,12 +43,11 @@ export default function VisitingRoutePage() {
       setIsAlertVisible(false);
       const getOptimizedRoute = async () => {
         const directionsService = new window.google.maps.DirectionsService();
-      
+
         const startLatLng = new window.google.maps.LatLng(
           startPoint.address.coord.lat,
           startPoint.address.coord.lng
         );
-      
         // Find the farthest address from the start point
         let maxDistance = -1;
         let farthestAddress = null;
@@ -58,18 +56,18 @@ export default function VisitingRoutePage() {
             user.address.coord.lat,
             user.address.coord.lng
           );
-          const distance = window.google.maps.geometry.spherical.computeDistanceBetween(
-            startLatLng,
-            userLatLng
-          );
+          const distance =
+            window.google.maps.geometry.spherical.computeDistanceBetween(
+              startLatLng,
+              userLatLng
+            );
           if (distance > maxDistance) {
             maxDistance = distance;
             farthestAddress = user;
           }
         });
-      
         const destination = farthestAddress.address.coord;
-      
+
         // Filter the waypoints to exclude the destination
         const waypoints = exportList
           .filter((user) => user !== farthestAddress)
@@ -77,7 +75,7 @@ export default function VisitingRoutePage() {
             location: `${user.address.coord.lat},${user.address.coord.lng}`,
             stopover: true,
           }));
-      
+
         await directionsService?.route(
           {
             origin: startLatLng,
@@ -93,14 +91,15 @@ export default function VisitingRoutePage() {
             if (status === "OK") {
               const optimizedOrder = result.routes[0].waypoint_order;
               setDirectionsResult(result);
-      
-             
+
               const ordered = [
-                startPoint, 
-                ...optimizedOrder.map((index) => exportList.filter((user) => user !== farthestAddress)[index]),
-                farthestAddress, 
+                startPoint,
+                ...optimizedOrder.map(
+                  (index) =>
+                    exportList.filter((user) => user !== farthestAddress)[index]
+                ),
+                farthestAddress,
               ];
-      
               setOrderedList(ordered);
             } else {
               alert("Failed to retrieve directions: " + status);
@@ -116,12 +115,14 @@ export default function VisitingRoutePage() {
 
   return (
     <div>
-      <Link
-        to="/admin"
-        className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
-      >
-        Go back to All Data
-      </Link>
+      <div className="text-left m-6">
+        <Link
+          to="/admin"
+          className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
+        >
+          Go back to All Data
+        </Link>
+      </div>
       <VisitExport
         orderedList={orderedList}
         isAlertVisible={isAlertVisible}
@@ -147,51 +148,51 @@ export default function VisitingRoutePage() {
             </tr>
           </thead>
           <tbody>
-            {orderedList.map(
-              (appointment, index) => (
-                <tr
-                  key={appointment.id}
-                  className={`text-sm text-gray-800 ${
-                    index % 2 === 0 ? "bg-background" : "bg-white"
-                  }`}
-                >
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {index + 1}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.status}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.name}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.email}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.phone}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.address.combinedAddress +
-                      " " +
-                      appointment.address.zipcode}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.requestDate ? moment(appointment.requestDate).format(
-                      "MMMM Do YYYY, h:mm a"
-                    ) : ""}
-                  </td>
-                </tr>
-              )
-            )}
+            {orderedList.map((appointment, index) => (
+              <tr
+                key={appointment.id}
+                className={`text-sm text-gray-800 ${
+                  index % 2 === 0 ? "bg-background" : "bg-white"
+                }`}
+              >
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {index + 1}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.status}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.name}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.email}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.phone}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.address.combinedAddress +
+                    " " +
+                    appointment.address.zipcode}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.requestDate
+                    ? moment(appointment.requestDate).format(
+                        "MMMM Do YYYY, h:mm a"
+                      )
+                    : ""}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
 
       <div className="p-6">
-      <DirectionsMap orderedList={orderedList} directionsResult={directionsResult} />
-        {/* <ShowMap
-          appointmentsArr={orderedList}
-        /> */}
+        <DirectionsMap
+          orderedList={orderedList}
+          directionsResult={directionsResult}
+        />
       </div>
     </div>
   );
