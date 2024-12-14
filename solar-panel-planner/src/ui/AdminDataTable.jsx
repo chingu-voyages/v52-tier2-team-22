@@ -3,7 +3,6 @@ import ShowMap from "../ui/ShowMap.jsx";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { updateAppointmentStatus } from "../utils/appointmentsSlice";
-// import VisitExport from "../utils/VisitExport.jsx";
 import { exportIndividualPDF } from "../utils/exportingPDF.jsx";
 import DownloadIcon from "../assets/download_icon.png";
 import { Link } from "react-router-dom";
@@ -27,16 +26,16 @@ function AdminDataTable() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function filteringDay(arr, day) {
+  const filteringDay = (arr, day) => {
     return arr
       .filter((req) => moment(req.requestDate).format("YYYY-MM-DD") === day)
       .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
-  }
+  };
 
   useEffect(() => {
     let filteredArr = [...appointments];
 
-    function filteringStatus(arr, status) {
+    const filteringStatus = (arr, status) => {
       if (status === "all") return [...appointments];
       return arr
         .filter((req) => {
@@ -51,7 +50,7 @@ function AdminDataTable() {
           }
         })
         .sort((a, b) => new Date(a.requestDate) - new Date(b.requestDate));
-    }
+    };
 
     if (selectedDay) filteredArr = filteringDay(filteredArr, selectedDay);
 
@@ -103,18 +102,17 @@ function AdminDataTable() {
             Map View
           </button>
         </div>
-        {/* <VisitExport
-          listOfDay={appointmentsArr}
-          selectedDay={selectedDay ? selectedDay : today}
-          listOfToday={listOfToday}
-        /> */}
         <Link
           to="/admin/visiting_route"
           className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
           state={{
-            listOfDay: appointmentsArr,
+            listOfDay: appointmentsArr.filter(
+              (user) => user.status === "confirmed"
+            ),
             selectedDay: selectedDay ? selectedDay : today,
-            listOfToday: listOfToday,
+            listOfToday: listOfToday.filter(
+              (user) => user.status === "confirmed"
+            ),
           }}
         >
           Show {selectedDay ? selectedDay : "today's"} route
@@ -164,7 +162,9 @@ function AdminDataTable() {
                   <input
                     type="date"
                     value={selectedDay}
-                    onChange={(e) => setSelectedDay(e.target.value)}
+                    onChange={(e) => {
+                      setSelectedDay(e.target.value);
+                    }}
                     className="ml-3 px-2 rounded-md py-1"
                   />
                 </th>
