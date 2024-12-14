@@ -34,7 +34,7 @@ export default function VisitingRoutePage() {
       zipcode: "90012",
       coord: { lat: 34.05396246411889, lng: -118.24267476192357 },
     },
-    date: ""
+    date: "",
   };
 
   useEffect(() => {
@@ -44,14 +44,14 @@ export default function VisitingRoutePage() {
       setIsAlertVisible(false);
       const getOptimizedRoute = async () => {
         const directionsService = new window.google.maps.DirectionsService();
-        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsDisplay = new google.maps.DirectionsRenderer();
         const origin = startPoint.address.coord;
         const destination = exportList[exportList.length - 1].address.coord;
         const waypoints = exportList.slice(0, -1).map((user) => ({
           location: `${user.address.coord.lat},${user.address.coord.lng}`,
           stopover: true,
         }));
-        console.log(exportList.slice(0, -1))
+        console.log(exportList.slice(0, -1));
 
         await directionsService?.route(
           {
@@ -91,12 +91,14 @@ export default function VisitingRoutePage() {
 
   return (
     <div>
-      <Link
-        to="/admin"
-        className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
-      >
-        Go back to All Data
-      </Link>
+      <div className="text-left m-6">
+        <Link
+          to="/admin"
+          className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
+        >
+          Go back to All Data
+        </Link>
+      </div>
       <VisitExport
         orderedList={orderedList}
         isAlertVisible={isAlertVisible}
@@ -122,48 +124,51 @@ export default function VisitingRoutePage() {
             </tr>
           </thead>
           <tbody>
-            {orderedList.map(
-              (appointment, index) => (
-                <tr
-                  key={appointment.id}
-                  className={`text-sm text-gray-800 ${
-                    index % 2 === 0 ? "bg-background" : "bg-white"
-                  }`}
-                >
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {index + 1}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.status}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.name}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.email}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.phone}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.address.combinedAddress +
-                      " " +
-                      appointment.address.zipcode}
-                  </td>
-                  <td className="px-6 py-3 border-t border-gray-200">
-                    {appointment.requestDate ? moment(appointment.requestDate).format(
-                      "MMMM Do YYYY, h:mm a"
-                    ) : ""}
-                  </td>
-                </tr>
-              )
-            )}
+            {orderedList.map((appointment, index) => (
+              <tr
+                key={appointment.id}
+                className={`text-sm text-gray-800 ${
+                  index % 2 === 0 ? "bg-background" : "bg-white"
+                }`}
+              >
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {index + 1}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.status}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.name}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.email}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.phone}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.address.combinedAddress +
+                    " " +
+                    appointment.address.zipcode}
+                </td>
+                <td className="px-6 py-3 border-t border-gray-200">
+                  {appointment.requestDate
+                    ? moment(appointment.requestDate).format(
+                        "MMMM Do YYYY, h:mm a"
+                      )
+                    : ""}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
 
       <div className="p-6">
-      <DirectionsMap orderedList={orderedList} directionsResult={directionsResult} />
+        <DirectionsMap
+          orderedList={orderedList}
+          directionsResult={directionsResult}
+        />
         {/* <ShowMap
           appointmentsArr={orderedList}
         /> */}
