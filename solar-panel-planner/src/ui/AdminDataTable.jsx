@@ -72,8 +72,8 @@ function AdminDataTable() {
   return (
     <>
       <h1 className="ml-8 text-3xl font-semibold pt-8">Welcome Admin</h1>
-      <div className="flex justify-between px-8 py-4">
-        <div className="flex justify-start gap-6">
+      <div className="flex justify-between px-8 pt-4 h-24">
+        <div className="flex justify-start gap-6 ">
           <button
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 h-10"
             onClick={() => {
@@ -102,21 +102,22 @@ function AdminDataTable() {
             Map View
           </button>
         </div>
-        <Link
-          to="/admin/visiting_route"
-          className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
-          state={{
-            listOfDay: appointmentsArr.filter(
-              (user) => user.status === "confirmed"
-            ),
-            selectedDay: selectedDay ? selectedDay : today,
-            listOfToday: listOfToday.filter(
-              (user) => user.status === "confirmed"
-            ),
-          }}
-        >
-          Show {selectedDay ? selectedDay : "today's"} route
-        </Link>
+        <div className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen h-10">
+          <Link
+            to="/admin/visiting_route"
+            state={{
+              listOfDay: appointmentsArr.filter(
+                (user) => user.status === "confirmed"
+              ),
+              selectedDay: selectedDay ? selectedDay : today,
+              listOfToday: listOfToday.filter(
+                (user) => user.status === "confirmed"
+              ),
+            }}
+          >
+            Show {selectedDay ? selectedDay : "today's"} route
+          </Link>
+        </div>
       </div>
 
       {showTable && (

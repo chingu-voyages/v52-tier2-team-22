@@ -1,6 +1,6 @@
 ## Solar Panel Planner - Voyage 52 team 22
 
-## 🔗 [LIVE APP LINK]()
+## 🔗 [LIVE APP LINK](https://solar-panel-planner.netlify.app/)
 
 ## Table of content 📝
 
@@ -136,7 +136,7 @@ Because of the app's complexicity, I will explain only the main components. Ther
 
 ## 4. Technologies & Dependencies used
 
-- **Google maps api:** necessary for a map to show location pins of all the people who submited requests.
+- **Google maps api:** necessary for a map to show location pins of all the people who submited requests and calculate optimized route.
 
 - **Reduxjs toolkit:** for having a centralized place for storing and manipulating multiple states.
 
