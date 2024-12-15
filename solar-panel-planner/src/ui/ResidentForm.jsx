@@ -149,8 +149,8 @@ function ResidentForm({ setIsRequested }) {
               onChange={handleInputChange}
               placeholder="Enter phone number"
               required
-              minLength="7"
-              maxLength="13"
+              minLength="10"
+              maxLength="10"
               className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>
