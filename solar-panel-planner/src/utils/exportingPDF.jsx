@@ -8,7 +8,7 @@ export const exportIndividualPDF = (record) => {
   doc.text(`Email: ${record.email}`, 10, 30);
   doc.text(`Phone: ${record.phone}`, 10, 40);
   doc.text(
-    `Address: ${record.address.combinedAddress} ${record.address.zipcode}`,
+    `Address: ${record.address.combinedAddress} ${record.address. zipcode}`,
     10,
     50
   );
@@ -37,13 +37,13 @@ export const exportListPDF = (list, day) => {
   doc.text("1. Los Angeles City Hall", margin, y);
   y += 10;
 
-  list.forEach((address, index) => {
+  list.forEach((user, index) => {
     if (index !== 0) {
-      const details = `${index + 1}. ${address.name}, 
-          Time: ${moment(address.date).format("h:mm a")}, 
-          Address: ${address.address}, 
-          Phone: ${address.phone}, 
-          Email: ${address.email}`;
+      const details = `${index + 1}. ${user.name}, 
+          Time: ${moment(user.requestDate).format("h:mm a")}, 
+          Address: ${user.address.combinedAddress} ${user.address. zipcode}, 
+          Phone: ${user.phone}, 
+          Email: ${user.email}`;
       const splitText = doc.splitTextToSize(details, contentWidth);
 
       splitText.forEach((line) => {
