@@ -1,6 +1,8 @@
 ## Solar Panel Planner - Voyage 52 team 22
 
 ## 🔗 [LIVE APP LINK](https://solar-panel-planner.netlify.app/)
+## 🔗 [APP VIDEO PRESENTATION](https://youtu.be/cIzNqViZW2w?feature=shared)
+
 
 ## Table of content 📝
 
