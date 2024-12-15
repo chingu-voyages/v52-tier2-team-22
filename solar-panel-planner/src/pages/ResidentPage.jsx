@@ -24,7 +24,7 @@ function ResidentPage() {
   };
 
   return (
-    <div className="w-full bg-background min-h-screen">
+    <div className="w-full  h-[calc(100vh-72px)] bg-background ">
       <ToastContainer />
       
       {request ? (

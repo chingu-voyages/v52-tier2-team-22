@@ -62,14 +62,14 @@ function ResidentForm({ setIsRequested }) {
 
     dispatch(addAppointment(serializedData));
     setResidentFormData(defaultValue);
-    setIsModalOpen(true);
-    setModalContent({
-      icon: RxCheck,
-      title: "Form submitted succesfully !",
-      desc: "Your preffered timeslot is only i͟n͟d͟i͟c͟a͟t͟i͟v͟e͟. You will receive a confirmation via phone call a few hours before scheduled visit.",
-      additionalInfo:
-        "If you want to cancel your appointment, you can reach us at number 1-800-123-4567",
-    });
+    // setIsModalOpen(true);
+    // setModalContent({
+    //   icon: RxCheck,
+    //   title: "Form submitted succesfully !",
+    //   desc: "Your preffered timeslot is only i͟n͟d͟i͟c͟a͟t͟i͟v͟e͟. You will receive a confirmation via phone call a few hours before scheduled visit.",
+    //   additionalInfo:
+    //     "If you want to cancel your appointment, you can reach us at number 1-800-123-4567",
+    // });
     setIsRequested(true);
   };
 
@@ -78,20 +78,20 @@ function ResidentForm({ setIsRequested }) {
   };
 
   return (
-    <section className="py-4">
+    <section className="py-4 bg-background">
       <h2 className="mt-8 text-center text-3xl font-semibold">
         Send a Request
       </h2>
 
       <form
         onSubmit={handleSubmit}
-        className="my-4 flex flex-col sm:flex-row gap-5 rounded mx-auto px-8 py-8"
+        className="my-4 flex flex-col md:flex-row gap-5 rounded mx-auto px-8 py-8"
       >
         <ShowAvailableTimeSlot setResidentFormData={setResidentFormData} />
 
-        <div className="mx-auto my-5 sm:w-1/2 bg-white shadow-md rounded-lg p-6">
+        <div className="mx-auto my-5 w-full md:w-1/2 bg-white shadow-md rounded-lg p-6 ">
 
-          <article className="flex flex-col gap-2 mt-4">
+          <article className="flex flex-col gap-2 mt-4 ">
             <label
               htmlFor="name"
               className="block text-gray-700 text-sm font-bold"
@@ -144,8 +144,8 @@ function ResidentForm({ setIsRequested }) {
               onChange={handleInputChange}
               placeholder="Enter phone number"
               required
-              minLength="10"
-              maxLength="10"
+              minLength="6"
+              maxLength="12"
               className="border border-gray-300 rounded-md w-full py-2 px-3 text-gray-800 focus:outline-none focus:ring-1 focus:ring-secondaryGreen focus:border-secondaryGreen"
             />
           </article>

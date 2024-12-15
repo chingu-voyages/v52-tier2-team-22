@@ -5,8 +5,8 @@ import Logo from "../assets/logo1.png";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="bg-navbarBackground py-1 px-8 text-grey-800 shadow-sm z-50 relative">
-      <div className="flex items-center justify-between">
+    <div className="bg-navbarBackground py-3 px-8 text-grey-800 shadow-sm z-50 relative">
+      <div className="flex items-center justify-between ">
         <Link to="/">
           <img
             src={Logo}
@@ -36,7 +36,7 @@ export default function Navbar() {
           </svg>
         </button>
 
-        <ul className="hidden md:flex flex-row gap-3 p-4">
+        <ul className="hidden md:flex flex-row gap-3 ">
           {[
             { to: "/", label: "Home" },
             { to: "/residentpage", label: "Send Request" },
