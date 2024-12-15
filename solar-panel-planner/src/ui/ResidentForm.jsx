@@ -65,7 +65,6 @@ function ResidentForm({ setIsRequested }) {
     dispatch(addAppointment(serializedData));
     setResidentFormData(defaultValue);
     setIsModalOpen(true);
-    // setAddress({})
     setModalContent({
       icon: RxCheck,
       title: "Form submitted succesfully !",
