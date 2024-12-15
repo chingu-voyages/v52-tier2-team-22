@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import ShowMap from "../ui/ShowMap.jsx";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { updateAppointmentStatus } from "../utils/appointmentsSlice";
+import ShowMap from "../ui/ShowMap.jsx";
 import { exportIndividualPDF } from "../utils/exportingPDF.jsx";
+import { deleteState } from "../utils/localStorageUtils.jsx";
 import DownloadIcon from "../assets/download_icon.png";
-import { Link } from "react-router-dom";
 
 function AdminDataTable() {
   const today = moment().format("YYYY-MM-DD");
@@ -16,6 +17,7 @@ function AdminDataTable() {
   const [listOfToday, setListOfToday] = useState([]);
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
+  const navigate = useNavigate();
 
   const statusState = ["pending", "confirmed", "canceled", "visited"];
 
@@ -69,10 +71,23 @@ function AdminDataTable() {
     setSelectedStatus("");
   };
 
+  const handleLogout = () => {
+    deleteState("admin");
+    navigate("/adminlogin");
+  };
+
   return (
     <>
-      <h1 className="ml-8 text-3xl font-semibold pt-8">Welcome Admin</h1>
-      <div className="flex justify-between px-8 pt-4 h-24">
+      <div className="flex justify-between items-center pt-8">
+        <h1 className="ml-8 text-3xl font-semibold">Welcome Admin</h1>
+        <button
+          onClick={handleLogout}
+          className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 h-10 mr-8"
+        >
+          Logout
+        </button>
+      </div>
+      <div className="flex justify-between px-8 pt-4 h-18">
         <div className="flex justify-start gap-6 ">
           <button
             className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md shadow-sm transition duration-200 h-10"
