@@ -14,7 +14,7 @@ export const appointmentsSlice = createSlice({
       saveState(action.payload, "myRequest");
     },
     deleteAppointment: (state, action) => {
-      deleteState();
+      deleteState("myRequest");
       state.appointments = state.appointments.filter(
         (item) => item.id !== action.payload
       );

@@ -60,7 +60,6 @@ export default function Navbar() {
         </ul>
       </div>
 
-      {/* mobile nav */}
       {isOpen && (
         <ul className="flex flex-col items-end mt-4 space-y-4 p-4 md:hidden">
           {[

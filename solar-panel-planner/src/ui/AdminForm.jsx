@@ -2,11 +2,15 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { adminEmailDb } from "../utils/adminEmailDb";
+import { saveState } from "../utils/localStorageUtils";
+import { useNavigate } from 'react-router-dom';
 
-function AdminForm({ setIsLoggedIn }) {
+function AdminForm() {
   const [adminFormData, setAdminFormData] = useState({
     email: "just.Click.Login.Button@sample.com",
   });
+
+  const navigate = useNavigate();
 
   const handleInputChange = function (e) {
     const { name, value } = e.target;
@@ -18,8 +22,8 @@ function AdminForm({ setIsLoggedIn }) {
     const isValidEmail = adminEmailDb.includes(adminFormData.email);
 
     if (isValidEmail) {
-      setIsLoggedIn(true);
-      toast.success("Admin logged in successfully");
+      saveState(adminFormData.email, "admin")
+      navigate('/admin')
     } else {
       toast.error("Invaild email address");
       setAdminFormData({
@@ -61,7 +65,6 @@ function AdminForm({ setIsLoggedIn }) {
           />
         </article>
 
-        {/* Buttons */}
         <article className="flex gap-4 mt-4 items-center justify-between">
           <button
             type="submit"

@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
-// const LACITY_APP_TOKEN = import.meta.env.VITE_LACITY_APP_TOKEN;
-
 export default function AddressAutoComplete({ setAddress }) {
   const [datasetLA, setDatasetLA] = useState([]);
 
@@ -10,15 +8,10 @@ export default function AddressAutoComplete({ setAddress }) {
     let url = `https://data.lacity.org/resource/4ca8-mxuh.json?$limit=50000`;
 
     function fetchDatasetLA(url) {
-      fetch(url, {
-        headers: {
-          // "X-App-Token": LACITY_APP_TOKEN,
-        },
-      })
+      fetch(url)
         .then((res) => res.json())
         .then((json) => {
           const arr = json?.map((record) => {
-            // console.log(record.hse_nbr)
             const combinedAddress = `${record.hse_nbr}${
               record.hse_frac_nbr || ""
             } ${record.hse_dir_cd || ""} ${record.str_nm} ${
