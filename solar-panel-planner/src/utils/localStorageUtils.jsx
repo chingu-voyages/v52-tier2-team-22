@@ -19,9 +19,9 @@ export const saveState = (state, key) => {
   }
 };
 
-export const deleteState = () => {
+export const deleteState = (key) => {
   try {
-    localStorage.removeItem("myRequest");
+    localStorage.removeItem(key);
   } catch (err) {
     console.error("Error saving state:", err);
   }

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function DirectionsMap({ orderedList, directionsResult}) {
+function DirectionsMap({ orderedList, directionsResult }) {
   const mapRef = useRef(null);
 
   useEffect(() => {
@@ -14,13 +14,13 @@ function DirectionsMap({ orderedList, directionsResult}) {
     const directionsService = new window.google.maps.DirectionsService();
     const directionsRenderer = new window.google.maps.DirectionsRenderer({
       map: map,
-      suppressMarkers: true, 
+      suppressMarkers: true,
     });
     directionsRenderer.setDirections(directionsResult);
     const routePoints = [
-      orderedList[0], 
-      ...orderedList.slice(1, -1), 
-      orderedList[orderedList.length - 1], 
+      orderedList[0],
+      ...orderedList.slice(1, -1),
+      orderedList[orderedList.length - 1],
     ];
 
     routePoints.forEach((point, index) => {
@@ -30,21 +30,25 @@ function DirectionsMap({ orderedList, directionsResult}) {
           lng: point.address.coord.lng,
         },
         map: map,
-        label: `${index + 1}`, 
+        label: `${index + 1}`,
         icon: {
-          path: window.google.maps.SymbolPath.CIRCLE, 
-          scale: 10, 
-          fillColor: "yellow", 
-          fillOpacity: 1, 
-          strokeColor: "black", 
-          strokeWeight: 1, 
+          path: window.google.maps.SymbolPath.CIRCLE,
+          scale: 10,
+          fillColor: "yellow",
+          fillOpacity: 1,
+          strokeColor: "black",
+          strokeWeight: 1,
         },
       });
     });
-
   }, [orderedList]);
 
-  return <div ref={mapRef} style={{ width: "80vw", height: "80vh", margin: "0 auto" }} />;
+  return (
+    <div
+      ref={mapRef}
+      style={{ width: "80vw", height: "80vh", margin: "0 auto" }}
+    />
+  );
 }
 
 export default DirectionsMap;

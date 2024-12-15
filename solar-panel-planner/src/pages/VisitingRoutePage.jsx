@@ -4,6 +4,7 @@ import VisitExport from "../utils/VisitExport.jsx";
 import DirectionsMap from "../ui/DirectionsMap.jsx";
 import { useState } from "react";
 import { useEffect } from "react";
+import { FiArrowLeft } from "react-icons/fi";
 
 export default function VisitingRoutePage() {
   const location = useLocation();
@@ -48,7 +49,7 @@ export default function VisitingRoutePage() {
           startPoint.address.coord.lat,
           startPoint.address.coord.lng
         );
-        // Find the farthest address from the start point
+
         let maxDistance = -1;
         let farthestAddress = null;
         exportList.forEach((user) => {
@@ -68,7 +69,6 @@ export default function VisitingRoutePage() {
         });
         const destination = farthestAddress.address.coord;
 
-        // Filter the waypoints to exclude the destination
         const waypoints = exportList
           .filter((user) => user !== farthestAddress)
           .map((user) => ({
@@ -110,18 +110,18 @@ export default function VisitingRoutePage() {
       await getOptimizedRoute();
     };
     getRoute();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
       <div className="text-left m-6">
-        <Link
-          to="/admin"
-          className="bg-primaryGreen text-white px-4 py-2 rounded hover:bg-secondaryGreen"
-        >
-          Go back to All Data
-        </Link>
+      <Link
+        className="inline-flex items-center gap-2 text-gray-800 hover:text-gray-400 font-medium my-2 py-2 px-4 rounded transition duration-200"
+        to="/admin"
+      >
+        <FiArrowLeft className="w-5 h-5" />
+        Go back to all data
+      </Link>
       </div>
       <VisitExport
         orderedList={orderedList}

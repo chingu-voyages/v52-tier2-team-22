@@ -11,7 +11,6 @@ export const userDb = [
     },
     requestDate: "2024-12-25T11:30:00.000Z",
     status: "confirmed",
-    sentDate: "2024-11-25T17:55:00.000Z",
   },
   {
     id: 2,
@@ -25,7 +24,6 @@ export const userDb = [
     },
     requestDate: "2024-12-25T11:30:00.000Z",
     status: "confirmed",
-    sentDate: "2024-11-26T10:30:00.000Z",
   },
   {
     id: 3,
@@ -38,8 +36,7 @@ export const userDb = [
       coord: { lat: 33.74605743240821, lng: -118.30738809064653 },
     },
     requestDate: "2024-12-23T16:30:00.000Z",
-    status: "canceled",
-    sentDate: "2024-11-25T16:30:00.000Z",
+    status: "confirmed",
   },
   {
     id: 4,
@@ -53,7 +50,6 @@ export const userDb = [
     },
     requestDate: "2024-12-24T10:00:00.000Z",
     status: "confirmed",
-    sentDate: "2024-11-25T10:00:00.000Z",
   },
   {
     id: 5,
@@ -67,7 +63,6 @@ export const userDb = [
     },
     requestDate: "2024-12-26T12:30:00.000Z",
     status: "canceled",
-    sentDate: "2024-11-26T12:30:00.000Z",
   },
   {
     id: 6,
@@ -80,8 +75,7 @@ export const userDb = [
       coord: { lat: 34.25320426959698, lng: -118.56690393110634 },
     },
     requestDate: "2024-12-31T11:30:00.000Z",
-    status: "pending",
-    sentDate: "2024-11-27T11:30:00.000Z",
+    status: "confirmed",
   },
   {
     id: 7,
@@ -95,7 +89,6 @@ export const userDb = [
     },
     requestDate: "2024-12-30T15:30:00.000Z",
     status: "pending",
-    sentDate: "2024-11-28T15:30:00.000Z",
   },
   {
     id: 8,
@@ -108,8 +101,7 @@ export const userDb = [
       coord: { lat: 34.06479536825103, lng: -118.34922682621418 },
     },
     requestDate: "2024-12-18T16:00:00.000Z",
-    status: "pending",
-    sentDate: "2024-11-28T16:00:00.000Z",
+    status: "confirmed",
   },
   {
     id: 9,
@@ -122,8 +114,7 @@ export const userDb = [
       coord: { lat: 33.97544411144961, lng: -118.26805804645997 },
     },
     requestDate: "2024-12-19T09:00:00.000Z",
-    status: "pending",
-    sentDate: "2024-11-29T09:00:00.000Z",
+    status: "confirmed",
   },
   {
     id: 10,
@@ -136,8 +127,7 @@ export const userDb = [
       coord: { lat: 34.04910813152169, lng: -118.22382808388527 },
     },
     requestDate: "2024-12-17T14:00:00.000Z",
-    status: "pending",
-    sentDate: "2024-11-29T14:00:00.000Z",
+    status: "confirmed",
   },
   {
     id: 11,
@@ -151,7 +141,6 @@ export const userDb = [
     },
     requestDate: "2024-12-24T12:30:00.000Z",
     status: "pending",
-    sentDate: "2024-11-25T12:30:00.000Z",
   },
   {
     id: 12,
@@ -164,8 +153,7 @@ export const userDb = [
       coord: { lat: 33.84729382720781, lng: -118.30494286180658 },
     },
     requestDate: "2024-12-23T10:00:00.000Z",
-    status: "pending",
-    sentDate: "2024-11-30T10:00:00.000Z",
+    status: "confirmed",
   },
   {
     id: 13,
@@ -179,7 +167,6 @@ export const userDb = [
     },
     requestDate: "2024-12-27T08:30:00.000Z",
     status: "pending",
-    sentDate: "2024-11-27T08:30:00.000Z",
   },
   {
     id: 14,
@@ -192,8 +179,7 @@ export const userDb = [
       coord: { lat: 34.06466408434422, lng: -118.32102983111508 },
     },
     requestDate: "2024-12-26T09:00:00.000Z",
-    status: "pending",
-    sentDate: "2024-11-26T09:00:00.000Z",
+    status: "confirmed",
   },
   {
     id: 15,
@@ -207,7 +193,6 @@ export const userDb = [
     },
     requestDate: "2024-12-25T15:30:00.000Z",
     status: "confirmed",
-    sentDate: "2024-11-29T15:30:00.000Z",
   },
   {
     id: 16,
@@ -220,8 +205,7 @@ export const userDb = [
       coord: { lat: 34.09847519632357, lng: -118.45027677344315 },
     },
     requestDate: "2024-12-26T16:30:00.000Z",
-    status: "pending",
-    sentDate: "2024-11-30T16:30:00.000Z",
+    status: "confirmed",
   },
   {
     id: 17,
@@ -235,7 +219,6 @@ export const userDb = [
     },
     requestDate: "2024-12-30T11:30:00.000Z",
     status: "pending",
-    sentDate: "2024-11-28T11:30:00.000Z",
   },
   {
     id: 18,
@@ -248,8 +231,7 @@ export const userDb = [
       coord: { lat: 34.125963107138645, lng: -118.20541631087065 },
     },
     requestDate: "2024-12-30T16:00:00.000Z",
-    status: "visited",
-    sentDate: "2024-11-24T16:00:00.000Z",
+    status: "confirmed",
   },
   {
     id: 19,
@@ -263,7 +245,6 @@ export const userDb = [
     },
     requestDate: "2024-12-27T08:00:00.000Z",
     status: "canceled",
-    sentDate: "2024-11-27T08:00:00.000Z",
   },
   {
     id: 20,
@@ -277,7 +258,6 @@ export const userDb = [
     },
     requestDate: "2024-12-25T11:00:00.000Z",
     status: "confirmed",
-    sentDate: "2024-11-30T11:00:00.000Z",
   },
   {
     id: 21,
@@ -289,9 +269,8 @@ export const userDb = [
       zipcode: "91345",
       coord: { lat: 34.25499309760878, lng: -118.45811131945818 },
     },
-    requestDate: "2024-12-23T16:30:00.000Z",
+    requestDate: "2024-12-02T16:30:00.000Z",
     status: "visited",
-    sentDate: "2024-11-27T16:30:00.000Z",
   },
   {
     id: 22,
@@ -305,7 +284,6 @@ export const userDb = [
     },
     requestDate: "2024-12-31T15:30:00.000Z",
     status: "pending",
-    sentDate: "2024-11-28T15:30:00.000Z",
   },
   {
     id: 23,
@@ -317,9 +295,8 @@ export const userDb = [
       zipcode: "90025",
       coord: { lat: 34.03902926266814, lng: -118.44944022252272 },
     },
-    requestDate: "2024-12-23T11:30:00.000Z",
+    requestDate: "2024-12-01T11:30:00.000Z",
     status: "visited",
-    sentDate: "2024-11-30T11:30:00.000Z",
   },
   {
     id: 24,
@@ -333,7 +310,6 @@ export const userDb = [
     },
     requestDate: "2024-12-25T12:00:00.000Z",
     status: "confirmed",
-    sentDate: "2024-11-25T12:00:00.000Z",
   },
   {
     id: 25,
@@ -346,8 +322,7 @@ export const userDb = [
       coord: { lat: 34.20629518644614, lng: -118.5645269176141 },
     },
     requestDate: "2024-12-26T15:00:00.000Z",
-    status: "pending",
-    sentDate: "2024-11-26T15:00:00.000Z",
+    status: "confirmed",
   },
   {
     id: 26,
@@ -361,7 +336,6 @@ export const userDb = [
     },
     requestDate: "2024-12-13T11:00:00.000Z",
     status: "pending",
-    sentDate: "2024-11-28T11:00:00.000Z",
   },
   {
     id: 27,
@@ -375,7 +349,6 @@ export const userDb = [
     },
     requestDate: "2024-12-24T16:00:00.000Z",
     status: "pending",
-    sentDate: "2024-11-24T16:00:00.000Z",
   },
   {
     id: 28,
@@ -389,7 +362,6 @@ export const userDb = [
     },
     requestDate: "2024-12-24T09:30:00.000Z",
     status: "confirmed",
-    sentDate: "2024-11-24T09:30:00.000Z",
   },
   {
     id: 29,
@@ -402,8 +374,7 @@ export const userDb = [
       coord: { lat: 34.031774990350826, lng: -118.34814565995177 },
     },
     requestDate: "2024-12-13T13:00:00.000Z",
-    status: "pending",
-    sentDate: "2024-11-29T13:00:00.000Z",
+    status: "confirmed",
   },
   {
     id: 30,
@@ -416,7 +387,6 @@ export const userDb = [
       coord: { lat: 34.2099670025045, lng: -118.41305606853706 },
     },
     requestDate: "2024-12-26T13:30:00.000Z",
-    status: "canceled",
-    sentDate: "2024-11-26T13:30:00.000Z",
+    status: "confirmed",
   },
 ];

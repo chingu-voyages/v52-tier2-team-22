@@ -4,16 +4,6 @@ import { motion } from "framer-motion";
 export default function Footer() {
   return (
     <motion.footer
-      // initial={{
-      //   opacity: 0,
-      // }}
-      // whileInView={{
-      //   opacity: 1,
-      // }}
-      // transition={{
-      //   duration: 0.3,
-      // }}
-      // viewport={{ once: true }}
       className="bg-gray-800 overflow-hidden flex-col md:flex-row gap-10 py-10 flex justify-between md:px-20 px-8 text-white text-center"
     >
       <div className="flex flex-col md:w-2/6">
