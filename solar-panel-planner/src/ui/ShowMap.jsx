@@ -19,7 +19,6 @@ export default function ShowMap({ appointmentsArr }) {
           defaultCenter={coordLA}
           defaultZoom={10}
           gestureHandling={"greedy"}
-          // disableDefaultUI={true}
         >
           {appointmentsArr?.map((user, index) => (
             <PlaceMarker

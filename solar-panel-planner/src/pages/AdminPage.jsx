@@ -11,7 +11,7 @@ function AdminPage() {
     if (!loadState("admin")) return navigate("/adminlogin");
     setIsLoggedIn(true);
     navigate("/admin");
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
   return (

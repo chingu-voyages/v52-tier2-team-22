@@ -25,7 +25,6 @@ function AdminDataTable() {
   useEffect(() => {
     const todayArr = filteringDay(appointmentsArr, today);
     setListOfToday(todayArr);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filteringDay = (arr, day) => {

@@ -24,17 +24,18 @@ function ResidentPage() {
   };
 
   return (
-    <div className="w-full bg-background">
+    <div className="w-full bg-background min-h-screen">
       <ToastContainer />
-      <ResidentForm setIsRequested={setIsRequested} />
-      <h3 className="text-center text-3xl font-semibold">Your Request</h3>
+      
       {request ? (
+        <>
+        <h3 className="text-center text-3xl font-semibold pt-6">Your Request</h3>
         <ResidentSubmitedForms
           request={request}
           handleCancelRequest={handleCancelRequest}
-        />
+        /></>
       ) : (
-        <p className="text-center p-20">No request yet</p>
+        <ResidentForm setIsRequested={setIsRequested} />
       )}
     </div>
   );

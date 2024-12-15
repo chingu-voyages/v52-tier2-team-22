@@ -20,7 +20,6 @@ function ResidentForm({ setIsRequested }) {
     address: { combinedAddress: "", zipcode: "", coord: { lat: "", lng: "" } },
     requestDate: "",
     status: "",
-    sentDate: "",
   };
 
   const [residentFormData, setResidentFormData] = useState(defaultValue);
@@ -59,7 +58,6 @@ function ResidentForm({ setIsRequested }) {
         ? new Date(residentFormData.requestDate).toISOString()
         : "",
       status: "pending",
-      sentDate: new Date().toISOString(),
     };
 
     dispatch(addAppointment(serializedData));
@@ -89,11 +87,10 @@ function ResidentForm({ setIsRequested }) {
         onSubmit={handleSubmit}
         className="my-4 flex flex-col sm:flex-row gap-5 rounded mx-auto px-8 py-8"
       >
-        {/* Date */}
         <ShowAvailableTimeSlot setResidentFormData={setResidentFormData} />
 
         <div className="mx-auto my-5 sm:w-1/2 bg-white shadow-md rounded-lg p-6">
-          {/* Name */}
+
           <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="name"
@@ -113,7 +110,6 @@ function ResidentForm({ setIsRequested }) {
             />
           </article>
 
-          {/* Email */}
           <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="email"
@@ -133,7 +129,6 @@ function ResidentForm({ setIsRequested }) {
             />
           </article>
 
-          {/* Phone Number */}
           <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="phone"
@@ -155,7 +150,6 @@ function ResidentForm({ setIsRequested }) {
             />
           </article>
 
-          {/* Address */}
           <article className="flex flex-col gap-2 mt-4">
             <label
               htmlFor="street_address"
@@ -166,10 +160,9 @@ function ResidentForm({ setIsRequested }) {
             <AddressAutoComplete setAddress={setAddress} />
           </article>
 
-          {/* Buttons */}
           <article className="flex items-start gap-4 mt-8 justify-between">
             <button
-              type="submit" //submit the form
+              type="submit" 
               className="bg-primaryGreen transition hover:bg-secondaryGreen text-white font-semibold py-2 px-4 rounded w-2/3"
             >
               Send Request
@@ -200,8 +193,8 @@ function ResidentForm({ setIsRequested }) {
           <p
             className={`font-bold text-xl ${
               modalContent.title === "Form submitted succesfully !"
-                ? "text-primaryGreen" // Green for success
-                : "text-red-500" // Red for failure
+                ? "text-primaryGreen" 
+                : "text-red-500" 
             }`}
           >
             {modalContent.title}

@@ -24,7 +24,6 @@ function AdminForm() {
     if (isValidEmail) {
       saveState(adminFormData.email, "admin")
       navigate('/admin')
-      // toast.success("Admin logged in successfully");
     } else {
       toast.error("Invaild email address");
       setAdminFormData({
@@ -66,7 +65,6 @@ function AdminForm() {
           />
         </article>
 
-        {/* Buttons */}
         <article className="flex gap-4 mt-4 items-center justify-between">
           <button
             type="submit"
